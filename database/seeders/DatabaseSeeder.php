@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         /**
-         * persit heroes tables without casting
+         * persist heroes tables without casting
          */
 
         $hero = new Hero;
@@ -32,17 +32,17 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $hero->save();
-        
-        // Admin::factory()->create([
-        //     'firstname' => 'Super',
-        //     'lastname' => 'Admin',
-        //     'email' => 'admin@test.com',
-        // ]);
 
-        // User::factory()->create([
-        //     'firstname' => 'Test',
-        //     'lastname' => 'User',
-        //     'email' => 'user@test.com',
-        // ]);
+        Admin::factory()->create([
+            'firstname' => 'Super',
+            'lastname' => 'Admin',
+            'email' => 'admin@test.com',
+        ]);
+
+        User::factory()->create([
+            'firstname' => 'Test',
+            'lastname' => 'User',
+            'email' => 'user@test.com',
+        ]);
     }
 }

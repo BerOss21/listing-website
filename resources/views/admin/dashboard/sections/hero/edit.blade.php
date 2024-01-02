@@ -1,13 +1,11 @@
 @extends('admin.layouts.main')
 @section('header')
-<div class="section-header-back">
+<!-- <div class="section-header-back">
     <a href="features-posts.html" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
-</div>
-<h1>Create New Post</h1>
+</div> -->
+<h1>Update hero section</h1>
 <div class="section-header-breadcrumb">
-    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-    <div class="breadcrumb-item"><a href="#">Posts</a></div>
-    <div class="breadcrumb-item">Create New Post</div>
+    <div class="breadcrumb-item active"><a href="{{route('admin.dashboard')}}">Dashboard</a></div>
 </div>
 @endsection
 
@@ -34,11 +32,11 @@
                             <div class="row">
                                 <div class="form-group col-md-6 mb-4">
                                     <label>Title</label>
-                                    <input type="text" name="title" class="form-control">
+                                    <input type="text" name="title" class="form-control" value="{{old('sub_title',$hero->title)}}">
                                 </div>
                                 <div class="form-group col-md-6 mb-4">
                                     <label>Sub Title</label>
-                                    <input type="text" name="sub_title" class="form-control">
+                                    <input type="text" name="sub_title" class="form-control" value="{{old('sub_title',$hero->sub_title)}}">
                                 </div>
                             </div>
                             

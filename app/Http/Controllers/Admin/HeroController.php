@@ -18,8 +18,6 @@ class HeroController extends Controller
 
     public function update(HeroRequest $request)
     {
-        // dd($request->validated());
-
         Hero::updateOrCreate(['id'=>1],$request->validated());
 
         toastr()->success('Data has been updated successfully!');
