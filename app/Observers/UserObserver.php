@@ -7,33 +7,34 @@ use Illuminate\Support\Facades\Storage;
 
 class UserObserver
 {
-    public function updated(User $admin): void
+    public function updated(User $user): void
     {
-        $this->deleteOldFiles($admin);
+        $this->deleteOldFiles($user,'updated');
     }
 
-    public function deleted(User $admin): void
+    public function deleted(User $user): void
     {
-        $this->deleteOldFiles($admin);
+        $this->deleteOldFiles($user,'deleted');
     }
 
     /**
      * 
-     * @param \App\Models\User $admin
+     * @param \App\Models\User $user
+     * @param string $method
      * @return void
      */
-    protected function deleteOldFiles(User $admin) :void
+    protected function deleteOldFiles(User $user, string $method) :void
     {
-        $avatar=$admin->getRawOriginal('avatar');
+        $avatar=$user->getRawOriginal('avatar');
 
-        $banner=$admin->getRawOriginal('banner');
+        $banner=$user->getRawOriginal('banner');
 
-        if($admin->wasChanged('avatar') && $avatar!='avatars/default.png' &&  Storage::disk('user')->exists($avatar))
+        if(($user->wasChanged('avatar') || $method=='deleted') && $avatar!='avatars/default.png' &&  Storage::disk('user')->exists($avatar))
         {
             Storage::disk('user')->delete($avatar);
         }
 
-        if($admin->wasChanged('banner') && $banner!='banners/default.png' && Storage::disk('user')->exists($banner))
+        if(($user->wasChanged('banner') || $method=='deleted') && $banner!='banners/default.png' && Storage::disk('user')->exists($banner))
         {
             Storage::disk('user')->delete($banner);
         }

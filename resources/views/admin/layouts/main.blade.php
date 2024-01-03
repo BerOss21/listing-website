@@ -17,10 +17,12 @@
 
     @stack('head')
 
-    <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"> -->
     
     <link rel="stylesheet" href="{{asset('admin/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('admin/assets/css/components.css')}}">
+
+    <meta name="csrf_token" content="{{csrf_token()}}">
 </head>
 
 <body>
@@ -66,7 +68,14 @@
     <script src="{{asset('admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script>
     <script src="{{asset('admin/assets/modules/izitoast/js/iziToast.min.js')}}"></script>
 
-    <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <!-- JS Libraies -->
+    <script src="{{asset('admin/assets/modules/sweetalert/sweetalert.min.js')}}"></script>
+
+    <!-- Page Specific JS File -->
+    <script src="{{asset('admin/assets/js/page/modules-sweetalert.js')}}"></script>
+
+    <!-- <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script> -->
+
     <script>
         @if($errors->any())
             @foreach ($errors->all() as $error)
@@ -78,7 +87,7 @@
             @endforeach
         @endif
     </script>
+
     @stack('js')
 </body>
-
 </html>

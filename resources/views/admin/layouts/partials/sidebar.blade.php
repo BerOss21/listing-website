@@ -13,6 +13,7 @@
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Sections</span></a>
                 <ul class="dropdown-menu">
                     <li @class(['active'=>request()->routeIs('admin.sections.hero')])><a class="nav-link" href="{{route('admin.sections.hero')}}">Hero</a></li>
+                    <li @class(['active'=>request()->routeIs('admin.sections.categories.index')])><a class="nav-link" href="{{route('admin.sections.categories.index')}}">Categories</a></li>
                 </ul>
             </li>
         </ul>

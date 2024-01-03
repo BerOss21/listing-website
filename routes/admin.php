@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -24,6 +25,13 @@ Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 Route::get('profile',[ProfileController::class,'index'])->name('profile.index');
 Route::put('profile/update',[ProfileController::class,'update'])->name('profile.update');
 
-Route::get('hero',[HeroController::class,'edit'])->name('sections.hero');
-Route::put('hero',[HeroController::class,'update']);
+
+
+
+Route::group(['as'=>'sections.'],function(){
+    Route::get('hero',[HeroController::class,'edit'])->name('hero');
+    Route::put('hero',[HeroController::class,'update']);
+
+    Route::resource('categories',CategoryController::class)->except('show');
+});
 
