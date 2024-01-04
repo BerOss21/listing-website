@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Category;
+use App\Models\Location;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class CategoriesDataTable extends DataTable
+class LocationsDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -22,14 +22,14 @@ class CategoriesDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($category) {
-                return view('admin.datatables.categories.actions', ['id' => $category->id]);
+            ->addColumn('action', function ($location) {
+                return view('admin.datatables.locations.actions', ['id' => $location->id]);
             })
-            ->editColumn('show_at_home',function($category){
-                return $category->show_at_home? "<span class='badge badge-success'>Yes</span>":"<span class='badge badge-warning'>No</span>";
+            ->editColumn('show_at_home',function($location){
+                return $location->show_at_home? "<span class='badge badge-success'>Yes</span>":"<span class='badge badge-warning'>No</span>";
             })
-            ->editColumn('status',function($category){
-                return $category->status? "<span class='badge badge-success'>Yes</span>":"<span class='badge badge-warning'>No</span>";
+            ->editColumn('status',function($location){
+                return $location->status? "<span class='badge badge-success'>Yes</span>":"<span class='badge badge-warning'>No</span>";
             })
             ->rawColumns(['action','show_at_home','status'])
             ->setRowId('id');
@@ -38,7 +38,7 @@ class CategoriesDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Category $model): QueryBuilder
+    public function query(Location $model): QueryBuilder
     {
         return $model->select('id','name','show_at_home','status','created_at')->newQuery();
     }
@@ -49,7 +49,7 @@ class CategoriesDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('categories-table')
+                    ->setTableId('locations-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
@@ -89,6 +89,6 @@ class CategoriesDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Categories_' . date('YmdHis');
+        return 'Locations_' . date('YmdHis');
     }
 }

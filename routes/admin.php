@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\DashboardController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\ProfileController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\DashboardController;
 // use App\Http\Controllers\Auth\NewPasswordController;
 // use App\Http\Controllers\Auth\PasswordResetLinkController;
 // use App\Http\Controllers\Auth\ConfirmablePasswordController;
@@ -33,5 +34,6 @@ Route::group(['as'=>'sections.'],function(){
     Route::put('hero',[HeroController::class,'update']);
 
     Route::resource('categories',CategoryController::class)->except('show');
+    Route::resource('locations',LocationController::class)->except('show');
 });
 
