@@ -16,7 +16,7 @@ class CategoryObserver
     {
         $this->deleteOldFiles($category,'deleted');
     }
-
+    
     /**
      * 
      * @param \App\Models\Category $category

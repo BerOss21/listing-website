@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AmenityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -26,14 +27,12 @@ Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 Route::get('profile',[ProfileController::class,'index'])->name('profile.index');
 Route::put('profile/update',[ProfileController::class,'update'])->name('profile.update');
 
-
-
-
 Route::group(['as'=>'sections.'],function(){
     Route::get('hero',[HeroController::class,'edit'])->name('hero');
     Route::put('hero',[HeroController::class,'update']);
 
     Route::resource('categories',CategoryController::class)->except('show');
     Route::resource('locations',LocationController::class)->except('show');
+    Route::resource('amenities',AmenityController::class)->except('show');
 });
 

@@ -1,10 +1,10 @@
 @extends('admin.layouts.main')
 @section('header')
-<h1>Categories</h1>
+<h1>Amenities</h1>
 <div class="section-header-breadcrumb">
     <div class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></div>
     <div class="breadcrumb-item">Section</div>
-    <div class="breadcrumb-item active">Categories</div>
+    <div class="breadcrumb-item active">Amenities</div>
 </div>
 @endsection
 
@@ -21,11 +21,11 @@
         <div class="col-12">
             <div class="card">
                 <!-- <div class="card-header">
-                    <h4>Category section data</h4>
+                    <h4>Amenity section data</h4>
                 </div> -->
                 <div class="card-body">
                     <div class="w-full d-flex justify-content-end mb-5">
-                        <a href="{{route('admin.sections.categories.create')}}" class="btn btn-primary self-end">Create</a>
+                        <a href="{{route('admin.sections.amenities.create')}}" class="btn btn-primary self-end">Create</a>
                     </div>
                     {{ $dataTable->table() }}
                 </div>
@@ -46,16 +46,16 @@
 {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
 
 <script>
-    const table= $('#categories-table');
+    const table= $('#amenities-table');
 
-    $(document).on('click', '.category-delete', async function(e) {
+    $(document).on('click', '.amenity-delete', async function(e) {
         e.preventDefault();
 
         try
         {
             const willDelete=await swal({
                 title: 'Are you sure?',
-                text: 'Once deleted, you will not be able to recover this category!',
+                text: 'Once deleted, you will not be able to recover this amenity!',
                 icon: 'warning',
                 buttons: true,
                 dangerMode: true,
@@ -71,7 +71,7 @@
                 });
 
                 iziToast.success({
-                    title: 'Category deleted successfully',
+                    title: 'Amenity deleted successfully',
                     position: 'topRight'
                 });
         

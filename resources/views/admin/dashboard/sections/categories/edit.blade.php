@@ -18,7 +18,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Hero section data</h4>
+                    <h4>Category section data</h4>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('admin.sections.categories.update',$category->id) }}" method="post" enctype="multipart/form-data">

@@ -2,11 +2,10 @@
 
 namespace App\Http\Requests\Admin;
 
-
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryRequest extends FormRequest
+class AmenityRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,15 +24,14 @@ class CategoryRequest extends FormRequest
     {
         $rules=[
             'name'=>['required','string','max:255'],
-            'background'=>['nullable','image','max:5000'],
-            'icon'=>['nullable','image','max:5000'],
+            'icon'=>['required','string'],
             'show_at_home'=>['nullable','boolean'],
             'status'=>['nullable','boolean'],
         ];
 
-        $rules['name'][]=$this->route('category')?
-                        Rule::unique('categories')->ignore($this->route('category'))
-                        :Rule::unique('categories');
+        $rules['name'][]=$this->route('amenity')?
+                        Rule::unique('amenities')->ignore($this->route('amenity'))
+                        :Rule::unique('amenities');
                         
         return $rules;
     }

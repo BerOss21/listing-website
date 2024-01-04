@@ -17,7 +17,7 @@
 
     @stack('head')
 
-    <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-iconpicker/1.10.0/css/bootstrap-iconpicker.min.css">
     
     <link rel="stylesheet" href="{{asset('admin/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('admin/assets/css/components.css')}}">
@@ -74,7 +74,7 @@
     <!-- Page Specific JS File -->
     <script src="{{asset('admin/assets/js/page/modules-sweetalert.js')}}"></script>
 
-    <!-- <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-iconpicker/1.10.0/js/bootstrap-iconpicker.bundle.min.js"></script>
 
     <script>
         @if($errors->any())
