@@ -84,4 +84,9 @@ class Listing extends Model
    {
         return $this->belongsToMany(Amenity::class);
    }
+
+   public function images() :HasMany
+   {
+        return $this->hasMany(Image::class);
+   }
 }

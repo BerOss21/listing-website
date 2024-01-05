@@ -22,7 +22,22 @@ class ListingsDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'listings.action')
+            ->addColumn('action', function ($listing) {
+                return view('admin.datatables.listings.actions', ['id' => $listing->id]);
+            })
+            ->editColumn('is_approved',function($listing){
+                return $listing->is_approved? "<span class='badge badge-success'>Yes</span>":"<span class='badge badge-warning'>No</span>";
+            })
+            ->editColumn('status',function($listing){
+                return $listing->status? "<span class='badge badge-success'>Yes</span>":"<span class='badge badge-warning'>No</span>";
+            })
+            ->editColumn('thumbnail_image',function($listing){
+                return $listing->thumbnail_image?"<img src='{$listing->thumbnail_image}' width=100 height=100>":"";
+            })
+            ->editColumn('image',function($listing){
+                return $listing->image?"<img src='{$listing->image}' width=100 height=100>":"";
+            })
+            ->rawColumns(['action','is_approved','status','thumbnail_image','image'])
             ->setRowId('id');
     }
 
@@ -31,7 +46,7 @@ class ListingsDataTable extends DataTable
      */
     public function query(Listing $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->select('id','title','image','thumbnail_image','is_approved','status','created_at','expire_date')->newQuery();
     }
 
     /**
@@ -43,8 +58,8 @@ class ListingsDataTable extends DataTable
                     ->setTableId('listings-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
+                    ->dom('Bfrtip')
+                    ->orderBy(0)
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
@@ -62,15 +77,19 @@ class ListingsDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
+            Column::make('id')->visible(false),
+            Column::make('title'),
+            Column::make('thumbnail_image'),
+            Column::make('image'),
+            Column::make('is_approved'),
+            Column::make('status'),
+            Column::make('expire_date'),
             Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::computed('action')
+            ->exportable(false)
+            ->printable(false)
+            ->width(60)
+            ->addClass('text-center'),
         ];
     }
 

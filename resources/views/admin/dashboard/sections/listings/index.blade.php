@@ -21,7 +21,7 @@
                     <div class="w-full d-flex justify-content-end mb-5">
                         <a href="{{route('admin.sections.listings.create')}}" class="btn btn-primary self-end">Create</a>
                     </div>
-                    Datatable
+                    {{ $dataTable->table() }}
                 </div>
             </div>
         </div>
@@ -30,7 +30,6 @@
 @endsection
 
 @push('js')
-
 <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
 {{ $dataTable->scripts(attributes: ['type' => 'module']) }}

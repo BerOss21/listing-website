@@ -14,7 +14,6 @@ class ProfileController extends Controller
 
     public function update(ProfileRequest $request)
     {
-        // dd($request->validated());
         auth()->user()->update($request->validated());
 
         toastr()->success('Profile has been updated successfully!');

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\HeroRequest;
 use App\Models\Hero;
-use Illuminate\Http\Request;
 
 class HeroController extends Controller
 {

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\Listing\ImageController;
 use App\Http\Controllers\Admin\ListingController;
 
 // use App\Http\Controllers\Auth\NewPasswordController;
@@ -36,6 +37,13 @@ Route::group(['as'=>'sections.'],function(){
     Route::resource('categories',CategoryController::class)->except('show');
     Route::resource('locations',LocationController::class)->except('show');
     Route::resource('amenities',AmenityController::class)->except('show');
+
+    Route::get('listings/{listing}/images',[ImageController::class,'create'])->name('listings.images');
+    Route::put('listings/{listing}/images',[ImageController::class,'store']);
+    Route::delete('listings/{listing}/images/{image}',[ImageController::class,'delete'])->scopeBindings()->name('listings.images.delete');
+
     Route::resource('listings',ListingController::class)->except('show');
+
+    
 });
 
