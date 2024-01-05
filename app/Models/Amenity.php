@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Amenity extends Model
 {
@@ -30,5 +31,10 @@ class Amenity extends Model
                 'source' => 'name'
             ]
         ];
+    }
+
+    public function listings() :BelongsToMany
+    {
+        return $this->belongsToMany(Listing::class);
     }
 }

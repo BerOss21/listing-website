@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Location extends Model
@@ -29,5 +30,10 @@ class Location extends Model
                 'source' => 'name'
             ]
         ];
+    }
+
+    public function listings() :HasMany
+    {
+        return $this->hasMany(Listing::class);
     }
 }

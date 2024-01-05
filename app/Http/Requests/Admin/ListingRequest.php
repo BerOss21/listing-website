@@ -26,8 +26,8 @@ class ListingRequest extends FormRequest
             'image' => ['image', 'max:3000'],
             'thumbnail_image' => [ 'image', 'max:3000'],
             'title' => ['required', 'string', 'max:255'],
-            'category' => ['required', 'integer'],
-            'location' => ['required', 'integer'],
+            'category_id' => ['required', 'integer','exists:categories,id'],
+            'location_id' => ['required', 'integer','exists:locations,id'],
             'address' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
@@ -37,19 +37,22 @@ class ListingRequest extends FormRequest
             'linkedin_link' => ['nullable','url'],
             'whatsapp_link' => ['nullable','url'],
             'attachment' => ['nullable','mimes:png,jpg,csv,pdf', 'max:10000'],
-            'amenities.*' => ['nullable', 'integer'],
+            'amenities'=>['nullable','array'],
+            'amenities.*' => ['nullable', 'integer','exists:amenities,id'],
             'description' => ['required'],
             'google_map_embed_code' => ['nullable'],
             'seo_title' => ['nullable', 'string', 'max:255'],
             'seo_description' => ['nullable', 'string', 'max:255'],
             'status' => ['required', 'boolean'],
+            'expire_date'=>['required','date'],
             'is_featured' => ['required', 'boolean'],
-            'is_verified' => ['required', 'boolean']
+            'is_verified' => ['required', 'boolean'],
+            'is_approved' => ['required', 'boolean'],
         ];
 
         $rules['title'][]=$this->route('listing')?
-                        Rule::unique('categories')->ignore($this->route('listing'))
-                        :Rule::unique('categories');
+                        Rule::unique('listings')->ignore($this->route('listing'))
+                        :Rule::unique('listings');
                         
         return $rules;
     }

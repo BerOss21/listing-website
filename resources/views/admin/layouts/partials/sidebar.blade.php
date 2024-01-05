@@ -16,6 +16,7 @@
                     <li @class(['active'=>request()->routeIs('admin.sections.categories.index')])><a class="nav-link" href="{{route('admin.sections.categories.index')}}">Categories</a></li>
                     <li @class(['active'=>request()->routeIs('admin.sections.locations.index')])><a class="nav-link" href="{{route('admin.sections.locations.index')}}">Locations</a></li>
                     <li @class(['active'=>request()->routeIs('admin.sections.amenities.index')])><a class="nav-link" href="{{route('admin.sections.amenities.index')}}">Amenities</a></li>
+                    <li @class(['active'=>request()->routeIs('admin.sections.listings.index')])><a class="nav-link" href="{{route('admin.sections.listings.index')}}">Listings</a></li>
                 </ul>
             </li>
         </ul>

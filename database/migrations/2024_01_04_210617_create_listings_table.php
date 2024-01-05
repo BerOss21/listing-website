@@ -25,11 +25,11 @@ return new class extends Migration
             $table->string('phone');
             $table->string('email');
             $table->string('address');
-            $table->text('website')->nullable();
-            $table->text('facebook_link')->nullable();
-            $table->text('x_link')->nullable();
-            $table->text('linkedin_link')->nullable();
-            $table->text('whatsapp_link')->nullable();
+            $table->string('website')->nullable();
+            $table->string('facebook_link')->nullable();
+            $table->string('x_link')->nullable();
+            $table->string('linkedin_link')->nullable();
+            $table->string('whatsapp_link')->nullable();
             $table->boolean('is_verified')->default(0);
             $table->boolean('is_featured')->default(0);
             $table->integer('views')->default(0);

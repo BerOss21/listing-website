@@ -2,65 +2,58 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Actions\Admin\FormData;
+use App\Actions\Admin\SaveListing;
+use App\Actions\Admin\UpdateListing;
 use App\Models\Listing;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\DataTables\ListingsDataTable;
+use App\Http\Requests\Admin\ListingRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class ListingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(ListingsDataTable $dataTable)
     {
-        //
+        return $dataTable->render('admin.dashboard.sections.listings.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(FormData $action)
     {
-        //
+        return view('admin.dashboard.sections.listings.create',$action->getData());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(ListingRequest $request, SaveListing $action)
     {
-        //
+        $action->save($request->validated());
+
+        toastr()->success('Data has been created successfully!');
+
+        return to_route('admin.sections.listings.index'); 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Listing $listing)
+    public function edit(Listing $listing,FormData $action)
     {
-        //
+        return view('admin.dashboard.sections.listings.edit',[...compact('listing'),...$action->getData()]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Listing $listing)
+    public function update(ListingRequest $request, Listing $listing,UpdateListing $action)
     {
-        //
+        $action->update($request->validated(),$listing);
+
+        toastr()->success('Data has been updated successfully!');
+
+        return to_route('admin.sections.listings.index'); 
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Listing $listing)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Listing $listing)
     {
-        //
+        $listing->delete();
+
+        if(request()->ajax()) return response('',Response::HTTP_NO_CONTENT);
+
+        toastr()->success('Data has been deleted successfully!');
+
+        return to_route('admin.sections.listings.index'); 
     }
 }

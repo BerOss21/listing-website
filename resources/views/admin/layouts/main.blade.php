@@ -12,10 +12,9 @@
     <link rel="stylesheet" href="{{asset('admin/assets/modules/izitoast/css/iziToast.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('admin/assets/modules/summernote/summernote-bs4.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/assets/modules/select2/dist/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/assets/modules/jquery-selectric/selectric.css')}}">
     <link rel="stylesheet" href="{{asset('admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css')}}">
-
-    @stack('head')
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-iconpicker/1.10.0/css/bootstrap-iconpicker.min.css">
     
@@ -23,6 +22,15 @@
     <link rel="stylesheet" href="{{asset('admin/assets/css/components.css')}}">
 
     <meta name="csrf_token" content="{{csrf_token()}}">
+
+    <style>
+        .select2{
+            width:100% !important;
+        }
+    </style>
+    @stack('head')
+
+    
 </head>
 
 <body>
@@ -64,6 +72,7 @@
 
      
     <script src="{{asset('admin/assets/modules/summernote/summernote-bs4.js')}}"></script>
+    <script src="{{asset('admin/assets/modules/select2/dist/js/select2.full.min.js')}}"></script>
     <script src="{{asset('admin/assets/modules/jquery-selectric/jquery.selectric.min.js')}}"></script>
     <script src="{{asset('admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script>
     <script src="{{asset('admin/assets/modules/izitoast/js/iziToast.min.js')}}"></script>

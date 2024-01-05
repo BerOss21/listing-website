@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ListingController;
+
 // use App\Http\Controllers\Auth\NewPasswordController;
 // use App\Http\Controllers\Auth\PasswordResetLinkController;
 // use App\Http\Controllers\Auth\ConfirmablePasswordController;
@@ -34,5 +36,6 @@ Route::group(['as'=>'sections.'],function(){
     Route::resource('categories',CategoryController::class)->except('show');
     Route::resource('locations',LocationController::class)->except('show');
     Route::resource('amenities',AmenityController::class)->except('show');
+    Route::resource('listings',ListingController::class)->except('show');
 });
 

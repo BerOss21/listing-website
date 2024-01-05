@@ -4,14 +4,15 @@ namespace App\Models;
 
 use App\Casts\UploadedFile;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Listing extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     protected $fillable = [
         'user_id',
@@ -74,11 +75,13 @@ class Listing extends Model
     return $this->belongsTo(Location::class)->withDefault();
    }
 
-   public function amenities() :BelongsToMany
+   public function user() :BelongsTo
    {
-    return $this->belongsToMany(Amenity::class);
+    return $this->belongsTo(User::class)->withDefault();
    }
 
-
-
+   public function amenities() :BelongsToMany
+   {
+        return $this->belongsToMany(Amenity::class);
+   }
 }
