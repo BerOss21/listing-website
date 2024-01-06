@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\Admin\AmenityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HeroController;
+use App\Http\Controllers\Admin\AmenityController;
+use App\Http\Controllers\Admin\ListingController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Listing\ImageController;
-use App\Http\Controllers\Admin\ListingController;
+use App\Http\Controllers\Admin\Listing\VideoController;
 
 // use App\Http\Controllers\Auth\NewPasswordController;
 // use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -41,6 +42,10 @@ Route::group(['as'=>'sections.'],function(){
     Route::get('listings/{listing}/images',[ImageController::class,'create'])->name('listings.images');
     Route::put('listings/{listing}/images',[ImageController::class,'store']);
     Route::delete('listings/{listing}/images/{image}',[ImageController::class,'delete'])->scopeBindings()->name('listings.images.delete');
+
+    Route::get('listings/{listing}/videos',[VideoController::class,'create'])->name('listings.videos');
+    Route::put('listings/{listing}/videos',[VideoController::class,'store']);
+    Route::delete('listings/{listing}/videos/{video}',[VideoController::class,'delete'])->scopeBindings()->name('listings.videos.delete');
 
     Route::resource('listings',ListingController::class)->except('show');
 

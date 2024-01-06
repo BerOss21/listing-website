@@ -7,7 +7,7 @@
         </button>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="{{ route('admin.sections.listings.images',$id) }}">Image gallery</a>
-            <a class="dropdown-item" href="#">Video gallery</a>
+            <a class="dropdown-item" href="{{ route('admin.sections.listings.videos',$id) }}">Video gallery</a>
         </div>
     </div>
 </div>

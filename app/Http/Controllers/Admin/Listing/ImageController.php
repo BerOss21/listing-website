@@ -11,7 +11,7 @@ class ImageController extends Controller
 {
     public function create($id)
     {
-        return view('admin.dashboard.sections.listings.images.edit',[
+        return view('admin.dashboard.sections.listings.images.create',[
             'listing'=>Listing::with(['images'=>fn($q)=>$q->orderByDesc('id')])
                         ->select('id','title')
                         ->firstOrFail($id)

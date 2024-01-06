@@ -5,11 +5,13 @@ namespace App\Providers;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\Image;
+use App\Models\Video;
 use App\Models\Listing;
 use App\Models\Category;
 use App\Observers\UserObserver;
 use App\Observers\AdminObserver;
 use App\Observers\ImageObserver;
+use App\Observers\VideoObserver;
 use App\Observers\ListingObserver;
 use App\Observers\CategoryObserver;
 use Illuminate\Support\Facades\Event;
@@ -43,7 +45,8 @@ class EventServiceProvider extends ServiceProvider
         Admin::class=>AdminObserver::class,
         Category::class=>CategoryObserver::class,
         Listing::class=>ListingObserver::class,
-        Image::class=>ImageObserver::class
+        Image::class=>ImageObserver::class,
+        Video::class=>VideoObserver::class
     ];
 
     /**
