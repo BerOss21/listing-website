@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Listing\ImageController;
+use App\Http\Controllers\Admin\Listing\ScheduleController;
 use App\Http\Controllers\Admin\Listing\VideoController;
 
 // use App\Http\Controllers\Auth\NewPasswordController;
@@ -46,6 +47,8 @@ Route::group(['as'=>'sections.'],function(){
     Route::get('listings/{listing}/videos',[VideoController::class,'create'])->name('listings.videos');
     Route::put('listings/{listing}/videos',[VideoController::class,'store']);
     Route::delete('listings/{listing}/videos/{video}',[VideoController::class,'delete'])->scopeBindings()->name('listings.videos.delete');
+
+    Route::resource('listings.schedules', ScheduleController::class)->except('show');
 
     Route::resource('listings',ListingController::class)->except('show');
 

@@ -94,4 +94,9 @@ class Listing extends Model
    {
         return $this->hasMany(Video::class);
    }
+
+   public function schedules() :HasMany
+   {
+        return $this->hasMany(Schedule::class);
+   }
 }
