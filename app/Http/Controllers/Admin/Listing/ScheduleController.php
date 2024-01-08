@@ -8,6 +8,7 @@ use App\Models\Listing;
 use App\Models\Schedule;
 use App\Http\Controllers\Controller;
 use App\DataTables\SchedulesDataTable;
+use Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\Admin\Listing\ScheduleRequest;
 
 class ScheduleController extends Controller
@@ -23,31 +24,26 @@ class ScheduleController extends Controller
 
     public function create($id)
     {
-        $days= Days::cases(); 
-
         return view('admin.dashboard.sections.listings.schedules.create',[
             'listing'=>Listing::select('id','title')->firstOrFail($id),
-            'days'=>$days
+            'days'=>Days::cases()
         ]);
     }
 
     public function store(ScheduleRequest $request,Listing $listing)
     {
-        $listing->schedules()->updateOrCreate([
-            'day'=>$request->validate('day')
-        ],[
-          $request->validate('start_time','end_time','status')  
-        ]);
+        $listing->schedules()->create($request->validated());
 
         toastr()->success('Schedule has been saved succesfully');
 
-        return to_route('admin.sections.listings.schedules.index');
+        return to_route('admin.sections.listings.schedules.index',$listing->id);
     }
 
     public function edit(Listing $listing,Schedule $schedule)
     {
         return view('admin.dashboard.sections.listings.schedules.edit',[
-            'schdule'=>$schedule->load('listing:id,title')
+            'schedule'=>$schedule,
+            'listing'=>$listing,
         ]);
     }
 
@@ -57,12 +53,16 @@ class ScheduleController extends Controller
 
         toastr()->success('Schedule has been updated succfully');
 
-        return to_route('admin.sections.listings.schedules.index');
+        return to_route('admin.sections.listings.schedules.index',$listing->id);
     }
 
-    public function delete(Listing $listing,Schedule $schedule)
+    public function destroy(Listing $listing,Schedule $schedule)
     {
         $schedule->delete();
+
+        if(request()->ajax()) return response('',Response::HTTP_NO_CONTENT);
+
+        toastr()->success('Schedule has been deleted successfully!');
 
         return back();
     }

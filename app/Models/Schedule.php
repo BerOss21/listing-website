@@ -11,10 +11,11 @@ class Schedule extends Model
 {
     use HasFactory;
 
-    protected $fillable=['listing_id','day','start_time','end_time'];
+    protected $fillable=['listing_id','day','start_time','end_time','status'];
 
     protected $casts=[
         'day'=>Days::class,
+        'status'=>'boolean',
         'created_at'=>'datetime:d/m/y'
     ];
 

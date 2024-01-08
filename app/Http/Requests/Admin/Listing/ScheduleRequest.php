@@ -3,8 +3,9 @@
 namespace App\Http\Requests\Admin\Listing;
 
 use App\Enums\Days;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Foundation\Http\FormRequest;
 
 class ScheduleRequest extends FormRequest
 {
@@ -23,11 +24,17 @@ class ScheduleRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'day'=>['required',Rule::enum(Days::class)],
-            'start_time'=>['required','string','max:20'],
-            'end_time'=>['required','string','max:20'],
-            'status'=>['required','boolean']
+        $rules= [
+            'day'=>['sometimes','required',Rule::enum(Days::class)],
+            'start_time'=>['required','date_format:H:i','max:20'],
+            'end_time'=>['required','date_format:H:i','after:start_time','max:20'],
+            'status'=>['required','string','boolean']
         ];
+
+        $rules['day'][]=$this->route('schedule')?
+        Rule::unique('schedules')->where(fn (Builder $query) => $query->where('listing_id', $this->listing->id))->ignore($this->route('schedule'))
+        :Rule::unique('schedules')->where(fn (Builder $query) => $query->where('listing_id', $this->listing->id));
+        
+        return $rules;
     }
 }

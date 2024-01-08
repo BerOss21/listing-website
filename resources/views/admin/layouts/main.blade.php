@@ -77,6 +77,9 @@
     <script src="{{asset('admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script>
     <script src="{{asset('admin/assets/modules/izitoast/js/iziToast.min.js')}}"></script>
 
+    <script src="{{asset('admin/assets/js/scripts.js')}}"></script>
+    <script src="{{asset('admin/assets/js/custom.js')}}"></script>
+
     <!-- JS Libraies -->
     <script src="{{asset('admin/assets/modules/sweetalert/sweetalert.min.js')}}"></script>
 

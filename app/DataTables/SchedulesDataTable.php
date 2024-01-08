@@ -23,9 +23,12 @@ class SchedulesDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->editColumn('action', function($schedule){
-                return view('admin.datatables.schedules.actions', ['id' => $schedule->id]);
+                return view('admin.datatables.schedules.actions', ['listing_id'=>$schedule->listing_id,'schedule_id' => $schedule->id]);
             })
-            ->rawColumns(['action'])
+            ->editColumn('status',function($schedule){
+                return $schedule->status? "<span class='badge badge-success'>Yes</span>":"<span class='badge badge-warning'>No</span>";
+            })
+            ->rawColumns(['action','status'])
             ->setRowId('id');
     }
 
@@ -69,6 +72,7 @@ class SchedulesDataTable extends DataTable
             Column::make('day'),
             Column::make('start_time'),
             Column::make('end_time'),
+            Column::make('status'),
             Column::make('created_at'),
             Column::computed('action')
                   ->exportable(false)
