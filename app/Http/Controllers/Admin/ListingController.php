@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Actions\Admin\FormData;
-use App\Actions\Admin\SaveListing;
-use App\Actions\Admin\UpdateListing;
+use App\Actions\Listing\FormData;
+use App\Actions\Listing\SaveListing;
+use App\Actions\Listing\UpdateListing;
 use App\Models\Listing;
 use App\Http\Controllers\Controller;
 use App\DataTables\ListingsDataTable;

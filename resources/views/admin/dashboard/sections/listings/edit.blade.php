@@ -136,24 +136,24 @@
                             <div class="form-group col-md-6 mb-4">
                                 <label>Is verified</label>
                                 <select name="is_verified" class="form-control">
-                                    <option value="1"  @selected(old('is_verified',$listing->is_verified)==true)>Active</option>
-                                    <option value="0" @selected(old('is_verified',$listing->is_verified)==false)>Inactive</option>
+                                    <option value="1"  @selected(old('is_verified',$listing->is_verified)==true)>Yes</option>
+                                    <option value="0" @selected(old('is_verified',$listing->is_verified)==false)>No</option>
                                 </select>
                             </div>
 
                             <div class="form-group col-md-6 mb-4">
                                 <label>Is featured</label>
                                 <select name="is_featured" class="form-control">
-                                    <option value="1" @selected(old('is_featured',$listing->is_featured)==true)>Active</option>
-                                    <option value="0"  @selected(old('is_featured',$listing->is_featured)==false)>Inactive</option>
+                                    <option value="1" @selected(old('is_featured',$listing->is_featured)==true)>Yes</option>
+                                    <option value="0"  @selected(old('is_featured',$listing->is_featured)==false)>No</option>
                                 </select>
                             </div>
 
                             <div class="form-group col-md-6 mb-4">
                                 <label>Is approved</label>
                                 <select name="is_approved" class="form-control">
-                                    <option value="1"  @selected(old('is_approved',$listing->is_approved)==true)>Active</option>
-                                    <option value="0" @selected(old('is_approved',$listing->is_approved)==false)>Inactive</option>
+                                    <option value="1"  @selected(old('is_approved',$listing->is_approved)==true)>Yes</option>
+                                    <option value="0" @selected(old('is_approved',$listing->is_approved)==false)>No</option>
                                 </select>
                             </div>
 

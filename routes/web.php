@@ -1,10 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Frontend\Dashboard\ProfileController;
 use App\Http\Controllers\Frontend\HomeController;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
-use App\Http\Controllers\Frontend\Dashboard\MainController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +17,11 @@ use App\Http\Controllers\Frontend\Dashboard\MainController;
 
 Route::get('/', [HomeController::class,'index'])->name('home');
 
-Route::group(['middleware'=>'auth','prefix'=>'dashboard'],function(){
-    Route::get('/',[MainController::class,'index'])->name('dashboard');
-    Route::get('profile',[ProfileController::class,'show'])->name('dashboard.profile');
-    Route::put('profile',[ProfileController::class,'update']);
-});
+// Route::group(['middleware'=>'auth','prefix'=>'dashboard'],function(){
+//     Route::get('/',[MainController::class,'index'])->name('dashboard');
+//     Route::get('profile',[ProfileController::class,'show'])->name('dashboard.profile');
+//     Route::put('profile',[ProfileController::class,'update']);
+// });
 
 
 // Route::middleware('auth')->group(function () {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Actions\Admin;
+namespace App\Actions\Listing;
 
 use App\Models\Listing;
 use Throwable;
