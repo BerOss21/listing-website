@@ -22,7 +22,7 @@ class ListingRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules=[
+        return [
             'image' => ['image', 'max:3000'],
             'thumbnail_image' => [ 'image', 'max:3000'],
             'title' => ['required', 'string', 'max:255'],
@@ -50,10 +50,10 @@ class ListingRequest extends FormRequest
             'is_approved' => ['required', 'boolean'],
         ];
 
-        $rules['title'][]=$this->route('listing')?
-                        Rule::unique('listings')->ignore($this->route('listing'))
-                        :Rule::unique('listings');
+        // $rules['title'][]=$this->route('listing')?
+        //                 Rule::unique('listings')->ignore($this->route('listing'))
+        //                 :Rule::unique('listings');
                         
-        return $rules;
+        // return $rules;
     }
 }

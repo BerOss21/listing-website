@@ -21,8 +21,12 @@ class SaveListing
             
             $listing = $user->listings()->create($data);
         
-            $listing->amenities()->attach($data['amenities']);
+            if(isset($data['amenities'])) $listing->amenities()->attach($data['amenities']);
+          
+            if(isset($data['images'])) $listing->images()->createMany(array_map(fn($item)=>['image'=>$item],$data['images']));
 
+            if(isset($data['videos'])) $listing->videos()->createMany(array_map(fn($item)=>['url'=>$item],$data['videos']));
+    
             DB::commit();
         }
         catch (Throwable $e) {

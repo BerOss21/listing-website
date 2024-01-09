@@ -5,9 +5,9 @@
                 <label>Allow Feature</label>
                 <div class="input_area">
                     <div class="wsus__search_area">
-                        <select class="select_2" name="state">
-                            <option value="">yes</option>
-                            <option value="">no </option>
+                        <select class="select_2" name="is_featured">
+                            <option value="1">yes</option>
+                            <option value="0">no </option>
                         </select>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                 <label>Seo Title</label>
                 <div class="input_area">
                     <div class="input_area">
-                        <input type="text" placeholder="Seo Title">
+                        <input type="text" name="seo_title" placeholder="Seo Title" value="{{ old('seo_title') }}">
                     </div>
                 </div>
             </div>
@@ -27,10 +27,10 @@
             <div class="my_listing_single">
                 <label>Seo Description</label>
                 <div class="input_area">
-                    <textarea cols="3" rows="5" placeholder="Your Text"></textarea>
+                    <textarea cols="3" rows="5" name="seo_description" placeholder="Your Text">{{ old('seo_description') }}</textarea>
                 </div>
             </div>
-            <button type="submit" class="read_btn">save</button>
+            <!-- <button type="submit" class="read_btn">save</button> -->
         </div>
     </div>
 </div>

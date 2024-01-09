@@ -16,7 +16,7 @@ class FormData
     {
         $categories=Category::select('id','name')->latest()->get();
         $locations=Location::select('id','name')->latest()->get();
-        $amenities=Amenity::select('id','name')->latest()->get();
+        $amenities=Amenity::select('id','name','icon')->latest()->get();
 
         return compact('amenities','categories','locations');
     }

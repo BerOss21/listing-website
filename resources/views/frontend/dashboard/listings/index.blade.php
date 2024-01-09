@@ -12,7 +12,7 @@
                         <img src="{{$listing->image}}" alt="{{$listing->title}}" class="img-fluid w-100">
                     </div>
                     <div class="active_inactive_text">
-                        <h3>The Habit Burger Grill </h3>
+                        <h3> {{ $listing->title }} </h3>
                         <p><i class="far fa-map-marker-alt"></i> {{$listing->location->name}}</p>
                         <div class="color_text">
                             @if($listing->is_featured)

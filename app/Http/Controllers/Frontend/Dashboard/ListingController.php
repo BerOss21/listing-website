@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Frontend\Dashboard;
 
 use App\Actions\Listing\FormData;
+use App\Actions\Listing\SaveListing;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\ListingRequest;
 use Illuminate\Http\Request;
 
 class ListingController extends Controller
@@ -20,7 +22,6 @@ class ListingController extends Controller
 
     public function create(FormData $action)
     {
-        // dd($action->getData());
         return view('frontend.dashboard.listings.create',$action->getData());
     }
   
@@ -28,9 +29,13 @@ class ListingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ListingRequest $request,SaveListing $action)
     {
-        //
+        $action->save($request->validated());
+
+        toastr()->success('Data has been created successfully!');
+
+        return to_route('dashboard.listings.index'); 
     }
 
     /**

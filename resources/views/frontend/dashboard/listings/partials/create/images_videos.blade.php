@@ -3,10 +3,9 @@
     <div class="row">
         <div class="col-xl-6 col-md-6">
             <div id="medicine_row">
-                <label for="images">Images</label>
+                <label for="image">Image</label>
                 <div class="medicine_row_input">
-                    <input type="file" name="images[]" id="images" multiple>
-                    <button type="button" id="add_row"><i class="fas fa-plus" aria-hidden="true"></i></button>
+                    <input type="file" name="image" id="image">
                 </div>
             </div>
         </div>
@@ -19,6 +18,15 @@
             </div>
         </div>
 
+        <div class="col-xl-6 col-md-6">
+            <div id="medicine_row">
+                <label for="images">Images gallery</label>
+                <div class="medicine_row_input">
+                    <input type="file" name="images[]" id="images" multiple>
+                </div>
+            </div>
+        </div>
+        
         <div class="col-xl-6 col-md-6">
             <div class="my_listing_single">
                 <label for="attachment">Attachment</label>

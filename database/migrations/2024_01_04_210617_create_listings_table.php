@@ -35,10 +35,10 @@ return new class extends Migration
             $table->integer('views')->default(0);
             $table->text('google_map_embed_code')->nullable();
             $table->string('attachment')->nullable();
-            $table->date('expire_date');
+            $table->date('expire_date')->nullable();
             $table->string('seo_title')->nullable();
             $table->string('seo_description')->nullable();
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
             $table->boolean('is_approved')->default(0);
             $table->softDeletes();
             $table->timestamps();

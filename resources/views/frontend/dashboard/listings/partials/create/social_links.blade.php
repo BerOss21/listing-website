@@ -10,22 +10,25 @@
                 </div>
             </div>
         </div>
+        
         <div class="col-xl-6 col-md-6">
             <div class="my_listing_single">
-                <label for="twitter_link">Twitter</label>
+                <label for="x_link">X</label>
                 <div class="input_area">
-                    <input type="text" id="twitter_link" name="x_link" placeholder="www.twitter.com" value="{{ old('twitter_link') }}">
+                    <input type="text" id="x_link" name="x_link" placeholder="www.twitter.com" value="{{ old('x_link') }}">
                 </div>
             </div>
         </div>
+
         <div class="col-xl-6 col-md-6">
             <div class="my_listing_single">
-                <label for="instagram_link">Instagram</label>
+                <label for="whatsapp_link">Whatsapp</label>
                 <div class="input_area">
-                    <input type="text" id="instagram_link" name="instagram_link" placeholder="www.instagram.com" value="{{ old('instagram_link') }}">
+                    <input type="text" id="whatsapp_link" name="whatsapp_link" placeholder="www.whatsapp.com" value="{{ old('whatsapp_link') }}">
                 </div>
             </div>
         </div>
+
         <div class="col-xl-6 col-md-6">
             <div class="my_listing_single">
                 <label for="linkedin_link">Linkedin</label>

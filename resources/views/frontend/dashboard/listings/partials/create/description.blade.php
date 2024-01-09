@@ -2,17 +2,15 @@
     <h4>Listing Details Information</h4>
     <div class="row">
         <div class="col-xl-12">
-            <div class="my_listing_single list_mar">
-                <label>Short Description</label>
-                <div class="input_area input_area_2">
-                    <textarea cols="3" rows="5" placeholder="Description *"></textarea>
-                </div>
+            <div class="my_listing_single">
+                <label>Description</label>
+                <textarea name="description" class="form-control summer_note">{{ old('description') }}</textarea>
             </div>
         </div>
         <div class="col-xl-12">
             <div class="my_listing_single">
-                <label>Description</label>
-                <textarea class="form-control summer_note"></textarea>
+                <label>Expire date</label>
+                <text type="date" name="expire_date" class="form-control">
             </div>
         </div>
     </div>
