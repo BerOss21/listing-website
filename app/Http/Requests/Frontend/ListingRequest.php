@@ -15,10 +15,9 @@ class ListingRequest extends FormRequest
     {
         return [
             'image' => ['nullable','image', 'max:3000'],
-            'images'=>['nullable','array'],
-            'images.*'=>['image','max:5000'],
-            'videos'=>['nullable','array'],
-            'videos.*'=>['required','url'],
+  
+            // 'videos'=>['nullable','array'],
+            // 'videos.*'=>['required','url'],
             'thumbnail_image' => ['nullable','image', 'max:3000'],
             'title' => ['required', 'string', 'max:255'],
             'category_id' => ['required', 'integer','exists:categories,id'],

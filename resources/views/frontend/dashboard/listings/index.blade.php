@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-xxl-6 col-xl-12">
             <div class="active_inactive">
-                <h6>active <span>3</span></h6>
+                <h6>List<span>{{ $listings->total() }}</span></h6>
                 @forelse($listings as $listing)
                 <div class="active_inactive_item">
                     <div class="active_inactive_img">
@@ -23,9 +23,11 @@
                             @endif
                         </div>
                         <ul>
-                            <li><a href="dsahboard_listing_schedule.html"><i class="far fa-plus"></i></a></li>
-                            <li><a href="#"><i class="fal fa-edit"></i></a></li>
-                            <li><a href="#"><i class="fal fa-trash-alt"></i></a></li>
+                            <li><a href="{{route('dashboard.listings.images.create',$listing->id)}}"><i class="far fa-image"></i></a></li>
+                            <li><a href="{{route('dashboard.listings.videos.create',$listing->id)}}"><i class="far fa-video"></i></a></li>
+                            <li><a href="{{route('dashboard.listings.schedules.index',$listing->id)}}"><i class="far fa-calendar"></i></a></li>
+                            <li><a href="{{ route('dashboard.listings.edit',$listing->id) }}" class="bg-info"><i class="fal fa-edit"></i></a></li>
+                            <li><a href="#" class="bg-danger"><i class="fal fa-trash-alt"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -34,6 +36,11 @@
                         No listing avaible
                     </div>
                 @endforelse
+
+                <div class="mt-3">
+                    {{ $listings->withQueryString()->links() }}
+                </div>
+                
             </div>
         </div>
        

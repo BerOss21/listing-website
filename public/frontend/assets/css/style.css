@@ -460,7 +460,7 @@ button {
 	visibility: visible;
 }
 
-.main_menu .user_btn {
+.main_menu .user_btn, .btn_submit {
 	font-size: 16px;
 	background: var(--colorPrimary);
 	color: var(--colorWhite);
@@ -476,7 +476,7 @@ button {
 	-o-transition: all linear .3s;
 }
 
-.main_menu .user_btn i {
+.main_menu .user_btn i,.btn_submit {
 	margin-right: 5px;
 }
 

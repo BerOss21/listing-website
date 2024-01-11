@@ -4,15 +4,13 @@ namespace App\Http\Controllers\Frontend\Dashboard;
 
 use App\Actions\Listing\FormData;
 use App\Actions\Listing\SaveListing;
+use App\Actions\Listing\UpdateListing;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\ListingRequest;
-use Illuminate\Http\Request;
+use App\Models\Listing;
 
 class ListingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $listings=auth()->user()->listings()->with('location')->latest()->paginate(5);
@@ -25,10 +23,6 @@ class ListingController extends Controller
         return view('frontend.dashboard.listings.create',$action->getData());
     }
   
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(ListingRequest $request,SaveListing $action)
     {
         $action->save($request->validated());
@@ -38,35 +32,27 @@ class ListingController extends Controller
         return to_route('dashboard.listings.index'); 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit(Listing $listing, FormData $action)
     {
-        //
+        return view('frontend.dashboard.listings.edit',[...['listing'=>$listing->load('images','videos','amenities')],...$action->getData()]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(ListingRequest $request, Listing $listing, UpdateListing $action)
     {
-        //
-    }
+        $action->update($request->validated(),$listing);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        toastr()->success('Data has been updated successfully!');
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+        return to_route('dashboard.listings.index'); 
+
+    }   
+
+    public function destroy(Listing $listing)
     {
-        //
+        $listing->delete();
+
+        toastr()->success('Data has been deleted successfully!');
+
+        return to_route('dashboard.listings.index'); 
     }
 }

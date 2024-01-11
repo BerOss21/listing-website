@@ -38,11 +38,22 @@
 
         <div class="col-xl-6 col-md-6">
             <div id="medicine_row2">
-                <label for="videos">Videoss <span>(Maximum videos-10)</span></label>
+                <label for="videos">Videos <span>(Maximum videos-10)</span></label>
                 <div class="medicine_row_input inpiut_pad">
                     <input type="text" placeholder="www.youtube.com" name="videos[]" id="videos">
                     <button type="button" id="add_row2"><i class="fas fa-plus" aria-hidden="true"></i></button>
                 </div>
+             
+                @foreach($listing->videos as $video)
+                    <div id="remove">
+                        <label for="">Url</label><div class="medicine_row_input">
+                            <input type="text" name="videos[]" value="{{$video->url}}">
+                            <button type="button" id="removeRow">
+                                <i class="fas fa-trash" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

@@ -20,7 +20,11 @@ class UpdateListing
         {
             $listing->update($data);
         
-            $listing->amenities()->sync($data['amenities']);
+            if(isset($data['amenities'])) $listing->amenities()->sync($data['amenities']);
+          
+            if(isset($data['images'])) $listing->images()->createMany(array_map(fn($item)=>['image'=>$item],$data['images']));
+
+            if(isset($data['videos'])) $listing->videos()->createMany(array_map(fn($item)=>['url'=>$item],$data['videos']));
 
             DB::commit();
         }

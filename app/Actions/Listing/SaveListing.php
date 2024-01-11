@@ -16,10 +16,8 @@ class SaveListing
     {
         DB::beginTransaction();
         try
-        {
-            $user=User::find(1);
-            
-            $listing = $user->listings()->create($data);
+        {          
+            $listing = auth()->user()->listings()->create($data);
         
             if(isset($data['amenities'])) $listing->amenities()->attach($data['amenities']);
           
