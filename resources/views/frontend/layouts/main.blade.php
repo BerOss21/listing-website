@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{asset('admin/assets/modules/izitoast/css/iziToast.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/responsive.css')}}">
+    <script src="{{asset('admin/assets/modules/sweetalert/sweetalert.min.js')}}"></script>
 
     @stack('head')
     <!-- <link rel="stylesheet" href="{{asset('frontend/assets/css/rtl.css')}}"> -->

@@ -1,7 +1,6 @@
 @extends('frontend.dashboard.layouts.main')
 @section('dashboard_content')
 <div class="my_listing p_xm_0">
-    <!-- <h4>listing type</h4> -->
     <div class="row">
         <div class="col-xxl-6 col-xl-12">
             <div class="active_inactive">
@@ -27,7 +26,13 @@
                             <li><a href="{{route('dashboard.listings.videos.create',$listing->id)}}"><i class="far fa-video"></i></a></li>
                             <li><a href="{{route('dashboard.listings.schedules.index',$listing->id)}}"><i class="far fa-calendar"></i></a></li>
                             <li><a href="{{ route('dashboard.listings.edit',$listing->id) }}" class="bg-info"><i class="fal fa-edit"></i></a></li>
-                            <li><a href="#" class="bg-danger"><i class="fal fa-trash-alt"></i></a></li>
+                            <li>
+                                <a href="" class="bg-danger btn_delete_listing"><i class="fal fa-trash-alt"></i></a>
+                                <form id="delete_listing_form" action="{{ route('dashboard.listings.destroy',$listing->id) }}" class="d-none" method="post">
+                                    @csrf
+                                    @method('delete')
+                                </form>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -43,7 +48,27 @@
                 
             </div>
         </div>
-       
     </div>
 </div>
 @endsection
+
+@push('js')
+    <script>
+        $('.btn_delete_listing').on('click',async function(e){
+            e.preventDefault();
+
+            const willDelete=await swal({
+                title: 'Are you sure?',
+                text: 'Once deleted, you will not be able to recover this listing!',
+                icon: 'warning',
+                buttons: true,
+                dangerMode: true,
+            })
+
+            if(willDelete)
+            {
+                $('#delete_listing_form').submit();
+            }
+        })
+    </script>
+@endpush

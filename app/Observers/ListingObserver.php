@@ -12,7 +12,7 @@ class ListingObserver
         $this->deleteOldFiles($listing,'updated');
     }
 
-    public function deleted(Listing $listing): void
+    public function forceDeleted(Listing $listing): void
     {
         $this->deleteOldFiles($listing,'deleted');
     }
