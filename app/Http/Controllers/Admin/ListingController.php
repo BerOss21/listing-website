@@ -13,6 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ListingController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Listing::class, 'listing');
+    }
+
     public function index(ListingsDataTable $dataTable)
     {
         return $dataTable->render('admin.dashboard.sections.listings.index');

@@ -20,9 +20,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('admin.sections.listings.videos',$listing->id)}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('admin.sections.listings.videos.store',$listing->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
-                        @method('put')
                         <div class="row">
                             <div class="form-group col-md-10 m-0">
                                 <input class="form-control" type="text" name="url" id="video" placeholder="Video url">
@@ -58,7 +57,7 @@
                                 <td><a href="{{$item->url}}">{{$item->url}}</a></td>
                                 <td>{{$item->created_at->format('d/m/Y')}}</td>
                                 <td>
-                                    <form action="{{route('admin.sections.listings.videos.delete',['listing'=>$listing->id,'video'=>$item->id])}}" method="post">
+                                    <form action="{{route('admin.sections.listings.videos.destroy',['listing'=>$listing->id,'video'=>$item->id])}}" method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">Delete</button>

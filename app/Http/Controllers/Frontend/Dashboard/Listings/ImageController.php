@@ -9,12 +9,15 @@ use App\Models\Listing;
 
 class ImageController extends Controller
 {
-    public function create($id)
+    public function __construct()
+    {
+        $this->authorizeResource(Image::class, 'image');
+    }
+
+    public function create(Listing $listing)
     {
         return view('frontend.dashboard.listings.images',[
-            'listing'=>Listing::with(['images'=>fn($q)=>$q->orderByDesc('id')])
-                        ->select('id','title')
-                        ->firstOrFail($id)
+            'listing'=>$listing->load(['images'=>fn($q)=>$q->orderByDesc('id')])
         ]);
     }
 

@@ -9,12 +9,15 @@ use App\Models\Video;
 
 class VideoController extends Controller
 {
-    public function create($id)
+    public function __construct()
+    {
+        $this->authorizeResource(Video::class, 'video');
+    }
+
+    public function create(Listing $listing)
     {
         return view('admin.dashboard.sections.listings.videos.create',[
-            'listing'=>Listing::with(['videos'=>fn($q)=>$q->orderByDesc('id')])
-                        ->select('id','title')
-                        ->firstOrFail($id)
+            'listing'=>$listing->load(['videos'=>fn($q)=>$q->orderByDesc('id')])
         ]);
     }
 
@@ -27,7 +30,7 @@ class VideoController extends Controller
         return back();
     }
 
-    public function delete(Listing $listing,Video $video)
+    public function destroy(Listing $listing,Video $video)
     {
         $video->delete();
 

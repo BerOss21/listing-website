@@ -40,18 +40,16 @@ Route::group(['as'=>'sections.'],function(){
     Route::resource('locations',LocationController::class)->except('show');
     Route::resource('amenities',AmenityController::class)->except('show');
 
-    Route::get('listings/{listing}/images',[ImageController::class,'create'])->name('listings.images');
-    Route::put('listings/{listing}/images',[ImageController::class,'store']);
-    Route::delete('listings/{listing}/images/{image}',[ImageController::class,'delete'])->scopeBindings()->name('listings.images.delete');
-
-    Route::get('listings/{listing}/videos',[VideoController::class,'create'])->name('listings.videos');
-    Route::put('listings/{listing}/videos',[VideoController::class,'store']);
-    Route::delete('listings/{listing}/videos/{video}',[VideoController::class,'delete'])->scopeBindings()->name('listings.videos.delete');
-
-    Route::resource('listings.schedules', ScheduleController::class)->except('show');
-
+    Route::resource('listings.images',ImageController::class)->only(['create','store','destroy'])->scoped();
+    Route::resource('listings.videos',VideoController::class)->only(['create','store','destroy'])->scoped();
+    Route::resource('listings.schedules', ScheduleController::class)->except('show')->scoped();
     Route::resource('listings',ListingController::class)->except('show');
+    // Route::get('listings/{listing}/images',[ImageController::class,'create'])->name('listings.images');
+    // Route::put('listings/{listing}/images',[ImageController::class,'store']);
+    // Route::delete('listings/{listing}/images/{image}',[ImageController::class,'delete'])->scopeBindings()->name('listings.images.delete');
 
-    
+    // Route::get('listings/{listing}/videos',[VideoController::class,'create'])->name('listings.videos');
+    // Route::put('listings/{listing}/videos',[VideoController::class,'store']);
+    // Route::delete('listings/{listing}/videos/{video}',[VideoController::class,'delete'])->scopeBindings()->name('listings.videos.delete');
 });
 

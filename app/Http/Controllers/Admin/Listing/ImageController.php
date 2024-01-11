@@ -9,12 +9,15 @@ use App\Models\Listing;
 
 class ImageController extends Controller
 {
-    public function create($id)
+    public function __construct()
+    {
+        $this->authorizeResource(Image::class, 'image');
+    }
+
+    public function create(Listing $listing)
     {
         return view('admin.dashboard.sections.listings.images.create',[
-            'listing'=>Listing::with(['images'=>fn($q)=>$q->orderByDesc('id')])
-                        ->select('id','title')
-                        ->firstOrFail($id)
+            'listing'=>$listing->load(['images'=>fn($q)=>$q->orderByDesc('id')])
         ]);
     }
 
@@ -27,7 +30,7 @@ class ImageController extends Controller
         return back();
     }
 
-    public function delete(Listing $listing,Image $image)
+    public function destroy(Listing $listing,Image $image)
     {
         $image->delete();
 

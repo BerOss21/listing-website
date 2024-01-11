@@ -11,19 +11,22 @@ use App\Http\Requests\Admin\Listing\ScheduleRequest;
 
 class ScheduleController extends Controller
 {
-    public function index($id)
+    public function __construct()
+    {
+        $this->authorizeResource(Schedule::class, 'schedule');
+    }
+
+    public function index(Listing $listing)
     {
         return view('frontend.dashboard.listings.schedules.index',[
-            'listing'=>Listing::select('id','title')
-                    ->with(['schedules'=>fn($query)=>$query->orderByDesc('id')])
-                    ->firstOrFail($id)
+            'listing'=>$listing->load(['schedules'=>fn($query)=>$query->orderByDesc('id')])
         ]);
     }
 
-    public function create($id)
+    public function create(Listing $listing)
     {
         return view('frontend.dashboard.listings.schedules.create',[
-            'listing'=>Listing::select('id','title')->firstOrFail($id),
+            'listing'=>$listing,
             'days'=>Days::cases()
         ]);
     }

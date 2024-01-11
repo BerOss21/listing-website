@@ -20,9 +20,9 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('admin.sections.listings.images',$listing->id)}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('admin.sections.listings.images.store',$listing->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
-                        @method('put')
+            
                         <div class="row">
                             <div class="form-group col-md-10 m-0">
                                 <input class="form-control" multiple type="file" name="images[]" id="image">
@@ -56,7 +56,7 @@
                                 </td>
                                 <td>{{$item->created_at->format('d/m/Y')}}</td>
                                 <td>
-                                    <form action="{{route('admin.sections.listings.images.delete',['listing'=>$listing->id,'image'=>$item->id])}}" method="post">
+                                    <form action="{{route('admin.sections.listings.images.destroy',['listing'=>$listing->id,'image'=>$item->id])}}" method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">Delete</button>

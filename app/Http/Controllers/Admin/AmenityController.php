@@ -10,6 +10,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AmenityController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Amenity::class, 'amenity');
+    }
+
     public function index(AmenitiesDataTable $dataTable)
     {
         return $dataTable->render('admin.dashboard.sections.amenities.index');

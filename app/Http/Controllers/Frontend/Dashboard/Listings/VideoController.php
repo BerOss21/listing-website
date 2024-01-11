@@ -9,12 +9,15 @@ use App\Models\Video;
 
 class VideoController extends Controller
 {
-    public function create($id)
+    public function __construct()
+    {
+        $this->authorizeResource(Video::class, 'video');
+    }
+
+    public function create(Listing $listing)
     {
         return view('frontend.dashboard.listings.videos',[
-            'listing'=>Listing::with(['videos'=>fn($q)=>$q->orderByDesc('id')])
-                        ->select('id','title')
-                        ->firstOrFail($id)
+            'listing'=>$listing->load(['videos'=>fn($q)=>$q->orderByDesc('id')])
         ]);
     }
 

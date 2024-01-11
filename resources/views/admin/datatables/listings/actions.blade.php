@@ -6,8 +6,8 @@
             Other
         </button>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="{{ route('admin.sections.listings.images',$id) }}">Image gallery</a>
-            <a class="dropdown-item" href="{{ route('admin.sections.listings.videos',$id) }}">Video gallery</a>
+            <a class="dropdown-item" href="{{ route('admin.sections.listings.images.create',$id) }}">Image gallery</a>
+            <a class="dropdown-item" href="{{ route('admin.sections.listings.videos.create',$id) }}">Video gallery</a>
             <a class="dropdown-item" href="{{ route('admin.sections.listings.schedules.index',$id) }}">Schedules</a>
         </div>
     </div>

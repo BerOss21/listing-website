@@ -11,6 +11,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class LocationController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Location::class, 'location');
+    }
+
     public function index(LocationsDataTable $dataTable)
     {
         return $dataTable->render('admin.dashboard.sections.locations.index');

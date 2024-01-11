@@ -11,6 +11,11 @@ use App\Models\Listing;
 
 class ListingController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Listing::class, 'listing');
+    }
+
     public function index()
     {
         $listings=auth()->user()->listings()->with('location')->latest()->paginate(5);
