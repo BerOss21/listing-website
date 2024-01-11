@@ -86,6 +86,15 @@
     ===========================-->
 
 
+     <!--==========================
+        MODALS
+    ===========================-->
+        @include('frontend.layouts.partials.modal_listings')
+    <!--==========================
+        FOOTER MODALS
+    ===========================-->
+
+    
     <!--=============SCROLL BTN==============-->
     <div class="scroll_btn">
         <i class="fas fa-chevron-up"></i>

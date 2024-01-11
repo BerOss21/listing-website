@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Casts\UploadedFile;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -99,5 +100,15 @@ class Listing extends Model
    public function schedules() :HasMany
    {
         return $this->hasMany(Schedule::class);
+   }
+
+   public function scopeActive(Builder $query)
+   {
+        $query->whereStatus(1);
+   }
+
+   public function scopeApproved(Builder $query)
+   {
+        $query->whereIsApproved(1);
    }
 }

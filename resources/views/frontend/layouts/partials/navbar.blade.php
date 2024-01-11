@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav m-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="about.html">about</a>
@@ -40,7 +40,7 @@
                     <a class="nav-link" href="contact.html">contact us</a>
                 </li>
             </ul>
-            <a class="user_btn" href="dsahboard.html"><i class="far fa-plus"></i> add listing</a>
+            <a class="user_btn" href="{{route('dashboard.listings.create')}}"><i class="far fa-plus"></i> add listing</a>
         </div>
     </div>
 </nav>
