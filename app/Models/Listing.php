@@ -67,6 +67,11 @@ class Listing extends Model
         ];
     }
 
+    public function getKeyName()
+    {
+        return $this->slug;
+    }
+
    public function category() :BelongsTo
    {
     return $this->belongsTo(Category::class)->withDefault();

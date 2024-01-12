@@ -1,6 +1,7 @@
 <div class="img">
-    <img src="{{$listing->thumbnail_image}}" alt="images" class="img-fluid w-100">
+    <img src="{{$listing->thumbnail_image}}" style="width:100% !important" alt="images">
 </div>
+
 <div class="map_popup_text">
     @if($listing->is_featured)
         <span><i class="far fa-star"></i> Featured</span>

@@ -1,8 +1,5 @@
 @extends('frontend.layouts.main')
 @section('content')
-<!--==========================
-        BREADCRUMB PART START
-===========================-->
 <div id="breadcrumb_part">
     <div class="bread_overlay">
         <div class="container">
@@ -20,14 +17,7 @@
         </div>
     </div>
 </div>
-<!--==========================
-        BREADCRUMB PART END
-    ===========================-->
 
-
-<!--==========================
-        LISTING PAGE START
-    ===========================-->
 <section id="listing_grid" class="grid_view">
     <div class="container">
         <div class="row">
@@ -119,7 +109,7 @@
                     <div class="col-xl-4 col-sm-6">
                         <div class="wsus__featured_single">
                             <div class="wsus__featured_single_img">
-                                <img src="{{$listing->image}}" alt="images" class="img-fluid w-100">
+                                <img src="{{$listing->thumbnail_image}}" alt="images" class="img-fluid w-100">
                                 <a href="#" class="love"><i class="fas fa-heart"></i></a>
                                 <a href="#" class="small_text">{{ $listing->category->name }}</a>
                             </div>
@@ -168,11 +158,6 @@
         </div>
     </div>
 </section>
-
-
-<!--==========================
-        LISTING PAGE START
-===========================-->
 @endsection
 
 @push('js')

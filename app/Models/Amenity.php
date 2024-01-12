@@ -33,6 +33,11 @@ class Amenity extends Model
         ];
     }
 
+    public function getKeyName()
+    {
+        return $this->slug;
+    }
+
     public function listings() :BelongsToMany
     {
         return $this->belongsToMany(Listing::class);

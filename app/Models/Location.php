@@ -32,6 +32,11 @@ class Location extends Model
         ];
     }
 
+    public function getKeyName()
+    {
+        return $this->slug;
+    }
+
     public function listings() :HasMany
     {
         return $this->hasMany(Listing::class);
