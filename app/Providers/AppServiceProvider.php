@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Setting;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,5 +27,9 @@ class AppServiceProvider extends ServiceProvider
         Model::preventLazyLoading();
 
         Paginator::useBootstrap();
+
+        Config::set('settings',Cache::rememberForever('settings', function () {
+            return Setting::pluck('value','key')->toArray();
+        }));
     }
 }

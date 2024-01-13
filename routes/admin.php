@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AmenityController;
 use App\Http\Controllers\Admin\ListingController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -17,6 +18,9 @@ Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 
 Route::get('profile',[ProfileController::class,'index'])->name('profile.index');
 Route::put('profile/update',[ProfileController::class,'update'])->name('profile.update');
+
+
+Route::resource('settings',SettingController::class)->only('create','store');
 
 Route::group(['as'=>'sections.'],function(){
     Route::get('hero',[HeroController::class,'edit'])->name('hero');

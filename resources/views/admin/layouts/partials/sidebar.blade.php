@@ -20,6 +20,7 @@
                     <li @class(['active'=>request()->routeIs('admin.sections.listings.*')])><a class="nav-link" href="{{route('admin.sections.listings.index')}}">Listings</a></li>  
                 </ul>
             </li>
+            <li @class(['active'=>request()->routeIs('admin.settings.*')])><a class="nav-link" href="{{route('admin.settings.create')}}"><i class="far fa-square"></i> <span>Settings</span></a></li>
         </ul>
     </aside>
 </div>
