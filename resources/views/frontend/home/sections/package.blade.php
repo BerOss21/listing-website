@@ -12,48 +12,20 @@
             </div>
             <div class="procing_area">
                 <div class="row">
-                    <div class="col-xl-4 col-md-6 col-lg-4">
-                        <div class="member_price">
-                            <h4>basic</h4>
-                            <h5>$99.99 <span>/ month</span></h5>
-                            <p>Personalized Link Available</p>
-                            <p>Free Support Available</p>
-                            <p>Personalized Link Available</p>
-                            <p>Free Support Available</p>
-                            <p>Hide Branding Available</p>
-                            <p>Free Setup Available</p>
-                            <p>1 vCards</p>
-                            <a href="#">Order now</a>
+                    @foreach($packages as $package)
+                        <div class="col-xl-4 col-md-6 col-lg-4">
+                            <div class="member_price">
+                                <h4>{{ $package->name }}</h4>
+                                <h5>{{ $package->price }} <span>/ {{$package->days}}</span></h5>
+                                <p>{{$package->listings}}</p>
+                                <p>{{$package->photos}}</p>
+                                <p>{{$package->videos}}</p>
+                                <p>{{$package->amenities}}</p>
+                                <p>{{$package->featured_listings}}</p>
+                                <a href="{{ route('pages.payment',$package->slug) }}">Order now</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6 col-lg-4">
-                        <div class="member_price active">
-                            <h4>standard</h4>
-                            <h5>$149.99 <span>/ month</span></h5>
-                            <p>Personalized Link Available</p>
-                            <p>Free Support Available</p>
-                            <p>Personalized Link Available</p>
-                            <p>Free Support Available</p>
-                            <p>Hide Branding Available</p>
-                            <p>Free Setup Available</p>
-                            <p>1 vCards</p>
-                            <a href="#">Order now</a>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6 col-lg-4">
-                        <div class="member_price">
-                            <h4>ultimate</h4>
-                            <h5>$190.99 <span>/ month</span></h5>
-                            <p>Personalized Link Available</p>
-                            <p>Free Support Available</p>
-                            <p>Personalized Link Available</p>
-                            <p>Free Support Available</p>
-                            <p>Hide Branding Available</p>
-                            <p>Free Setup Available</p>
-                            <p>1 vCards</p>
-                            <a href="#">Order now</a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

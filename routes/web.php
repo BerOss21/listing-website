@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Routing\RouteRegistrar;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\Pages\PaymentController;
 use App\Http\Controllers\Frontend\Pages\ListingModalController;
 use App\Http\Controllers\Frontend\Pages\ListingsPageController;
 use App\Http\Controllers\Frontend\Pages\ListingDetailController;
@@ -24,6 +25,7 @@ Route::group(['as'=>'pages.'],function(){
     Route::get('listings/modal/{listing}',ListingModalController::class)->name('listings.modal');
     Route::get('listings/{category}',ListingsPageController::class)->name('listings');
     Route::get('listing-detail/{listing}',ListingDetailController::class)->name('listing-detail');
+    Route::get('payment/{package}',PaymentController::class)->name('payment');
 });
 
 // Route::group(['middleware'=>'auth','prefix'=>'dashboard'],function(){

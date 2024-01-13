@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Hero;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use Storage;
+use App\Models\Package;
+
 
 class HomeController extends Controller
 {
@@ -16,6 +16,8 @@ class HomeController extends Controller
 
         $categories=Category::active()->showAtHome()->latest()->get();
 
-        return view('frontend.home.index',compact('hero','categories'));
+        $packages=Package::active()->showAtHome()->latest()->get();
+
+        return view('frontend.home.index',compact('hero','categories','packages'));
     }
 }
