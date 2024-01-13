@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="w-full d-flex justify-content-end mb-5">
-                        <a href="{{route('dashboard.listings.schedules.create',$listing->id)}}" class="btn btn_submit self-end"><i class="far fa-plus"></i> Add schedule</a>
+                        <a href="{{route('dashboard.listings.schedules.create',$listing->slug)}}" class="btn btn_submit self-end"><i class="far fa-plus"></i> Add schedule</a>
                     </div>
                     <div class="card-body table-responsive">
                         <table class="table">
@@ -39,8 +39,8 @@
                                     </td>
                                     <td>{{$item->created_at->format('d/m/Y')}}</td>
                                     <td class="w-20 d-flex">
-                                        <a href="{{route('dashboard.listings.schedules.edit',[$listing->id,$item->id])}}" class="btn btn-success mx-1">Edit</a>
-                                        <form action="{{route('dashboard.listings.schedules.destroy',[$listing->id,$item->id])}}" method="post">
+                                        <a href="{{route('dashboard.listings.schedules.edit',[$listing->slug,$item->id])}}" class="btn btn-success mx-1">Edit</a>
+                                        <form action="{{route('dashboard.listings.schedules.destroy',[$listing->slug,$item->id])}}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger">Delete</button>

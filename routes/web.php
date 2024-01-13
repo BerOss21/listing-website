@@ -5,6 +5,7 @@ use Illuminate\Routing\RouteRegistrar;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\Pages\ListingModalController;
 use App\Http\Controllers\Frontend\Pages\ListingsPageController;
+use App\Http\Controllers\Frontend\Pages\ListingDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,7 @@ Route::get('/', [HomeController::class,'index'])->name('home');
 Route::group(['as'=>'pages.'],function(){
     Route::get('listings/modal/{listing}',ListingModalController::class)->name('listings.modal');
     Route::get('listings/{category}',ListingsPageController::class)->name('listings');
+    Route::get('listing-detail/{listing}',ListingDetailController::class)->name('listing-detail');
 });
 
 // Route::group(['middleware'=>'auth','prefix'=>'dashboard'],function(){

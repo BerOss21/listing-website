@@ -22,13 +22,13 @@
                             @endif
                         </div>
                         <ul>
-                            <li><a href="{{route('dashboard.listings.images.create',$listing->id)}}"><i class="far fa-image"></i></a></li>
-                            <li><a href="{{route('dashboard.listings.videos.create',$listing->id)}}"><i class="far fa-video"></i></a></li>
-                            <li><a href="{{route('dashboard.listings.schedules.index',$listing->id)}}"><i class="far fa-calendar"></i></a></li>
-                            <li><a href="{{ route('dashboard.listings.edit',$listing->id) }}" class="bg-info"><i class="fal fa-edit"></i></a></li>
+                            <li><a href="{{route('dashboard.listings.images.create',$listing->slug)}}"><i class="far fa-image"></i></a></li>
+                            <li><a href="{{route('dashboard.listings.videos.create',$listing->slug)}}"><i class="far fa-video"></i></a></li>
+                            <li><a href="{{route('dashboard.listings.schedules.index',$listing->slug)}}"><i class="far fa-calendar"></i></a></li>
+                            <li><a href="{{ route('dashboard.listings.edit',$listing->slug) }}" class="bg-info"><i class="fal fa-edit"></i></a></li>
                             <li>
                                 <a href="" class="bg-danger btn_delete_listing"><i class="fal fa-trash-alt"></i></a>
-                                <form id="delete_listing_form" action="{{ route('dashboard.listings.destroy',$listing->id) }}" class="d-none" method="post">
+                                <form id="delete_listing_form" action="{{ route('dashboard.listings.destroy',$listing->slug) }}" class="d-none" method="post">
                                     @csrf
                                     @method('delete')
                                 </form>

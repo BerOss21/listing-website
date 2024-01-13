@@ -12,7 +12,7 @@
     <div class="breadcrumb-item">Section</div>
     <div class="breadcrumb-item"><a href="{{route('admin.sections.listings.index')}}">Listings</a></div>
     <div class="breadcrumb-item">{{ $listing->title }}</div>
-    <div class="breadcrumb-item"><a href="{{route('admin.sections.listings.schedules.index',$listing->id)}}">Schedules</a></div>
+    <div class="breadcrumb-item"><a href="{{route('admin.sections.listings.schedules.index',$listing->slug)}}">Schedules</a></div>
     <div class="breadcrumb-item active">Create</div>
 </div>
 @endsection
@@ -26,7 +26,7 @@
                     <h4>Schedule section data</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.sections.listings.schedules.store',$listing->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.sections.listings.schedules.store',$listing->slug) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="form-group col-md-6 mb-4">

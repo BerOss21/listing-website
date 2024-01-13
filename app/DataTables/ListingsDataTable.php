@@ -23,7 +23,7 @@ class ListingsDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($listing) {
-                return view('admin.datatables.listings.actions', ['id' => $listing->id]);
+                return view('admin.datatables.listings.actions', ['slug' => $listing->slug]);
             })
             ->editColumn('is_approved',function($listing){
                 return $listing->is_approved? "<span class='badge badge-success'>Yes</span>":"<span class='badge badge-warning'>No</span>";
@@ -46,7 +46,7 @@ class ListingsDataTable extends DataTable
      */
     public function query(Listing $model): QueryBuilder
     {
-        return $model->select('id','title','image','thumbnail_image','is_approved','status','created_at','expire_date')->newQuery();
+        return $model->newQuery();
     }
 
     /**

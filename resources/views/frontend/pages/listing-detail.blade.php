@@ -1,14 +1,14 @@
 @extends('frontend.layouts.main')
 @section('content')
-<div id="breadcrumb_part">
+<div id="breadcrumb_part" style="background: url({{$listing->category->background}});">
     <div class="bread_overlay">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 text-center text-white">
-                    <h4>Romantic Boat Trip</h4>
+                    <h4>{{$listing->title}}</h4>
                     <nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"> Home </a></li>
+                            <li class="breadcrumb-item"><a href="{{route('home')}}"> Home </a></li>
                             <li class="breadcrumb-item active" aria-current="page"> listing details </li>
                         </ol>
                     </nav>
@@ -50,7 +50,7 @@
                                 @if($listing->is_verified)
                                     <li><a href="#"><i class="far fa-check"></i> Verified</a></li>
                                 @endif
-                                @if($listing->)
+                    
                                 <!-- <li><a href="#"><i class="fal fa-heart"></i> Add to Favorite</a></li> -->
                                 <!-- <li><a href="#"><i class="fal fa-eye"></i> 194</a></li> -->
                                 <!-- <li><a href="#">Open</a></li> -->
@@ -101,7 +101,7 @@
                         </div>
                     </div>
                     <div class="listing_det_location">
-                        {!! $video->google_map_embed_code !!}
+                        {!! $listing->google_map_embed_code !!}
                         <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14602.678639283793!2d90.39695083611213!3d23.794774936848686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c70c15ea1de1%3A0x97856381e88fb311!2z4Kas4Kao4Ka-4Kao4KeAIOCmruCmoeCnh-CmsiDgpp_gpr7gpongpqgsIOCmouCmvuCmleCmvg!5e0!3m2!1sbn!2sbd!4v1634550875957!5m2!1sbn!2sbd" width="1000" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
                     </div>
                     <div class="wsus__listing_review">
@@ -123,57 +123,7 @@
                                     ducimus.</p>
                             </div>
                         </div>
-                        <div class="wsus__single_comment">
-                            <div class="wsus__single_comment_img">
-                                <img src="images/card_img.jpg" alt="comment" class="img-fluid w-100">
-                            </div>
-                            <div class="wsus__single_comment_text">
-                                <h5>shimul sign <span>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                    </span></h5>
-                                <span>21-Nov-2021</span>
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad maxime placeat
-                                    ducimus magni facilis delectus.</p>
-                            </div>
-                        </div>
-                        <div class="wsus__single_comment">
-                            <div class="wsus__single_comment_img">
-                                <img src="images/user_large_img.jpg" alt="comment" class="img-fluid w-100">
-                            </div>
-                            <div class="wsus__single_comment_text">
-                                <h5>sumon ali<span>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                    </span></h5>
-                                <span>01-Dec-2021</span>
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad maxime placeat
-                                    ducimus.</p>
-                            </div>
-                        </div>
-                        <div class="wsus__single_comment">
-                            <div class="wsus__single_comment_img">
-                                <img src="images/card_img.jpg" alt="comment" class="img-fluid w-100">
-                            </div>
-                            <div class="wsus__single_comment_text">
-                                <h5>shimul sign <span>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                    </span></h5>
-                                <span>21-Nov-2021</span>
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad maxime placeat
-                                    ducimus magni facilis delectus.</p>
-                            </div>
-                        </div>
+                        
                         <form class="input_comment">
                             <h5>add a review</h5>
                             <div class="row">
@@ -206,12 +156,10 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="listing_det_side_address">
-                                <a href="callto:{{$listing->phone}}"><i class="fal fa-phone-alt"></i>
-                                    {{$listing->phone}}</a>
-                                <a href="mailto:example@gmail.com"><i class="fal fa-envelope"></i>
-                                    example@gmail.com</a>
-                                <p><i class="fal fa-map-marker-alt"></i>{{$listing->location}}</p>
-                                <p><i class="fal fa-globe"></i> {{$listing->website}}/p>
+                                <a href="callto:{{$listing->phone}}"><i class="fal fa-phone-alt"></i>{{ $listing->phone ?? '--'}}</a>
+                                <a href="mailto:{{$listing->email}}"><i class="fal fa-envelope"></i>{{ $listing->email ?? '--'}}</a>
+                                <p><i class="fal fa-map-marker-alt"></i>{{ $listing->location->name ?? '--' }}</p>
+                                <p><i class="fal fa-globe"></i>{{$listing->website ?? '--'}}</p>
                                 <ul>
                                     <li><a href="{{$listing->facebook_link}}"><i class="fab fa-facebook-f"></i></a></li>
                                     <li><a href="{{$listing->x_link}}"><i class="fab fa-twitter"></i></a></li>
@@ -223,9 +171,11 @@
                         <div class="col-12">
                             <div class="listing_det_side_open_hour">
                                 <h5>Opening Hours</h5>
-                                @foreach($listing->schedules as $schedule)
+                                @forelse($listing->schedules as $schedule)
                                     <p>{{ Str::title($schedule->day )}}<span>{{ $schedule->start_time }} - {{ $schedule->end_time }}</span></p>
-                                @endforeach
+                                @empty
+                                    <p>Not avaible</p>
+                                @endforelse
                             </div>
                         </div>
                         <div class="col-12">
@@ -244,8 +194,8 @@
                         <div class="col-12">
                             <div class="listing_det_side_list">
                                 <h5>Similar Listing</h5>
-                                @foreach($similar_listing as $item)
-                                <a href="{{route('page.listing-detail',$item->id)}}" class="sidebar_blog_single">
+                                @foreach($similar_listings as $item)
+                                <a href="{{route('pages.listing-detail',$item->id)}}" class="sidebar_blog_single">
                                     <div class="sidebar_blog_img">
                                         <img src="{{ $item->thumbnail_image }}" alt="blog" class="imgofluid w-100">
                                     </div>

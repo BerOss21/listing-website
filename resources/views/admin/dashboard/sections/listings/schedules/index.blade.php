@@ -21,7 +21,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="w-full d-flex justify-content-end mb-5">
-                        <a href="{{route('admin.sections.listings.schedules.create',$listing->id)}}" class="btn btn-primary self-end">Create</a>
+                        <a href="{{route('admin.sections.listings.schedules.create',$listing->slug)}}" class="btn btn-primary self-end">Create</a>
                     </div>
                     {{ $dataTable->table() }}
                 </div>

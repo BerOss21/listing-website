@@ -21,7 +21,7 @@
                     <h4>Amenity section data</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.sections.amenities.update',$amenity->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.sections.amenities.update',$amenity->slug) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="row">

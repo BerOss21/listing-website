@@ -1,6 +1,6 @@
 @extends('frontend.dashboard.layouts.main')
 @section('dashboard_content')
-<form method="POST" action="{{ route('dashboard.listings.update',$listing->id) }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('dashboard.listings.update',$listing->slug) }}" enctype="multipart/form-data">
     @csrf
     @method('put')
     @include('frontend.dashboard.listings.partials.edit.main')

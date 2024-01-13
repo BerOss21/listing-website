@@ -1,6 +1,6 @@
 @extends('frontend.layouts.main')
 @section('content')
-<div id="breadcrumb_part">
+<div id="breadcrumb_part"  style="background: url({{$listings[0]->category->background }});">
     <div class="bread_overlay">
         <div class="container">
             <div class="row justify-content-center">
@@ -8,7 +8,7 @@
                     <h4>listing</h4>
                     <nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"> Home </a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}"> Home </a></li>
                             <li class="breadcrumb-item active" aria-current="page"> listing </li>
                         </ol>
                     </nav>
@@ -113,7 +113,7 @@
                                 <a href="#" class="love"><i class="fas fa-heart"></i></a>
                                 <a href="#" class="small_text">{{ $listing->category->name }}</a>
                             </div>
-                            <a class="map" data-bs-toggle="modal" id="modal_detail_listing_btn" data-bs-target="#modal_detail_listing" data-listing="{{$listing->id}}" href="#"><i class="fas fa-info"></i></a>
+                            <a class="map" data-bs-toggle="modal" id="modal_detail_listing_btn" data-bs-target="#modal_detail_listing" data-listing="{{$listing->slug}}" href="#"><i class="fas fa-info"></i></a>
                             <div class="wsus__featured_single_text">
                                 <p class="list_rating">
                                     <i class="fas fa-star"></i>
@@ -129,30 +129,49 @@
                         </div>
                     </div>
                     @empty
-                        <div class="alert alert-warning text-center">No listing avaible</div>
+                    <div class="alert alert-warning text-center">No listing avaible</div>
                     @endforelse
 
-                    <div class="col-12">
-                        <div id="pagination">
-                            <nav aria-label="">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><i class="fas fa-chevron-left"></i></a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">01</a></li>
-                                    <li class="page-item" aria-current="page">
-                                        <a class="page-link" href="#">02</a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="#">03</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">04</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">05</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                                    </li>
-                                </ul>
-                            </nav>
+                    @if ($listings->total() > 6)
+                        <div class="col-12">
+                            <!-- Placez cette partie dans votre vue Blade -->
+
+                            <div id="pagination">
+                                <nav aria-label="">
+                                    <ul class="pagination">
+                                        @if ($listings->onFirstPage())
+                                        <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
+                                            <span class="page-link" aria-hidden="true">&lsaquo;</span>
+                                        </li>
+                                        @else
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{ $listings->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">&lsaquo;</a>
+                                        </li>
+                                        @endif
+
+                                        @foreach ($listings->getUrlRange(1, $listings->lastPage()) as $page => $url)
+                                            @if ($page == $listings->currentPage())
+                                            <li class="page-item active" aria-current="page"><span class="page-link">{{ $page }}</span></li>
+                                            @else
+                                            <li class="page-item"><a class="page-link" href="{{ $url }}">{{ $page }}</a></li>
+                                            @endif
+                                        @endforeach
+
+                                        @if ($listings->hasMorePages())
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{ $listings->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">&rsaquo;</a>
+                                        </li>
+                                        @else
+                                        <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
+                                            <span class="page-link" aria-hidden="true">&rsaquo;</span>
+                                        </li>
+                                        @endif
+                                    </ul>
+                                </nav>
+                            </div>
+
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -161,24 +180,20 @@
 @endsection
 
 @push('js')
-    <script>
-        $('#modal_detail_listing_btn').on('click',async function(e){
-            e.preventDefault();
-            try
-            {
-                const response = await $.ajax({
-                    method:'get',
-                    url:"{{route('pages.listings.modal',':id')}}".replace(':id',16)
-                })
+<script>
+    $('#modal_detail_listing_btn').on('click', async function(e) {
+        e.preventDefault();
+        try {
+            const response = await $.ajax({
+                method: 'get',
+                url: "{{route('pages.listings.modal',':slug')}}".replace(':slug', $(this).data('listing'))
+            })
 
-                $('#modal_detail_listing_content').html(response);
-            }
-
-            catch(error)
-            {
-                console.log('error',error)
-                alert('intern error')
-            }           
-        })
-    </script>
+            $('#modal_detail_listing_content').html(response);
+        } catch (error) {
+            console.log('error', error)
+            alert('intern error')
+        }
+    })
+</script>
 @endpush

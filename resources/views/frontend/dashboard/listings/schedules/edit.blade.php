@@ -7,9 +7,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="w-full d-flex justify-content-end mb-5">
-                        <a href="{{route('dashboard.listings.schedules.index',$listing->id)}}" class="btn btn_submit self-end"><i class="far fa-arrow-left"></i> Schedules</a>
+                        <a href="{{route('dashboard.listings.schedules.index',$listing->slug)}}" class="btn btn_submit self-end"><i class="far fa-arrow-left"></i> Schedules</a>
                     </div>
-                    <form action="{{ route('dashboard.listings.schedules.update',[$listing->id,$schedule->id]) }}" method="post">
+                    <form action="{{ route('dashboard.listings.schedules.update',[$listing->slug,$schedule->id]) }}" method="post">
                         @csrf
                         @method('put')
                         <div class="row">

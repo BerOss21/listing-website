@@ -20,7 +20,7 @@
                     <h4>Listing Data</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.sections.listings.update',$listing->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.sections.listings.update',$listing->slug) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="row">

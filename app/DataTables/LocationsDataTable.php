@@ -23,7 +23,7 @@ class LocationsDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($location) {
-                return view('admin.datatables.locations.actions', ['id' => $location->id]);
+                return view('admin.datatables.locations.actions', ['slug' => $location->slug]);
             })
             ->editColumn('show_at_home',function($location){
                 return $location->show_at_home? "<span class='badge badge-success'>Yes</span>":"<span class='badge badge-warning'>No</span>";
@@ -40,7 +40,7 @@ class LocationsDataTable extends DataTable
      */
     public function query(Location $model): QueryBuilder
     {
-        return $model->select('id','name','show_at_home','status','created_at')->newQuery();
+        return $model->newQuery();
     }
 
     /**

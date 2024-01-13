@@ -23,7 +23,7 @@ class AmenitiesDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($amenity) {
-                return view('admin.datatables.amenities.actions', ['id' => $amenity->id]);
+                return view('admin.datatables.amenities.actions', ['slug' => $amenity->slug]);
             })
             ->editColumn('show_at_home',function($amenity){
                 return $amenity->show_at_home? "<span class='badge badge-success'>Yes</span>":"<span class='badge badge-warning'>No</span>";
@@ -43,7 +43,7 @@ class AmenitiesDataTable extends DataTable
      */
     public function query(Amenity $model): QueryBuilder
     {
-        return $model->select('id','icon','name','show_at_home','status','created_at')->newQuery();
+        return $model->newQuery();
     }
 
     /**

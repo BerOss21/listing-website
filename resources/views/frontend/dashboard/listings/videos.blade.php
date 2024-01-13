@@ -5,7 +5,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{route('dashboard.listings.videos.store',$listing->id)}}" method="post">
+                    <form action="{{route('dashboard.listings.videos.store',$listing->slug)}}" method="post">
                         @csrf
                         <div class="row">
                             <div class="form-group col-md-10 m-0">
@@ -42,7 +42,7 @@
                                 <td>{{$item->url}}</td>
                                 <td>{{$item->created_at->format('d/m/Y')}}</td>
                                 <td>
-                                    <form action="{{route('dashboard.listings.videos.destroy',[$listing->id,$item->id])}}" method="post">
+                                    <form action="{{route('dashboard.listings.videos.destroy',[$listing->slug,$item->id])}}" method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">Delete</button>

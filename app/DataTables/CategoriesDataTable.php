@@ -23,7 +23,7 @@ class CategoriesDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($category) {
-                return view('admin.datatables.categories.actions', ['id' => $category->id]);
+                return view('admin.datatables.categories.actions', ['slug' => $category->slug]);
             })
             ->editColumn('show_at_home',function($category){
                 return $category->show_at_home? "<span class='badge badge-success'>Yes</span>":"<span class='badge badge-warning'>No</span>";
@@ -46,7 +46,7 @@ class CategoriesDataTable extends DataTable
      */
     public function query(Category $model): QueryBuilder
     {
-        return $model->select('id','name','background','icon','show_at_home','status','created_at')->newQuery();
+        return $model->newQuery();
     }
 
     /**

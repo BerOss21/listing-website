@@ -67,9 +67,9 @@ class Listing extends Model
         ];
     }
 
-    public function getKeyName()
+    public function getRouteKeyName(): string
     {
-        return $this->slug;
+        return 'slug';
     }
 
    public function category() :BelongsTo

@@ -21,7 +21,7 @@
                     <h4>Category section data</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.sections.categories.update',$category->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.sections.categories.update',$category->slug) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="row">

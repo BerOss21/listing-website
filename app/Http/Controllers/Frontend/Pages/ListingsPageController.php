@@ -10,7 +10,7 @@ class ListingsPageController extends Controller
 {
     public function __invoke(Request $request, Category $category)
     {
-        $listings=$category->listings()->approved()->active()->latest()->paginate(5);
+        $listings=$category->listings()->approved()->active()->latest()->paginate(6);
 
         return view('frontend.pages.listings',compact('listings'));
     }

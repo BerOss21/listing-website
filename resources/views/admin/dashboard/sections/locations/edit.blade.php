@@ -21,7 +21,7 @@
                     <h4>Location section data</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.sections.locations.update',$location->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.sections.locations.update',$location->slug) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="row">

@@ -7,7 +7,7 @@
     <div class="breadcrumb-item">Section</div>
     <div class="breadcrumb-item"><a href="{{route('admin.sections.listings.index')}}">Listings</a></div>
     <div class="breadcrumb-item">{{ $listing->title }}</div>
-    <div class="breadcrumb-item"><a href="{{route('admin.sections.listings.schedules.index',$listing->id)}}">Schedules</a></div>
+    <div class="breadcrumb-item"><a href="{{route('admin.sections.listings.schedules.index',$listing->slug)}}">Schedules</a></div>
     <div class="breadcrumb-item">{{$schedule->day}}</div>
     <div class="breadcrumb-item active">Edit</div>
 </div>
@@ -22,7 +22,7 @@
                     <h4>Schedule section data</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.sections.listings.schedules.update',[$listing->id,$schedule->id]) }}" method="post">
+                    <form action="{{ route('admin.sections.listings.schedules.update',[$listing->slug,$schedule->id]) }}" method="post">
                         @csrf
                         @method('put')
                         <div class="row">

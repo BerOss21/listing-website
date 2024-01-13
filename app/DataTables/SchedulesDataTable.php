@@ -23,7 +23,7 @@ class SchedulesDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->editColumn('action', function($schedule){
-                return view('admin.datatables.schedules.actions', ['listing_id'=>$schedule->listing_id,'schedule_id' => $schedule->id]);
+                return view('admin.datatables.schedules.actions', ['listing_slug'=>$schedule->listing_slug,'schedule_id' => $schedule->id]);
             })
             ->editColumn('status',function($schedule){
                 return $schedule->status? "<span class='badge badge-success'>Yes</span>":"<span class='badge badge-warning'>No</span>";
