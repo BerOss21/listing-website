@@ -16,7 +16,7 @@
                         <div class="col-xl-4 col-md-6 col-lg-4">
                             <div class="member_price">
                                 <h4>{{ $package->name }}</h4>
-                                <h5>{{ $package->price }} <span>/ {{$package->days}}</span></h5>
+                                <h5>{{ Currency::format($package->price) }} <span>/ {{$package->days}}</span></h5>
                                 <p>{{$package->listings}}</p>
                                 <p>{{$package->photos}}</p>
                                 <p>{{$package->videos}}</p>

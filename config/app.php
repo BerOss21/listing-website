@@ -171,6 +171,7 @@ return [
         App\Providers\FortifyServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        App\Providers\PaymentServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -185,7 +186,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
+        'Currency' => App\Helpers\Currency::class,
     ])->toArray(),
 
 ];

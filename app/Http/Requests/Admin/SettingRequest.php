@@ -17,9 +17,8 @@ class SettingRequest extends FormRequest
             'site_name'=>['sometimes','nullable','string'],
             'site_email'=>['sometimes','nullable','string'],
             'site_phone'=>['sometimes','nullable','string'],
-            'site_timezone'=>['sometimes','nullable','string'],
-            'site_default_currency'=>['sometimes','nullable','string'],
-            'site_currency_position'=>['sometimes','nullable','string']
+            'site_default_timezone'=>['sometimes','nullable','string'],
+            'site_default_currency'=>['sometimes','nullable','string']
         ];
     }
 }

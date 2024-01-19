@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Listing\ImageController;
 use App\Http\Controllers\Admin\Listing\VideoController;
 use App\Http\Controllers\Admin\Listing\ScheduleController;
+use App\Http\Controllers\Admin\PaymentMethodController;
 
 Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 
@@ -21,6 +22,8 @@ Route::put('profile/update',[ProfileController::class,'update'])->name('profile.
 
 
 Route::resource('settings',SettingController::class)->only('create','store');
+
+Route::resource('payment_methods',PaymentMethodController::class)->except('show','create','store');
 
 Route::group(['as'=>'sections.'],function(){
     Route::get('hero',[HeroController::class,'edit'])->name('hero');

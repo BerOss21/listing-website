@@ -34,23 +34,27 @@
             <div class="col-lg-8">
                 <div class="wsus__payment_area">
                     <div class="row">
-                        <div class="col-lg-3 col-6 col-sm-4">
-                            <a class="wsus__single_payment" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">
-                                <img src="{{asset('frontend/assets/images/pay_1.jpg')}}" alt="payment method" class="img-fluid w-100">
-                            </a>
-                        </div>
-                        <div class="col-lg-3 col-6 col-sm-4">
-                            <a class="wsus__single_payment" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">
-                                <img src="{{asset('frontend/assets/images/pay_2.jpg')}}" alt="payment method" class="img-fluid w-100">
-                            </a>
-                        </div> 
+                        @foreach($methods as $method)
+                        <form action="{{route('packages.order',[$package,$method])}}" method="post">
+                            @csrf
+                            <div class="col-lg-3 col-6 col-sm-4">
+                                <!-- <a class="wsus__single_payment" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">
+                                    <img src="{{$method->icon}}" alt="payment method" class="img-fluid w-100">
+                                </a> -->
+                                <button class="wsus__single_payment" data-bs-toggle="modal" data-bs-target="#exampleModal" type="submit">
+                                    <img src="{{$method->icon}}" alt="payment method" class="img-fluid w-100">
+                                </button>
+                            </div>
+                        </form>
+
+                        @endforeach
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-7">
                 <div class="member_price">
                     <h4>{{ $package->name }}</h4>
-                    <h5>{{ $package->price }} <span>/ {{$package->days}}</span></h5>
+                    <h5>{{ Currency::format($package->price) }} <span>/ {{$package->days}}</span></h5>
                     <p>{{$package->listings}}</p>
                     <p>{{$package->photos}}</p>
                     <p>{{$package->videos}}</p>

@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\Frontend\CurrencyConverterController;
+use Illuminate\Http\Request;
+use App\Services\Payment\Paypal;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Routing\RouteRegistrar;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\Pages\PaymentController;
+use App\Http\Controllers\Frontend\PaymentProcessController;
 use App\Http\Controllers\Frontend\Pages\ListingModalController;
 use App\Http\Controllers\Frontend\Pages\ListingsPageController;
 use App\Http\Controllers\Frontend\Pages\ListingDetailController;
@@ -21,12 +24,38 @@ use App\Http\Controllers\Frontend\Pages\ListingDetailController;
 
 Route::get('/', [HomeController::class,'index'])->name('home');
 
+
+Route::get('payment/return',function(Request $request,Paypal $paypal){
+    $res=$paypal->verify($request->get('token'));
+    dd($res->json());
+})->name('payment.return');
+
+
+Route::get('payment/cancel',function(){
+    dd(request(),'payment.cancel');
+})->name('payment.cancel');
+
+
+
 Route::group(['as'=>'pages.'],function(){
     Route::get('listings/modal/{listing}',ListingModalController::class)->name('listings.modal');
     Route::get('listings/{category}',ListingsPageController::class)->name('listings');
     Route::get('listing-detail/{listing}',ListingDetailController::class)->name('listing-detail');
     Route::get('payment/{package}',PaymentController::class)->name('payment');
 });
+
+
+Route::post('order/{package}/{method}',[PaymentProcessController::class,'pay'])->name('packages.order');
+Route::post('currencies/change',CurrencyConverterController::class)->name('currencies.change');
+
+Route::get('/formatter',function(){
+    dd(\Currency::format(12536));
+});
+// Route::get('pay',function(Paypal $paypal){
+    
+//     $response=$paypal->pay('1222','USD');
+//     return redirect()->away($response['payer-action']);
+// });
 
 // Route::group(['middleware'=>'auth','prefix'=>'dashboard'],function(){
 //     Route::get('/',[MainController::class,'index'])->name('dashboard');

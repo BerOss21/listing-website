@@ -40,7 +40,10 @@
                     <a class="nav-link" href="contact.html">contact us</a>
                 </li>
             </ul>
-            <a class="user_btn" href="{{route('dashboard.listings.create')}}"><i class="far fa-plus"></i> add listing</a>
+            <div class="d-flex justify-content-between">
+                <a class="user_btn" href="{{route('dashboard.listings.create')}}"><i class="far fa-plus"></i> add listing</a>
+                <x-frontend.currencies_navigation />
+            </div>
         </div>
     </div>
 </nav>
