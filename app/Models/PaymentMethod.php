@@ -12,8 +12,8 @@ class PaymentMethod extends Model
     use HasFactory,Sluggable;
 
     protected $fillable=[
-        'name',
-        'slug',
+        // 'name',
+        // 'slug',
         'description',
         'icon',
         'status',

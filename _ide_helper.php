@@ -18676,7 +18676,18 @@
      
 }
 
-        namespace Livewire { 
+        namespace App\Helpers { 
+            /**
+     * 
+     *
+     */ 
+        class Currency {
+         
+    }
+     
+}
+
+    namespace Livewire { 
             /**
      * 
      *
@@ -24068,6 +24079,7 @@ namespace  {
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
             class Vite extends \Illuminate\Support\Facades\Vite {}
+            class Currency extends \App\Helpers\Currency {}
             class Livewire extends \Livewire\Livewire {}
             class Flasher extends \Flasher\Laravel\Facade\Flasher {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}

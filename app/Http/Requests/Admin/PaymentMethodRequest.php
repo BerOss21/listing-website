@@ -18,7 +18,16 @@ class PaymentMethodRequest extends FormRequest
             'description'=>['nullable','string'],
             'icon'=>['nullable','image','max:2000'],
             'status'=>['nullable','boolean'],
-            'config'=>['required','array']
+            'configuration'=>['required','array']
         ];
+    }
+
+    public function validated($key = null, $default = null)
+    {
+        $data=data_get($this->validator->validated(), $key, $default);
+
+        $data['config']=$data['configuration'];
+
+        return $data;
     }
 }

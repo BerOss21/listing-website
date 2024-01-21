@@ -26,9 +26,14 @@ class Order extends Model
         'paid_amount',
         'paid_currency',
         'purchase_date',
+        'response_content'
     ];
 
     protected $dates = ['purchase_date'];
+
+    protected $casts=[
+        'response_content'=>'array'
+    ];
 
     public function user() :BelongsTo
     {

@@ -15,8 +15,8 @@ class PaymentProcessController extends Controller
     {
         $instance=PaymentGatewaysFactory::create($method->name);
 
-        $response=$instance->pay($package);
+        return $instance->pay($package,$method);
 
-        return redirect()->away($response['payer-action']);
+        // return redirect()->away($response['payer-action']);
     }
 }

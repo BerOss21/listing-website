@@ -11,6 +11,8 @@ namespace PHPSTORM_META {
     */
     override(new \Illuminate\Contracts\Container\Container, map([
         '' => '@',
+            'App\Services\Exchangerate\Exchangerate' => \App\Services\Exchangerate\Exchangerate::class,
+            'App\Services\Payment\Paypal' => \App\Services\Payment\Paypal::class,
             'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
             'Flasher\Laravel\Middleware\FlasherMiddleware' => \Flasher\Laravel\Middleware\FlasherMiddleware::class,
             'Flasher\Laravel\Middleware\SessionMiddleware' => \Flasher\Laravel\Middleware\SessionMiddleware::class,
@@ -145,6 +147,7 @@ namespace PHPSTORM_META {
             'Illuminate\Session\Console\SessionTableCommand' => \Illuminate\Session\Console\SessionTableCommand::class,
             'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
+            'Laravel\Cashier\Contracts\InvoiceRenderer' => \Laravel\Cashier\Invoices\DompdfInvoiceRenderer::class,
             'Laravel\Fortify\Contracts\ConfirmPasswordViewResponse' => \Laravel\Fortify\Http\Responses\SimpleViewResponse::class,
             'Laravel\Fortify\Contracts\CreatesNewUsers' => \App\Actions\Fortify\CreateNewUser::class,
             'Laravel\Fortify\Contracts\EmailVerificationNotificationSentResponse' => \Laravel\Fortify\Http\Responses\EmailVerificationNotificationSentResponse::class,
@@ -185,6 +188,7 @@ namespace PHPSTORM_META {
             'Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder' => \Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder::class,
             'Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder' => \Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder::class,
             'Spatie\LaravelIgnition\Support\SentReports' => \Spatie\LaravelIgnition\Support\SentReports::class,
+            'Stripe\Util\LoggerInterface' => \Laravel\Cashier\Logger::class,
             'auth' => \Illuminate\Auth\AuthManager::class,
             'auth.driver' => \Illuminate\Auth\SessionGuard::class,
             'auth.password' => \Illuminate\Auth\Passwords\PasswordBrokerManager::class,
@@ -256,6 +260,8 @@ namespace PHPSTORM_META {
         ]));
     override(\Illuminate\Container\Container::makeWith(0), map([
         '' => '@',
+            'App\Services\Exchangerate\Exchangerate' => \App\Services\Exchangerate\Exchangerate::class,
+            'App\Services\Payment\Paypal' => \App\Services\Payment\Paypal::class,
             'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
             'Flasher\Laravel\Middleware\FlasherMiddleware' => \Flasher\Laravel\Middleware\FlasherMiddleware::class,
             'Flasher\Laravel\Middleware\SessionMiddleware' => \Flasher\Laravel\Middleware\SessionMiddleware::class,
@@ -390,6 +396,7 @@ namespace PHPSTORM_META {
             'Illuminate\Session\Console\SessionTableCommand' => \Illuminate\Session\Console\SessionTableCommand::class,
             'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
+            'Laravel\Cashier\Contracts\InvoiceRenderer' => \Laravel\Cashier\Invoices\DompdfInvoiceRenderer::class,
             'Laravel\Fortify\Contracts\ConfirmPasswordViewResponse' => \Laravel\Fortify\Http\Responses\SimpleViewResponse::class,
             'Laravel\Fortify\Contracts\CreatesNewUsers' => \App\Actions\Fortify\CreateNewUser::class,
             'Laravel\Fortify\Contracts\EmailVerificationNotificationSentResponse' => \Laravel\Fortify\Http\Responses\EmailVerificationNotificationSentResponse::class,
@@ -430,6 +437,7 @@ namespace PHPSTORM_META {
             'Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder' => \Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder::class,
             'Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder' => \Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder::class,
             'Spatie\LaravelIgnition\Support\SentReports' => \Spatie\LaravelIgnition\Support\SentReports::class,
+            'Stripe\Util\LoggerInterface' => \Laravel\Cashier\Logger::class,
             'auth' => \Illuminate\Auth\AuthManager::class,
             'auth.driver' => \Illuminate\Auth\SessionGuard::class,
             'auth.password' => \Illuminate\Auth\Passwords\PasswordBrokerManager::class,
@@ -501,6 +509,8 @@ namespace PHPSTORM_META {
         ]));
     override(\Illuminate\Contracts\Container\Container::get(0), map([
         '' => '@',
+            'App\Services\Exchangerate\Exchangerate' => \App\Services\Exchangerate\Exchangerate::class,
+            'App\Services\Payment\Paypal' => \App\Services\Payment\Paypal::class,
             'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
             'Flasher\Laravel\Middleware\FlasherMiddleware' => \Flasher\Laravel\Middleware\FlasherMiddleware::class,
             'Flasher\Laravel\Middleware\SessionMiddleware' => \Flasher\Laravel\Middleware\SessionMiddleware::class,
@@ -635,6 +645,7 @@ namespace PHPSTORM_META {
             'Illuminate\Session\Console\SessionTableCommand' => \Illuminate\Session\Console\SessionTableCommand::class,
             'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
+            'Laravel\Cashier\Contracts\InvoiceRenderer' => \Laravel\Cashier\Invoices\DompdfInvoiceRenderer::class,
             'Laravel\Fortify\Contracts\ConfirmPasswordViewResponse' => \Laravel\Fortify\Http\Responses\SimpleViewResponse::class,
             'Laravel\Fortify\Contracts\CreatesNewUsers' => \App\Actions\Fortify\CreateNewUser::class,
             'Laravel\Fortify\Contracts\EmailVerificationNotificationSentResponse' => \Laravel\Fortify\Http\Responses\EmailVerificationNotificationSentResponse::class,
@@ -675,6 +686,7 @@ namespace PHPSTORM_META {
             'Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder' => \Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder::class,
             'Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder' => \Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder::class,
             'Spatie\LaravelIgnition\Support\SentReports' => \Spatie\LaravelIgnition\Support\SentReports::class,
+            'Stripe\Util\LoggerInterface' => \Laravel\Cashier\Logger::class,
             'auth' => \Illuminate\Auth\AuthManager::class,
             'auth.driver' => \Illuminate\Auth\SessionGuard::class,
             'auth.password' => \Illuminate\Auth\Passwords\PasswordBrokerManager::class,
@@ -746,6 +758,8 @@ namespace PHPSTORM_META {
         ]));
     override(\Illuminate\Contracts\Container\Container::make(0), map([
         '' => '@',
+            'App\Services\Exchangerate\Exchangerate' => \App\Services\Exchangerate\Exchangerate::class,
+            'App\Services\Payment\Paypal' => \App\Services\Payment\Paypal::class,
             'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
             'Flasher\Laravel\Middleware\FlasherMiddleware' => \Flasher\Laravel\Middleware\FlasherMiddleware::class,
             'Flasher\Laravel\Middleware\SessionMiddleware' => \Flasher\Laravel\Middleware\SessionMiddleware::class,
@@ -880,6 +894,7 @@ namespace PHPSTORM_META {
             'Illuminate\Session\Console\SessionTableCommand' => \Illuminate\Session\Console\SessionTableCommand::class,
             'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
+            'Laravel\Cashier\Contracts\InvoiceRenderer' => \Laravel\Cashier\Invoices\DompdfInvoiceRenderer::class,
             'Laravel\Fortify\Contracts\ConfirmPasswordViewResponse' => \Laravel\Fortify\Http\Responses\SimpleViewResponse::class,
             'Laravel\Fortify\Contracts\CreatesNewUsers' => \App\Actions\Fortify\CreateNewUser::class,
             'Laravel\Fortify\Contracts\EmailVerificationNotificationSentResponse' => \Laravel\Fortify\Http\Responses\EmailVerificationNotificationSentResponse::class,
@@ -920,6 +935,7 @@ namespace PHPSTORM_META {
             'Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder' => \Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder::class,
             'Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder' => \Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder::class,
             'Spatie\LaravelIgnition\Support\SentReports' => \Spatie\LaravelIgnition\Support\SentReports::class,
+            'Stripe\Util\LoggerInterface' => \Laravel\Cashier\Logger::class,
             'auth' => \Illuminate\Auth\AuthManager::class,
             'auth.driver' => \Illuminate\Auth\SessionGuard::class,
             'auth.password' => \Illuminate\Auth\Passwords\PasswordBrokerManager::class,
@@ -991,6 +1007,8 @@ namespace PHPSTORM_META {
         ]));
     override(\Illuminate\Contracts\Container\Container::makeWith(0), map([
         '' => '@',
+            'App\Services\Exchangerate\Exchangerate' => \App\Services\Exchangerate\Exchangerate::class,
+            'App\Services\Payment\Paypal' => \App\Services\Payment\Paypal::class,
             'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
             'Flasher\Laravel\Middleware\FlasherMiddleware' => \Flasher\Laravel\Middleware\FlasherMiddleware::class,
             'Flasher\Laravel\Middleware\SessionMiddleware' => \Flasher\Laravel\Middleware\SessionMiddleware::class,
@@ -1125,6 +1143,7 @@ namespace PHPSTORM_META {
             'Illuminate\Session\Console\SessionTableCommand' => \Illuminate\Session\Console\SessionTableCommand::class,
             'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
+            'Laravel\Cashier\Contracts\InvoiceRenderer' => \Laravel\Cashier\Invoices\DompdfInvoiceRenderer::class,
             'Laravel\Fortify\Contracts\ConfirmPasswordViewResponse' => \Laravel\Fortify\Http\Responses\SimpleViewResponse::class,
             'Laravel\Fortify\Contracts\CreatesNewUsers' => \App\Actions\Fortify\CreateNewUser::class,
             'Laravel\Fortify\Contracts\EmailVerificationNotificationSentResponse' => \Laravel\Fortify\Http\Responses\EmailVerificationNotificationSentResponse::class,
@@ -1165,6 +1184,7 @@ namespace PHPSTORM_META {
             'Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder' => \Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder::class,
             'Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder' => \Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder::class,
             'Spatie\LaravelIgnition\Support\SentReports' => \Spatie\LaravelIgnition\Support\SentReports::class,
+            'Stripe\Util\LoggerInterface' => \Laravel\Cashier\Logger::class,
             'auth' => \Illuminate\Auth\AuthManager::class,
             'auth.driver' => \Illuminate\Auth\SessionGuard::class,
             'auth.password' => \Illuminate\Auth\Passwords\PasswordBrokerManager::class,
@@ -1236,6 +1256,8 @@ namespace PHPSTORM_META {
         ]));
     override(\App::get(0), map([
         '' => '@',
+            'App\Services\Exchangerate\Exchangerate' => \App\Services\Exchangerate\Exchangerate::class,
+            'App\Services\Payment\Paypal' => \App\Services\Payment\Paypal::class,
             'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
             'Flasher\Laravel\Middleware\FlasherMiddleware' => \Flasher\Laravel\Middleware\FlasherMiddleware::class,
             'Flasher\Laravel\Middleware\SessionMiddleware' => \Flasher\Laravel\Middleware\SessionMiddleware::class,
@@ -1370,6 +1392,7 @@ namespace PHPSTORM_META {
             'Illuminate\Session\Console\SessionTableCommand' => \Illuminate\Session\Console\SessionTableCommand::class,
             'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
+            'Laravel\Cashier\Contracts\InvoiceRenderer' => \Laravel\Cashier\Invoices\DompdfInvoiceRenderer::class,
             'Laravel\Fortify\Contracts\ConfirmPasswordViewResponse' => \Laravel\Fortify\Http\Responses\SimpleViewResponse::class,
             'Laravel\Fortify\Contracts\CreatesNewUsers' => \App\Actions\Fortify\CreateNewUser::class,
             'Laravel\Fortify\Contracts\EmailVerificationNotificationSentResponse' => \Laravel\Fortify\Http\Responses\EmailVerificationNotificationSentResponse::class,
@@ -1410,6 +1433,7 @@ namespace PHPSTORM_META {
             'Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder' => \Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder::class,
             'Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder' => \Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder::class,
             'Spatie\LaravelIgnition\Support\SentReports' => \Spatie\LaravelIgnition\Support\SentReports::class,
+            'Stripe\Util\LoggerInterface' => \Laravel\Cashier\Logger::class,
             'auth' => \Illuminate\Auth\AuthManager::class,
             'auth.driver' => \Illuminate\Auth\SessionGuard::class,
             'auth.password' => \Illuminate\Auth\Passwords\PasswordBrokerManager::class,
@@ -1481,6 +1505,8 @@ namespace PHPSTORM_META {
         ]));
     override(\App::make(0), map([
         '' => '@',
+            'App\Services\Exchangerate\Exchangerate' => \App\Services\Exchangerate\Exchangerate::class,
+            'App\Services\Payment\Paypal' => \App\Services\Payment\Paypal::class,
             'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
             'Flasher\Laravel\Middleware\FlasherMiddleware' => \Flasher\Laravel\Middleware\FlasherMiddleware::class,
             'Flasher\Laravel\Middleware\SessionMiddleware' => \Flasher\Laravel\Middleware\SessionMiddleware::class,
@@ -1615,6 +1641,7 @@ namespace PHPSTORM_META {
             'Illuminate\Session\Console\SessionTableCommand' => \Illuminate\Session\Console\SessionTableCommand::class,
             'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
+            'Laravel\Cashier\Contracts\InvoiceRenderer' => \Laravel\Cashier\Invoices\DompdfInvoiceRenderer::class,
             'Laravel\Fortify\Contracts\ConfirmPasswordViewResponse' => \Laravel\Fortify\Http\Responses\SimpleViewResponse::class,
             'Laravel\Fortify\Contracts\CreatesNewUsers' => \App\Actions\Fortify\CreateNewUser::class,
             'Laravel\Fortify\Contracts\EmailVerificationNotificationSentResponse' => \Laravel\Fortify\Http\Responses\EmailVerificationNotificationSentResponse::class,
@@ -1655,6 +1682,7 @@ namespace PHPSTORM_META {
             'Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder' => \Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder::class,
             'Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder' => \Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder::class,
             'Spatie\LaravelIgnition\Support\SentReports' => \Spatie\LaravelIgnition\Support\SentReports::class,
+            'Stripe\Util\LoggerInterface' => \Laravel\Cashier\Logger::class,
             'auth' => \Illuminate\Auth\AuthManager::class,
             'auth.driver' => \Illuminate\Auth\SessionGuard::class,
             'auth.password' => \Illuminate\Auth\Passwords\PasswordBrokerManager::class,
@@ -1726,6 +1754,8 @@ namespace PHPSTORM_META {
         ]));
     override(\App::makeWith(0), map([
         '' => '@',
+            'App\Services\Exchangerate\Exchangerate' => \App\Services\Exchangerate\Exchangerate::class,
+            'App\Services\Payment\Paypal' => \App\Services\Payment\Paypal::class,
             'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
             'Flasher\Laravel\Middleware\FlasherMiddleware' => \Flasher\Laravel\Middleware\FlasherMiddleware::class,
             'Flasher\Laravel\Middleware\SessionMiddleware' => \Flasher\Laravel\Middleware\SessionMiddleware::class,
@@ -1860,6 +1890,7 @@ namespace PHPSTORM_META {
             'Illuminate\Session\Console\SessionTableCommand' => \Illuminate\Session\Console\SessionTableCommand::class,
             'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
+            'Laravel\Cashier\Contracts\InvoiceRenderer' => \Laravel\Cashier\Invoices\DompdfInvoiceRenderer::class,
             'Laravel\Fortify\Contracts\ConfirmPasswordViewResponse' => \Laravel\Fortify\Http\Responses\SimpleViewResponse::class,
             'Laravel\Fortify\Contracts\CreatesNewUsers' => \App\Actions\Fortify\CreateNewUser::class,
             'Laravel\Fortify\Contracts\EmailVerificationNotificationSentResponse' => \Laravel\Fortify\Http\Responses\EmailVerificationNotificationSentResponse::class,
@@ -1900,6 +1931,7 @@ namespace PHPSTORM_META {
             'Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder' => \Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder::class,
             'Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder' => \Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder::class,
             'Spatie\LaravelIgnition\Support\SentReports' => \Spatie\LaravelIgnition\Support\SentReports::class,
+            'Stripe\Util\LoggerInterface' => \Laravel\Cashier\Logger::class,
             'auth' => \Illuminate\Auth\AuthManager::class,
             'auth.driver' => \Illuminate\Auth\SessionGuard::class,
             'auth.password' => \Illuminate\Auth\Passwords\PasswordBrokerManager::class,
@@ -1971,6 +2003,8 @@ namespace PHPSTORM_META {
         ]));
     override(\app(0), map([
         '' => '@',
+            'App\Services\Exchangerate\Exchangerate' => \App\Services\Exchangerate\Exchangerate::class,
+            'App\Services\Payment\Paypal' => \App\Services\Payment\Paypal::class,
             'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
             'Flasher\Laravel\Middleware\FlasherMiddleware' => \Flasher\Laravel\Middleware\FlasherMiddleware::class,
             'Flasher\Laravel\Middleware\SessionMiddleware' => \Flasher\Laravel\Middleware\SessionMiddleware::class,
@@ -2105,6 +2139,7 @@ namespace PHPSTORM_META {
             'Illuminate\Session\Console\SessionTableCommand' => \Illuminate\Session\Console\SessionTableCommand::class,
             'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
+            'Laravel\Cashier\Contracts\InvoiceRenderer' => \Laravel\Cashier\Invoices\DompdfInvoiceRenderer::class,
             'Laravel\Fortify\Contracts\ConfirmPasswordViewResponse' => \Laravel\Fortify\Http\Responses\SimpleViewResponse::class,
             'Laravel\Fortify\Contracts\CreatesNewUsers' => \App\Actions\Fortify\CreateNewUser::class,
             'Laravel\Fortify\Contracts\EmailVerificationNotificationSentResponse' => \Laravel\Fortify\Http\Responses\EmailVerificationNotificationSentResponse::class,
@@ -2145,6 +2180,7 @@ namespace PHPSTORM_META {
             'Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder' => \Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder::class,
             'Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder' => \Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder::class,
             'Spatie\LaravelIgnition\Support\SentReports' => \Spatie\LaravelIgnition\Support\SentReports::class,
+            'Stripe\Util\LoggerInterface' => \Laravel\Cashier\Logger::class,
             'auth' => \Illuminate\Auth\AuthManager::class,
             'auth.driver' => \Illuminate\Auth\SessionGuard::class,
             'auth.password' => \Illuminate\Auth\Passwords\PasswordBrokerManager::class,
@@ -2216,6 +2252,8 @@ namespace PHPSTORM_META {
         ]));
     override(\resolve(0), map([
         '' => '@',
+            'App\Services\Exchangerate\Exchangerate' => \App\Services\Exchangerate\Exchangerate::class,
+            'App\Services\Payment\Paypal' => \App\Services\Payment\Paypal::class,
             'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
             'Flasher\Laravel\Middleware\FlasherMiddleware' => \Flasher\Laravel\Middleware\FlasherMiddleware::class,
             'Flasher\Laravel\Middleware\SessionMiddleware' => \Flasher\Laravel\Middleware\SessionMiddleware::class,
@@ -2350,6 +2388,7 @@ namespace PHPSTORM_META {
             'Illuminate\Session\Console\SessionTableCommand' => \Illuminate\Session\Console\SessionTableCommand::class,
             'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
+            'Laravel\Cashier\Contracts\InvoiceRenderer' => \Laravel\Cashier\Invoices\DompdfInvoiceRenderer::class,
             'Laravel\Fortify\Contracts\ConfirmPasswordViewResponse' => \Laravel\Fortify\Http\Responses\SimpleViewResponse::class,
             'Laravel\Fortify\Contracts\CreatesNewUsers' => \App\Actions\Fortify\CreateNewUser::class,
             'Laravel\Fortify\Contracts\EmailVerificationNotificationSentResponse' => \Laravel\Fortify\Http\Responses\EmailVerificationNotificationSentResponse::class,
@@ -2390,6 +2429,7 @@ namespace PHPSTORM_META {
             'Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder' => \Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder::class,
             'Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder' => \Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder::class,
             'Spatie\LaravelIgnition\Support\SentReports' => \Spatie\LaravelIgnition\Support\SentReports::class,
+            'Stripe\Util\LoggerInterface' => \Laravel\Cashier\Logger::class,
             'auth' => \Illuminate\Auth\AuthManager::class,
             'auth.driver' => \Illuminate\Auth\SessionGuard::class,
             'auth.password' => \Illuminate\Auth\Passwords\PasswordBrokerManager::class,
@@ -2461,6 +2501,8 @@ namespace PHPSTORM_META {
         ]));
     override(\Psr\Container\ContainerInterface::get(0), map([
         '' => '@',
+            'App\Services\Exchangerate\Exchangerate' => \App\Services\Exchangerate\Exchangerate::class,
+            'App\Services\Payment\Paypal' => \App\Services\Payment\Paypal::class,
             'Cviebrock\EloquentSluggable\SluggableObserver' => \Cviebrock\EloquentSluggable\SluggableObserver::class,
             'Flasher\Laravel\Middleware\FlasherMiddleware' => \Flasher\Laravel\Middleware\FlasherMiddleware::class,
             'Flasher\Laravel\Middleware\SessionMiddleware' => \Flasher\Laravel\Middleware\SessionMiddleware::class,
@@ -2595,6 +2637,7 @@ namespace PHPSTORM_META {
             'Illuminate\Session\Console\SessionTableCommand' => \Illuminate\Session\Console\SessionTableCommand::class,
             'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
             'Illuminate\Testing\ParallelTesting' => \Illuminate\Testing\ParallelTesting::class,
+            'Laravel\Cashier\Contracts\InvoiceRenderer' => \Laravel\Cashier\Invoices\DompdfInvoiceRenderer::class,
             'Laravel\Fortify\Contracts\ConfirmPasswordViewResponse' => \Laravel\Fortify\Http\Responses\SimpleViewResponse::class,
             'Laravel\Fortify\Contracts\CreatesNewUsers' => \App\Actions\Fortify\CreateNewUser::class,
             'Laravel\Fortify\Contracts\EmailVerificationNotificationSentResponse' => \Laravel\Fortify\Http\Responses\EmailVerificationNotificationSentResponse::class,
@@ -2635,6 +2678,7 @@ namespace PHPSTORM_META {
             'Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder' => \Spatie\LaravelIgnition\Recorders\LogRecorder\LogRecorder::class,
             'Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder' => \Spatie\LaravelIgnition\Recorders\QueryRecorder\QueryRecorder::class,
             'Spatie\LaravelIgnition\Support\SentReports' => \Spatie\LaravelIgnition\Support\SentReports::class,
+            'Stripe\Util\LoggerInterface' => \Laravel\Cashier\Logger::class,
             'auth' => \Illuminate\Auth\AuthManager::class,
             'auth.driver' => \Illuminate\Auth\SessionGuard::class,
             'auth.password' => \Illuminate\Auth\Passwords\PasswordBrokerManager::class,

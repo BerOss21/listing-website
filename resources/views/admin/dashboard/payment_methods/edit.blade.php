@@ -36,7 +36,7 @@
 
                                 <div class="form-group col-md-6 mb-4">
                                     <label>Name</label>
-                                    <input type="text" name="name" class="form-control" value="{{old('name',$payment_method->name)}}">
+                                    <input type="text" name="name" class="form-control" value="{{old('name',$payment_method->name)}}" readonly>
                                 </div>
 
                                 <div class="form-group col-md-6 mb-4">
@@ -59,7 +59,7 @@
                             @foreach($options as $key=>$option)
                                 <div class="form-group col-md-6 mb-4">
                                     <label>{{$option['label']}}</label>
-                                    <input type="text" name="config[{{$option['name']}}]" class="form-control" value="{{$payment_method['config'][$key]}}">
+                                    <input type="text" name="configuration[{{$option['name']}}]" class="form-control" value="{{$payment_method['config'][$key] ?? null}}">
                                 </div>
                             @endforeach
                         </fieldset>

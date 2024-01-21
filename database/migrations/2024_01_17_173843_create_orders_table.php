@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('base_currency');
             $table->double('paid_amount');
             $table->string('paid_currency');
+            $table->json('response_content');
             $table->timestamp('purchase_date');
             $table->softDeletes();
             $table->timestamps();

@@ -1,16 +1,18 @@
 <?php
 
-use App\Http\Controllers\Frontend\CurrencyConverterController;
 use Illuminate\Http\Request;
 use App\Services\Payment\Paypal;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\SaveOrderController;
 use App\Http\Controllers\Frontend\Pages\PaymentController;
 use App\Http\Controllers\Frontend\PaymentProcessController;
+use App\Http\Controllers\Frontend\CurrencyConverterController;
 use App\Http\Controllers\Frontend\Pages\ListingModalController;
 use App\Http\Controllers\Frontend\Pages\ListingsPageController;
 use App\Http\Controllers\Frontend\Pages\ListingDetailController;
-use App\Http\Controllers\Frontend\SaveOrderController;
+use App\Http\Controllers\Frontend\Pages\SubscriptionSucceedController;
+use App\Http\Controllers\Frontend\Pages\SubscriptionCanceledController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +40,8 @@ Route::get('payment/cancel',function(){
 
 
 Route::post('order/{package}/{method}',PaymentProcessController::class)->name('packages.order');
-Route::get('payment/return',SaveOrderController::class)->name('payment.return');
+
+Route::get('payment/return/{package}/{method}',SaveOrderController::class)->name('payment.return');
 Route::post('currencies/change',CurrencyConverterController::class)->name('currencies.change');
 
 
@@ -47,6 +50,8 @@ Route::group(['as'=>'pages.'],function(){
     Route::get('listings/{category}',ListingsPageController::class)->name('listings');
     Route::get('listing-detail/{listing}',ListingDetailController::class)->name('listing-detail');
     Route::get('payment/{package}',PaymentController::class)->name('payment');
+    Route::get('subscriptions-succeed',SubscriptionSucceedController::class)->name('subscriptions.succeed');
+    Route::get('subscriptions-canceled',SubscriptionCanceledController::class)->name('subscriptions.canceled');
 });
 
 

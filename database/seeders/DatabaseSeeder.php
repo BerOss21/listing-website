@@ -8,6 +8,7 @@ use App\Models\Hero;
 use App\Models\Admin;
 use App\Models\PaymentMethod;
 use App\Models\User;
+use App\Services\Payment\Paypal;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,14 +22,10 @@ class DatabaseSeeder extends Seeder
          * persist heroes tables without casting
          */
 
+        // $this->call(PaypalMethodSeeder::class);
+        $this->call(StripeMethodSeeder::class);
         
-        PaymentMethod::create([
-            'name'=>'paypal',
-            'config'=>json_encode([
-                'client_id'=>'Adoz6sbMRguUEVwYKrJyPZmOgCJYAlcmhIVJtPK2A1sPATlNLC37dBlwAUr58jU-cyrqSzGdWH1SmdMX',
-                'client_secret'=>'EFVdn7uhgRT_tTf9CVw8pli4pXCaHkv8qKqC9y1k0p50iAz44KHg0GiMzXtTRylwDz2RUxqa74DgMRtm'
-            ])
-        ]);
+      
 
         // $hero = new Hero;
 

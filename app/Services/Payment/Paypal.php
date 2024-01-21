@@ -3,13 +3,14 @@
 namespace App\Services\Payment;
 
 use App\Models\Package;
-use App\Helpers\Currency;
 use App\Contracts\PaymentGateway;
+use App\Models\PaymentMethod;
 use Illuminate\Support\Facades\Http;
+use Session;
 
 class Paypal implements PaymentGateway
 {
-    public function __construct(protected string $token){}
+    public function __construct(protected string $token,protected PaymentMethod $method){}
 
     public function pay(Package $package)
     {
@@ -33,7 +34,7 @@ class Paypal implements PaymentGateway
                         'landing_page' => 'LOGIN',
                         'shipping_preference' => 'NO_SHIPPING',
                         'user_action' => 'PAY_NOW',
-                        "return_url" => route('payment.return'),
+                        "return_url" => route('payment.return',[$package->slug,$this->method->slug]),
                         "cancel_url" => route('payment.cancel'),
                     ],
                 ],
@@ -49,8 +50,10 @@ class Paypal implements PaymentGateway
         $response = Http::withHeaders($header)->post('https://api-m.sandbox.paypal.com/v2/checkout/orders',$data);
 
         $link=collect($response->json('links'))->where('rel','payer-action')->first();
-        
-        return ['payer-action'=>$link['href']];
+
+        Session::put("order_intent_{$response->json('id')}",auth()->id());
+       
+        return redirect()->away(['payer-action'=>$link['href']]);
     }
 
     public function verify($id)
@@ -59,7 +62,17 @@ class Paypal implements PaymentGateway
             'Authorization'=>"Bearer {$this->token}"
         ];
 
-        $response = Http::withHeaders($header)->get('https://api-m.sandbox.paypal.com/v2/checkout/orders/'.$id);
+        $base_response = Http::withHeaders($header)->get('https://api-m.sandbox.paypal.com/v2/checkout/orders/'.$id);
+
+        $response=[
+            'base_data'=>[
+                'transaction_id'=>$base_response['id'],
+                'status'=>$base_response['status'],
+                'paid_amount'=>$base_response['purchase_units'][0]['amount']['value'],
+                'paid_currency'=>$base_response['purchase_units'][0]['amount']['currency_code']
+            ],
+            'content'=>$base_response->json() 
+        ];
 
         return $response;
     }
