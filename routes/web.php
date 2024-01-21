@@ -10,6 +10,7 @@ use App\Http\Controllers\Frontend\PaymentProcessController;
 use App\Http\Controllers\Frontend\Pages\ListingModalController;
 use App\Http\Controllers\Frontend\Pages\ListingsPageController;
 use App\Http\Controllers\Frontend\Pages\ListingDetailController;
+use App\Http\Controllers\Frontend\SaveOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,16 +26,20 @@ use App\Http\Controllers\Frontend\Pages\ListingDetailController;
 Route::get('/', [HomeController::class,'index'])->name('home');
 
 
-Route::get('payment/return',function(Request $request,Paypal $paypal){
-    $res=$paypal->verify($request->get('token'));
-    dd($res->json());
-})->name('payment.return');
+// Route::get('payment/return',function(Request $request,Paypal $paypal){
+//     $res=$paypal->verify($request->get('token'));
+//     dd($res->json());
+// })->name('payment.return');
 
 
 Route::get('payment/cancel',function(){
     dd(request(),'payment.cancel');
 })->name('payment.cancel');
 
+
+Route::post('order/{package}/{method}',PaymentProcessController::class)->name('packages.order');
+Route::get('payment/return',SaveOrderController::class)->name('payment.return');
+Route::post('currencies/change',CurrencyConverterController::class)->name('currencies.change');
 
 
 Route::group(['as'=>'pages.'],function(){
@@ -44,9 +49,6 @@ Route::group(['as'=>'pages.'],function(){
     Route::get('payment/{package}',PaymentController::class)->name('payment');
 });
 
-
-Route::post('order/{package}/{method}',[PaymentProcessController::class,'pay'])->name('packages.order');
-Route::post('currencies/change',CurrencyConverterController::class)->name('currencies.change');
 
 Route::get('/formatter',function(){
     dd(\Currency::format(12536));

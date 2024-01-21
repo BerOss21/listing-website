@@ -1,6 +1,6 @@
 @extends('frontend.layouts.main')
 @section('content')
-<div id="breadcrumb_part"  style="background: url({{$listings[0]->category->background }});">
+<div id="breadcrumb_part"  style="background: url({{$listings[0]?->category?->background }});">
     <div class="bread_overlay">
         <div class="container">
             <div class="row justify-content-center">

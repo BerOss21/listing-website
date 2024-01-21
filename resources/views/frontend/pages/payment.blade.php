@@ -41,7 +41,7 @@
                                 <!-- <a class="wsus__single_payment" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">
                                     <img src="{{$method->icon}}" alt="payment method" class="img-fluid w-100">
                                 </a> -->
-                                <button class="wsus__single_payment" data-bs-toggle="modal" data-bs-target="#exampleModal" type="submit">
+                                <button class="wsus__single_payment" type="submit">
                                     <img src="{{$method->icon}}" alt="payment method" class="img-fluid w-100">
                                 </button>
                             </div>

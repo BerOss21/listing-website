@@ -11,7 +11,7 @@ use App\Factories\PaymentGatewaysFactory;
 
 class PaymentProcessController extends Controller
 {
-    public function pay(Request $request,Package $package,PaymentMethod $method)
+    public function __invoke(Package $package,PaymentMethod $method)
     {
         $instance=PaymentGatewaysFactory::create($method->name);
 

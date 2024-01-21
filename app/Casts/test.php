@@ -1,14 +1,14 @@
-CREATE OR REPLACE FUNCTION generate_random_niveau_interventions()
+CREATE OR REPLACE FUNCTION generate_random_batiment_interventions()
 RETURNS VOID AS $$
 DECLARE
-    niveau_id INTEGER;
+    batiment_id INTEGER;
 
 BEGIN
-    FOR niveau_id IN (SELECT id FROM niveaux) LOOP    
-        INSERT INTO lup_luc (niveau_id,statut_occupation,revenu_mensuel)
-        VALUES(niveau_id,(ARRAY['propriétaire', 'locataire'])[floor(random() * 2) + 1],floor(random() * 8000) + 1)
+    FOR batiment_id IN (SELECT id FROM batiments) LOOP    
+        update batiments set affaire_id=(select id from affaires ordrer by random() limit 1)
+        where id=batiment_id
     END LOOP;
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT generate_random_niveau_interventions();
+SELECT generate_random_batiment_interventions();
