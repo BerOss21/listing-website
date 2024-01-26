@@ -3,12 +3,13 @@
 namespace App\Services\Payment;
 
 use App\Models\Package;
-use App\Contracts\PaymentGateway;
+use App\Contracts\PaymentGateway\PaymentProcess;
+use App\Contracts\PaymentGateway\PaymentVerification;
 use App\Models\PaymentMethod;
 use Illuminate\Support\Facades\Http;
 use Session;
 
-class Paypal implements PaymentGateway
+class Paypal implements PaymentProcess,PaymentVerification
 {
     public function __construct(protected string $token,protected PaymentMethod $method){}
 
@@ -52,8 +53,8 @@ class Paypal implements PaymentGateway
         $link=collect($response->json('links'))->where('rel','payer-action')->first();
 
         Session::put("order_intent_{$response->json('id')}",auth()->id());
-       
-        return redirect()->away(['payer-action'=>$link['href']]);
+    //    dd()
+        return redirect()->away($link['href']);
     }
 
     public function verify($id)
@@ -67,7 +68,7 @@ class Paypal implements PaymentGateway
         $response=[
             'base_data'=>[
                 'transaction_id'=>$base_response['id'],
-                'status'=>$base_response['status'],
+                'status'=>$base_response['status']=='APPROVED'?true:false,
                 'paid_amount'=>$base_response['purchase_units'][0]['amount']['value'],
                 'paid_currency'=>$base_response['purchase_units'][0]['amount']['currency_code']
             ],

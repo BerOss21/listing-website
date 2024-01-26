@@ -34,20 +34,21 @@
             <div class="col-lg-8">
                 <div class="wsus__payment_area">
                     <div class="row">
-                        @foreach($methods as $method)
-                        <form action="{{route('packages.order',[$package,$method])}}" method="post">
-                            @csrf
-                            <div class="col-lg-3 col-6 col-sm-4">
-                                <!-- <a class="wsus__single_payment" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">
-                                    <img src="{{$method->icon}}" alt="payment method" class="img-fluid w-100">
-                                </a> -->
-                                <button class="wsus__single_payment" type="submit">
-                                    <img src="{{$method->icon}}" alt="payment method" class="img-fluid w-100">
-                                </button>
-                            </div>
-                        </form>
-
-                        @endforeach
+                        @if($package->price>0)
+                            @foreach($methods as $method)
+                            <form action="{{route('packages.order',[$package,$method])}}" method="post">
+                                @csrf
+                                <div class="col-lg-3 col-6 col-sm-4">
+                                    <!-- <a class="wsus__single_payment" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">
+                                        <img src="{{$method->icon}}" alt="payment method" class="img-fluid w-100">
+                                    </a> -->
+                                    <button class="wsus__single_payment" type="submit">
+                                        <img src="{{$method->icon}}" alt="payment method" class="img-fluid w-100">
+                                    </button>
+                                </div>
+                            </form>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
@@ -60,7 +61,15 @@
                     <p>{{$package->videos}}</p>
                     <p>{{$package->amenities}}</p>
                     <p>{{$package->featured_listings}}</p>
-                    <a href="{{ route('pages.payment',$package->slug) }}">Order now</a>
+                    <!-- @if($package->price==0)
+                        <form action="{{route('payment.return',[$package->slug])}}" method="post">
+                            @csrf
+                            <button type="submit">Order now</button>
+                        </form>
+                    @endif -->
+                    @if($package->price==0)
+                        <a href="{{route('payment.return',[$package->slug])}}">Order now</a>
+                    @endif
                 </div>
             </div>
         </div>

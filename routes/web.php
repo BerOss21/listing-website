@@ -41,7 +41,7 @@ Route::get('payment/cancel',function(){
 
 Route::post('order/{package}/{method}',PaymentProcessController::class)->name('packages.order');
 
-Route::get('payment/return/{package}/{method}',SaveOrderController::class)->name('payment.return');
+Route::get('payment/return/{package}/{method?}',SaveOrderController::class)->name('payment.return');
 Route::post('currencies/change',CurrencyConverterController::class)->name('currencies.change');
 
 

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('transaction_id')->nullable();
             $table->string('username');
             $table->string('package_name');
-            $table->string('payment_method_name');
+            $table->string('payment_method_name')->nullable();
             $table->double('base_amount');
             $table->string('base_currency');
             $table->double('paid_amount');
