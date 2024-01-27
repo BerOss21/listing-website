@@ -22,6 +22,7 @@
             </li>
             <li @class(['active'=>request()->routeIs('admin.settings.*')])><a class="nav-link" href="{{route('admin.settings.create')}}"><i class="far fa-square"></i> <span>Settings</span></a></li>
             <li @class(['active'=>request()->routeIs('admin.payment_methods.*')])><a class="nav-link" href="{{route('admin.payment_methods.index')}}"><i class="far fa-square"></i> <span>Payment methods</span></a></li>
+            <li @class(['active'=>request()->routeIs('admin.orders.*')])><a class="nav-link" href="{{route('admin.orders.index')}}"><i class="far fa-square"></i> <span>Orders</span></a></li>
         </ul>
     </aside>
 </div>

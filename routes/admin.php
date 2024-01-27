@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HeroController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\AmenityController;
 use App\Http\Controllers\Admin\ListingController;
 use App\Http\Controllers\Admin\PackageController;
@@ -12,8 +13,8 @@ use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Listing\ImageController;
 use App\Http\Controllers\Admin\Listing\VideoController;
-use App\Http\Controllers\Admin\Listing\ScheduleController;
 use App\Http\Controllers\Admin\PaymentMethodController;
+use App\Http\Controllers\Admin\Listing\ScheduleController;
 
 Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 
@@ -25,6 +26,8 @@ Route::resource('settings',SettingController::class)->only('create','store');
 
 Route::resource('payment_methods',PaymentMethodController::class)->except('show','create','store');
 
+Route::resource('orders',OrderController::class);
+
 Route::group(['as'=>'sections.'],function(){
     Route::get('hero',[HeroController::class,'edit'])->name('hero');
     Route::put('hero',[HeroController::class,'update']);
@@ -33,6 +36,7 @@ Route::group(['as'=>'sections.'],function(){
     Route::resource('locations',LocationController::class)->except('show');
     Route::resource('amenities',AmenityController::class)->except('show');
     Route::resource('packages',PackageController::class)->except('show');
+  
 
     Route::resource('listings.images',ImageController::class)->only(['create','store','destroy'])->scoped();
     Route::resource('listings.videos',VideoController::class)->only(['create','store','destroy'])->scoped();

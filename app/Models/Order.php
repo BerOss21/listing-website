@@ -12,7 +12,6 @@ class Order extends Model
 {
     use HasFactory, SoftDeletes;
 
-
     protected $fillable = [
         'user_id',
         'package_id',
@@ -29,29 +28,41 @@ class Order extends Model
         'response_content'
     ];
 
-    protected $dates = ['purchase_date'];
-
     protected $casts=[
-        'response_content'=>'array'
+        'response_content'=>'array',
+        'purchase_date'=>'datetime'
     ];
+
+
+    public function getRouteKeyName(): string
+    {
+        return 'transaction_id';
+    }
 
     public function user() :BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->withDefault([
+            'firstname'=>$this->username,
+            'lastname'=>''
+        ]);
     }
 
     public function package() :BelongsTo
     {
-        return $this->belongsTo(Package::class);
+        return $this->belongsTo(Package::class)->withTrashed()->withDefault([
+            'name'=>$this->package_name
+        ]);
     }
 
-    public function paymentMethod() :BelongsTo
+    public function payment_method() :BelongsTo
     {
-        return $this->belongsTo(PaymentMethod::class);
+        return $this->belongsTo(PaymentMethod::class)->withTrashed()->withDefault([
+            'name'=>$this->payment_method_name
+        ]);
     }
 
     public function subscription() :HasOne
     {
-        return $this->hasOne(Subscription::class);
+        return $this->hasOne(Subscription::class)->withTrashed()->withDefault();
     }
 }
