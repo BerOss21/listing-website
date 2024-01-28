@@ -7,7 +7,7 @@ use App\Http\Controllers\Frontend\Dashboard\ProfileController;
 use App\Http\Controllers\Frontend\Dashboard\Listings\ImageController;
 use App\Http\Controllers\Frontend\Dashboard\Listings\VideoController;
 use App\Http\Controllers\Frontend\Dashboard\Listings\ScheduleController;
-
+use App\Http\Controllers\Frontend\Dashboard\OrderController;
 
 Route::group(['prefix'=>'dashboard'],function(){
     Route::get('/',[MainController::class,'index'])->name('dashboard');
@@ -19,6 +19,7 @@ Route::group(['prefix'=>'dashboard'],function(){
         Route::resource('listings.videos', VideoController::class)->only(['create','store','destroy'])->scoped();
         Route::resource('listings.schedules', ScheduleController::class)->except('show');
         Route::resource('listings', ListingController::class);
+        Route::resource('orders',OrderController::class)->only(['index','show','destroy']);
     });
 });
 

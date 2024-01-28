@@ -26,7 +26,7 @@ Route::resource('settings',SettingController::class)->only('create','store');
 
 Route::resource('payment_methods',PaymentMethodController::class)->except('show','create','store');
 
-Route::resource('orders',OrderController::class);
+Route::resource('orders',OrderController::class)->only(['index','show','destroy']);
 
 Route::group(['as'=>'sections.'],function(){
     Route::get('hero',[HeroController::class,'edit'])->name('hero');

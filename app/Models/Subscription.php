@@ -18,7 +18,13 @@ class Subscription extends Model
         'status',
     ];
 
-    protected $dates = ['purchase_date', 'expire_date'];
+
+    protected $casts= [
+        'purchase_date'=>'datetime', 
+        'expire_date'=>'datetime'
+    ];
+
+    // protected $dates = ['purchase_date', 'expire_date'];
 
     public function order() :BelongsTo
     {

@@ -18,7 +18,7 @@ class OrderPolicy
 
     public function viewAny(User|Admin $user): bool
     {
-        return false;
+        return true;
     }
 
     public function view(User|Admin $user, Order $order): bool
