@@ -45,32 +45,32 @@
 
                             <div class="form-group col-md-6 mb-4">
                                 <label>Number of days</label>
-                                <input type="number" name="number_of_days" class="form-control" value="{{old('number_of_days')}}">
+                                <input type="text" name="number_of_days" class="form-control" value="{{old('number_of_days')}}">
                             </div>
 
                             <div class="form-group col-md-6 mb-4">
                                 <label>Number of listings</label>
-                                <input type="number" name="number_of_listings" class="form-control" value="{{old('number_of_listings')}}">
+                                <input type="text" name="number_of_listings" class="form-control" value="{{old('number_of_listings')}}">
                             </div>
 
                             <div class="form-group col-md-6 mb-4">
                                 <label>Number of photos</label>
-                                <input type="number" name="number_of_photos" class="form-control" value="{{old('number_of_photos')}}">
+                                <input type="text" name="number_of_photos" class="form-control" value="{{old('number_of_photos')}}">
                             </div>
 
                             <div class="form-group col-md-6 mb-4">
                                 <label>Number of videos</label>
-                                <input type="number" name="number_of_videos" class="form-control" value="{{old('number_of_videos')}}">
+                                <input type="text" name="number_of_videos" class="form-control" value="{{old('number_of_videos')}}">
                             </div>
 
                             <div class="form-group col-md-6 mb-4">
                                 <label>Number of amenities</label>
-                                <input type="number" name="number_of_amenities" class="form-control" value="{{old('number_of_amenities')}}">
+                                <input type="text" name="number_of_amenities" class="form-control" value="{{old('number_of_amenities')}}">
                             </div>
 
                             <div class="form-group col-md-6 mb-4">
                                 <label>Number of featured listing</label>
-                                <input type="number" name="number_of_featured_listings" class="form-control" value="{{old('number_of_featured_listing')}}">
+                                <input type="text" name="number_of_featured_listings" class="form-control" value="{{old('number_of_featured_listing')}}">
                             </div>
 
                             <div class="form-group col-md-6 mb-4">

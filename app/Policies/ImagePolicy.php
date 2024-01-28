@@ -29,7 +29,7 @@ class ImagePolicy
 
     public function create(User|Admin $user): bool
     {
-        return false;
+        return true;
     }
 
     public function update(User|Admin $user, Image $image): bool
@@ -39,7 +39,7 @@ class ImagePolicy
 
     public function delete(User|Admin $user, Image $image): bool
     {
-        return false;
+        return $image->listing->user_id==$user->id;
     }
 
     public function restore(User|Admin $user, Image $image): bool

@@ -14,6 +14,8 @@ class ListingController extends Controller
     public function __construct()
     {
         $this->authorizeResource(Listing::class, 'listing');
+        
+        $this->middleware('max_listings')->only(['create','store']);
     }
 
     public function index()

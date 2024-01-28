@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Frontend\Listings;
 
+use App\Rules\MaxPhotos;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ImageRequest extends FormRequest
@@ -14,7 +15,7 @@ class ImageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'images'=>['nullable','array'],
+            'images'=>['nullable','array',new MaxPhotos($this->route('listing'))],
             'images.*'=>['image','max:5000'],
         ];
     }

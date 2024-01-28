@@ -7,6 +7,7 @@
                 <div class="card-body">
                     <form action="{{route('dashboard.listings.images.store',$listing->slug)}}" method="post" enctype="multipart/form-data">
                         @csrf
+                        <span class="text-danger">(max:{{$max_photos}})</span>
                         <div class="row">
                             <div class="form-group col-md-10 m-0">
                                 <input class="form-control" multiple type="file" name="images[]" id="image">

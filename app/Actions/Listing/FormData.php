@@ -17,7 +17,8 @@ class FormData
         $categories=Category::select('id','name')->latest()->get();
         $locations=Location::select('id','name')->latest()->get();
         $amenities=Amenity::select('id','name','icon')->latest()->get();
+        $max_amenities=auth()->user()->latestOrder->package->number_of_amenities;
 
-        return compact('amenities','categories','locations');
+        return compact('amenities','categories','locations','max_amenities');
     }
 }

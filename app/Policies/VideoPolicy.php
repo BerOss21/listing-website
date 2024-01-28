@@ -29,7 +29,7 @@ class VideoPolicy
 
     public function create(User|Admin $user): bool
     {
-        return false;
+        return true;
     }
 
     public function update(User|Admin $user, Video $video): bool
@@ -39,7 +39,7 @@ class VideoPolicy
 
     public function delete(User|Admin $user, Video $video): bool
     {
-        return false;
+        return $video->listing->user_id==$user->id;
     }
 
     public function restore(User|Admin $user, Video $video): bool

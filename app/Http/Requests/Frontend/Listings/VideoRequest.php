@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Frontend\Listings;
 
-
+use App\Rules\MaxVideos;
 use Illuminate\Foundation\Http\FormRequest;
 
 class VideoRequest extends FormRequest
@@ -23,7 +23,7 @@ class VideoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'url'=>['required','url']
+            'url'=>['required','url',new MaxVideos($this->route('listing'))]
         ];
     }
 }

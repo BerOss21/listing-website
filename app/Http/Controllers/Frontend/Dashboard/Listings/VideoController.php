@@ -17,7 +17,8 @@ class VideoController extends Controller
     public function create(Listing $listing)
     {
         return view('frontend.dashboard.listings.videos',[
-            'listing'=>$listing->load(['videos'=>fn($q)=>$q->orderByDesc('id')])
+            'listing'=>$listing->load(['videos'=>fn($q)=>$q->orderByDesc('id')]),
+            'max_videos'=>auth()->user()->latestOrder->package->number_of_videos
         ]);
     }
 

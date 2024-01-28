@@ -1,5 +1,5 @@
 <div class="my_listing list_mar list_padding">
-    <h4>Amenities</h4>
+    <h4>Amenities <span class="text-danger">(max:{{$max_amenities}})</span></h4>
     <div class="row">
         @forelse($amenities as $amenity)
         <div class="col-xl-6 col-xxl-4 col-md-6">

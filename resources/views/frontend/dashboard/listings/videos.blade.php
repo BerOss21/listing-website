@@ -7,6 +7,7 @@
                 <div class="card-body">
                     <form action="{{route('dashboard.listings.videos.store',$listing->slug)}}" method="post">
                         @csrf
+                        <span class="text-danger">(max:{{$max_videos}})</span>
                         <div class="row">
                             <div class="form-group col-md-10 m-0">
                                 <input class="form-control" type="text" name="url" id="video" value="{{old('url')}}">

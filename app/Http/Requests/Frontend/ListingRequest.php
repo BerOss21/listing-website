@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Frontend;
 
+use App\Rules\MaxAmenities;
+use App\Rules\MaxFeaturedListing;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ListingRequest extends FormRequest
@@ -15,9 +17,6 @@ class ListingRequest extends FormRequest
     {
         return [
             'image' => ['nullable','image', 'max:3000'],
-  
-            // 'videos'=>['nullable','array'],
-            // 'videos.*'=>['required','url'],
             'thumbnail_image' => ['nullable','image', 'max:3000'],
             'title' => ['required', 'string', 'max:255'],
             'category_id' => ['required', 'integer','exists:categories,id'],
@@ -31,14 +30,14 @@ class ListingRequest extends FormRequest
             'linkedin_link' => ['nullable','url'],
             'whatsapp_link' => ['nullable','url'],
             'attachment' => ['nullable','mimes:png,jpg,csv,pdf', 'max:10000'],
-            'amenities'=>['nullable','array'],
+            'amenities'=>['nullable','array',new MaxAmenities],
             'amenities.*' => ['nullable', 'integer','exists:amenities,id'],
             'description' => ['required'],
             'google_map_embed_code' => ['nullable'],
             'seo_title' => ['nullable', 'string', 'max:255'],
             'seo_description' => ['nullable', 'string', 'max:255'],
             'expire_date'=>['required','date'],
-            'is_featured' => ['required', 'boolean'],
+            'is_featured' => ['required', 'boolean',new MaxFeaturedListing],
         ];
     }
 }
