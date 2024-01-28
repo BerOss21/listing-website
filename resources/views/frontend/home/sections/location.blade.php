@@ -14,104 +14,20 @@
                 <div class="col-12 text-center">
                     <div class="wsus__location_filter">
                         <button class="active" data-filter="*">All City</button>
-                        <button data-filter=".newyork">New York</button>
-                        <button data-filter=".london">London</button>
-                        <button data-filter=".parish">Paris</button>
-                        <button data-filter=".hongkong">HongKong</button>
-                        <button data-filter=".moscow">Moscow</button>
-                        <button data-filter=".tokyo">Tokyo</button>
+                        @foreach($locations as $location)
+                            <button data-filter=".{{$location->slug}}">{{ $location->name }}</button>
+                        @endforeach
                     </div>
                 </div>
             </div>
             <div class="row grid">
-                <div class="col-xl-3 col-sm-6 col-lg-4 newyork hongkong tokyo">
-                    <a href="#" class="wsus__single_location">
-                        <div class="img">
-                            <img src="{{asset('frontend/assets/images/location_1.jpg')}}" alt="location" class="img-fluid w-100">
+                @foreach($locations as $location)
+                    @foreach($location->approved_listings as $listing)
+                        <div class="col-xl-3 col-sm-6 col-lg-4 {{$location->slug}}">
+                            <x-frontend.listing-card :listing="$listing"/>
                         </div>
-                        <div class="wsus__location_text">
-                            <p>new york</p>
-                            <span>2 listing</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 london parish moscow">
-                    <a href="#" class="wsus__single_location">
-                        <div class="img">
-                            <img src="{{asset('frontend/assets/images/location_2.jpg')}}" alt="location" class="img-fluid w-100">
-                        </div>
-                        <div class="wsus__location_text">
-                            <p>thailand</p>
-                            <span>10 listing</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 newyork hongkong tokyo">
-                    <a href="#" class="wsus__single_location">
-                        <div class="img">
-                            <img src="{{asset('frontend/assets/images/location_3.jpg')}}" alt="location" class="img-fluid w-100">
-                        </div>
-                        <div class="wsus__location_text">
-                            <p>parish</p>
-                            <span>31 listing</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 london parish moscow">
-                    <a href="#" class="wsus__single_location">
-                        <div class="img">
-                            <img src="{{asset('frontend/assets/images/location_7.jpg')}}" alt="location" class="img-fluid w-100">
-                        </div>
-                        <div class="wsus__location_text">
-                            <p>singapore</p>
-                            <span>28 listing</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 london hongkong moscow">
-                    <a href="#" class="wsus__single_location">
-                        <div class="img">
-                            <img src="{{asset('frontend/assets/images/location_4.jpg')}}" alt="location" class="img-fluid w-100">
-                        </div>
-                        <div class="wsus__location_text">
-                            <p>japan</p>
-                            <span>25 listing</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 newyork parish tokyo">
-                    <a href="#" class="wsus__single_location">
-                        <div class="img">
-                            <img src="{{asset('frontend/assets/images/location_5.jpg')}}" alt="location" class="img-fluid w-100">
-                        </div>
-                        <div class="wsus__location_text">
-                            <p>korea</p>
-                            <span>15 listing</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 london parish moscow">
-                    <a href="#" class="wsus__single_location">
-                        <div class="img">
-                            <img src="{{asset('frontend/assets/images/location_6.jpg')}}" alt="location" class="img-fluid w-100">
-                        </div>
-                        <div class="wsus__location_text">
-                            <p>singapore</p>
-                            <span>28 listing</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 london parish moscow">
-                    <a href="#" class="wsus__single_location">
-                        <div class="img">
-                            <img src="{{asset('frontend/assets/images/location_8.jpg')}}" alt="location" class="img-fluid w-100">
-                        </div>
-                        <div class="wsus__location_text">
-                            <p>singapore</p>
-                            <span>28 listing</span>
-                        </div>
-                    </a>
-                </div>
+                    @endforeach
+                @endforeach
             </div>
         </div>
     </div>

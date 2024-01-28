@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -40,5 +41,21 @@ class Location extends Model
     public function listings() :HasMany
     {
         return $this->hasMany(Listing::class);
+    }
+
+    public function approved_listings() :HasMany
+    {
+        return $this->listings()->active()->approved();
+    }
+
+    
+    public function scopeActive(Builder $query)
+    {
+        $query->whereStatus(1);
+    }
+
+    public function scopeShowAtHome(Builder $query)
+    {
+        $query->whereShowAtHome(1);
     }
 }

@@ -52,8 +52,14 @@
                                 @endif
                     
                                 <!-- <li><a href="#"><i class="fal fa-heart"></i> Add to Favorite</a></li> -->
-                                <!-- <li><a href="#"><i class="fal fa-eye"></i> 194</a></li> -->
-                                <!-- <li><a href="#">Open</a></li> -->
+                                <li><a href="#"><i class="fal fa-eye"></i> {{ $listing->views }}</a></li>
+                                @if($listing->schedules->count())
+                                    @if($open)
+                                        <li><a href="#" class="bg-success">Open</a></li>
+                                    @else
+                                        <li><a href="#" class="bg-danger">Close</a></li>
+                                    @endif
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -172,7 +178,7 @@
                             <div class="listing_det_side_open_hour">
                                 <h5>Opening Hours</h5>
                                 @forelse($listing->schedules as $schedule)
-                                    <p>{{ Str::title($schedule->day )}}<span>{{ $schedule->start_time }} - {{ $schedule->end_time }}</span></p>
+                                    <p>{{ Str::title($schedule->day->value )}}<span>{{ $schedule->start_time }} - {{ $schedule->end_time }}</span></p>
                                 @empty
                                     <p>Not avaible</p>
                                 @endforelse

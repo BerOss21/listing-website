@@ -107,26 +107,7 @@
                 <div class="row">
                     @forelse($listings as $listing)
                     <div class="col-xl-4 col-sm-6">
-                        <div class="wsus__featured_single">
-                            <div class="wsus__featured_single_img">
-                                <img src="{{$listing->thumbnail_image}}" alt="images" class="img-fluid w-100">
-                                <a href="#" class="love"><i class="fas fa-heart"></i></a>
-                                <a href="#" class="small_text">{{ $listing->category->name }}</a>
-                            </div>
-                            <a class="map" data-bs-toggle="modal" id="modal_detail_listing_btn" data-bs-target="#modal_detail_listing" data-listing="{{$listing->slug}}" href="#"><i class="fas fa-info"></i></a>
-                            <div class="wsus__featured_single_text">
-                                <p class="list_rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                    <span>(5 review)</span>
-                                </p>
-                                <a href="#">{{ $listing->title }}</a>
-                                <p class="address"> {{ $listing->location->name }}</p>
-                            </div>
-                        </div>
+                        <x-frontend.listing-card :listing="$listing"/>
                     </div>
                     @empty
                     <div class="alert alert-warning text-center">No listing avaible</div>
@@ -134,8 +115,6 @@
 
                     @if ($listings->total() > 6)
                         <div class="col-12">
-                            <!-- Placez cette partie dans votre vue Blade -->
-
                             <div id="pagination">
                                 <nav aria-label="">
                                     <ul class="pagination">
@@ -169,7 +148,6 @@
                                     </ul>
                                 </nav>
                             </div>
-
                         </div>
                     @endif
                 </div>
@@ -179,21 +157,3 @@
 </section>
 @endsection
 
-@push('js')
-<script>
-    $('#modal_detail_listing_btn').on('click', async function(e) {
-        e.preventDefault();
-        try {
-            const response = await $.ajax({
-                method: 'get',
-                url: "{{route('pages.listings.modal',':slug')}}".replace(':slug', $(this).data('listing'))
-            })
-
-            $('#modal_detail_listing_content').html(response);
-        } catch (error) {
-            console.log('error', error)
-            alert('intern error')
-        }
-    })
-</script>
-@endpush

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
     <title>Listings</title>
     <link rel="icon" type="image/png" href="{{asset('frontend/assets/images/favicon.png')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/all.min.css')}}">
@@ -41,22 +41,22 @@
                 <div class="col-xl-6 col-md-5">
                     <div class="wsus__topbar_right">
                         @auth
-                            <div class="text-white align-self-center">
-                                Hello {{auth()->user()->firstname}}
-                            </div>
-                            <a href="{{route('dashboard')}}"><i class="far fa-user"></i></a>
-                            <a href="" id="user-logout-link"><i class="far fa-sign-out-alt"></i>Logout</a>
-                            <form id="user-logout-form" action="{{route('logout')}}" method="post">
-                                  @csrf
-                            </form>
-                          
+                        <div class="text-white align-self-center">
+                            Hello {{auth()->user()->firstname}}
+                        </div>
+                        <a href="{{route('dashboard')}}"><i class="far fa-user"></i></a>
+                        <a href="" id="user-logout-link"><i class="far fa-sign-out-alt"></i>Logout</a>
+                        <form id="user-logout-form" action="{{route('logout')}}" method="post">
+                            @csrf
+                        </form>
+
                         @else
-                            <a href="{{route('login')}}"><i class="fas fa-user"></i> Login</a>
+                        <a href="{{route('login')}}"><i class="fas fa-user"></i> Login</a>
                         @endauth
                     </div>
                     <div class="wsus__topbar_right ">
-                       
-                    
+
+
                     </div>
                 </div>
             </div>
@@ -86,15 +86,15 @@
     ===========================-->
 
 
-     <!--==========================
+    <!--==========================
         MODALS
     ===========================-->
-        @include('frontend.layouts.partials.modal_listings')
+    @include('frontend.layouts.partials.modal_listings')
     <!--==========================
         FOOTER MODALS
     ===========================-->
 
-    
+
     <!--=============SCROLL BTN==============-->
     <div class="scroll_btn">
         <i class="fas fa-chevron-up"></i>
@@ -129,23 +129,41 @@
     <script src="{{asset('admin/assets/modules/izitoast/js/iziToast.min.js')}}"></script>
 
     <script>
-        @if($errors->any())   
-            @foreach ($errors->all() as $error)
-                iziToast.error({
-                    title: '',
-                    message: "{{$error}}",
-                    position: 'topRight'
-                });
-            @endforeach
+        @if($errors -> any())
+        @foreach($errors -> all() as $error)
+        iziToast.error({
+            title: '',
+            message: "{{$error}}",
+            position: 'topRight'
+        });
+        @endforeach
         @endif
     </script>
 
     <script>
-        $("#user-logout-link").on('click',function(e){
+        $("#user-logout-link").on('click', function(e) {
             e.preventDefault();
             $('#user-logout-form').submit();
         })
     </script>
+
+    <script>
+        $(document).on('click','.modal_detail_listing_btn', async function(e) {
+            e.preventDefault();
+            try {
+                const response = await $.ajax({
+                    method: 'get',
+                    url: "{{route('pages.listings.modal',':slug')}}".replace(':slug', $(this).data('listing'))
+                })
+                $('#modal_detail_listing_content').html(response);
+                $('#modal_detail_listing').modal("show");
+            } catch (error) {
+                console.log('error', error)
+                alert('intern error')
+            }
+        })
+    </script>
+
 
     @stack('js')
 </body>

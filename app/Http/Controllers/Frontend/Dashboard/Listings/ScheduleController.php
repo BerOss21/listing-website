@@ -37,7 +37,7 @@ class ScheduleController extends Controller
 
         toastr()->success('Schedule has been saved succesfully');
 
-        return to_route('dashboard.listings.schedules.index',$listing->id);
+        return to_route('dashboard.listings.schedules.index',$listing->slug);
     }
 
     public function edit(Listing $listing,Schedule $schedule)

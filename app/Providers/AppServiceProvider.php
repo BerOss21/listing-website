@@ -33,8 +33,12 @@ class AppServiceProvider extends ServiceProvider
 
         Paginator::useBootstrap();
 
-        Config::set('settings',Cache::rememberForever('settings', function () {
+        Config::set('settings',Cache::remember('settings',60*60*60*24, function () {
             return Setting::pluck('value','key')->toArray();
         }));
+
+        Config::set('app.timezone',Config::get('settings.site_default_timezone'));
+
+        // dd(config('app.timezone'));
     }
 }

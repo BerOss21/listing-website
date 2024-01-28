@@ -55,9 +55,6 @@ Route::group(['as'=>'pages.'],function(){
 });
 
 
-Route::get('/formatter',function(){
-    dd(\Currency::format(12536));
-});
 // Route::get('pay',function(Paypal $paypal){
     
 //     $response=$paypal->pay('1222','USD');

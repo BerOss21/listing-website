@@ -107,6 +107,11 @@ class Listing extends Model
         return $this->hasMany(Schedule::class);
    }
 
+   public function active_schedules() :HasMany
+   {
+        return $this->schedules()->active();
+   }
+
    public function scopeActive(Builder $query)
    {
         $query->whereStatus(1);
@@ -115,5 +120,10 @@ class Listing extends Model
    public function scopeApproved(Builder $query)
    {
         $query->whereIsApproved(1);
+   }
+
+   public function scopeFeatured(Builder $query)
+   {
+        $query->approved()->active()->where('is_featured',1);
    }
 }

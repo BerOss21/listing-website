@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\Days;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -22,5 +23,10 @@ class Schedule extends Model
     public function listing() :BelongsTo
     {
         return $this->belongsTo(Listing::class)->withDefault();
+    }
+
+    public function scopeActive(Builder $builder)
+    {
+        $builder->whereStatus(1);
     }
 }

@@ -48,6 +48,11 @@ class Category extends Model
         return $this->hasMany(Listing::class);
     }
 
+    public function approved_listings() :HasMany
+    {
+        return $this->listings()->active()->approved();
+    }
+
     public function scopeActive(Builder $query)
     {
         $query->whereStatus(1);
