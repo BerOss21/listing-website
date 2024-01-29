@@ -48,17 +48,17 @@
                             </p>
                             <ul>
                                 @if($listing->is_verified)
-                                    <li><a href="#"><i class="far fa-check"></i> Verified</a></li>
+                                <li><a href="#"><i class="far fa-check"></i> Verified</a></li>
                                 @endif
-                    
+
                                 <!-- <li><a href="#"><i class="fal fa-heart"></i> Add to Favorite</a></li> -->
                                 <li><a href="#"><i class="fal fa-eye"></i> {{ $listing->views }}</a></li>
                                 @if($listing->schedules->count())
-                                    @if($open)
-                                        <li><a href="#" class="bg-success">Open</a></li>
-                                    @else
-                                        <li><a href="#" class="bg-danger">Close</a></li>
-                                    @endif
+                                @if($open)
+                                <li><a href="#" class="bg-success">Open</a></li>
+                                @else
+                                <li><a href="#" class="bg-danger">Close</a></li>
+                                @endif
                                 @endif
                             </ul>
                         </div>
@@ -69,26 +69,26 @@
                     <div class="listing_det_Photo">
                         <div class="row">
                             @foreach($listing->images as $image)
-                                <div class="col-xl-3 col-sm-6">
-                                    <a class="venobox" data-gall="gallery01" href="{{$image->image}}">
-                                        <img src="{{$image->image}}" alt="gallery1" class="img-fluid w-100">
-                                        <div class="photo_overlay">
-                                            <i class="fal fa-plus"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                           @endforeach
+                            <div class="col-xl-3 col-sm-6">
+                                <a class="venobox" data-gall="gallery01" href="{{$image->image}}">
+                                    <img src="{{$image->image}}" alt="gallery1" class="img-fluid w-100">
+                                    <div class="photo_overlay">
+                                        <i class="fal fa-plus"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="listing_det_feature">
                         <div class="row">
                             @foreach($listing->amenities as $amenity)
-                                <div class="col-xl-4 col-sm-6">
-                                    <div class="listing_det_feature_single">
-                                        <i class="{{ $amenity->icon }}"></i>
-                                        <span>{{ $amenity->name }}</span>
-                                    </div>
+                            <div class="col-xl-4 col-sm-6">
+                                <div class="listing_det_feature_single">
+                                    <i class="{{ $amenity->icon }}"></i>
+                                    <span>{{ $amenity->name }}</span>
                                 </div>
+                            </div>
                             @endforeach
                         </div>
                     </div>
@@ -112,48 +112,63 @@
                     </div>
                     <div class="wsus__listing_review">
                         <h4>reviews 04</h4>
-                        <div class="wsus__single_comment">
-                            <div class="wsus__single_comment_img">
-                                <img src="images/user_large_img.jpg" alt="comment" class="img-fluid w-100">
+
+                        <div class="reviews">
+                            @forelse($listing->active_reviews as $review)
+                            <div class="wsus__single_comment">
+                                <div class="wsus__single_comment_img">
+                                    <img src="{{$review->user->avatar}}" alt="comment" class="img-fluid w-100">
+                                </div>
+                                <div class="wsus__single_comment_text">
+                                    <h5>
+                                        {{$review->user->firstname}} {{$review->user->lastname}}
+                                        <span>
+                                            @for($i=1;$i<=5;$i++) 
+                                                @if($i<=$review->rating)
+                                                <i class="fas fa-star"></i>
+                                                @else
+                                                <i class="far fa-star"></i>
+                                                @endif
+                                             @endfor
+                                        </span>
+                                        <span class="p-1 text-center bg-warning rounded text-white font-bold">waiting for approval</span>
+                                    </h5>
+                                    <span>{{$review->created_at->format('d-M-Y')}}</span>
+                                   
+                                    <p>{{$review->content}}</p>
+                                </div>
                             </div>
-                            <div class="wsus__single_comment_text">
-                                <h5>sumon ali<span>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                    </span></h5>
-                                <span>01-Dec-2021</span>
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad maxime placeat
-                                    ducimus.</p>
-                            </div>
+                            @empty
+                            <div class="alert alert-warning text-center">No reviews avaible</div>
+                            @endforelse
                         </div>
-                        
-                        <form class="input_comment">
+
+                        <form class="input_comment" id="form_review" action="{{route('listings.reviews',$listing->slug)}}">
+                            @csrf
                             <h5>add a review</h5>
                             <div class="row">
                                 <div class="col-xl-12">
                                     <div class="wsus__select_rating">
                                         <i class="fas fa-star"></i>
-                                        <select class="select_2" name="state">
+                                        <select class="select_2" id="rating_select" name="rating">
                                             <option value="">select rating</option>
-                                            <option value=""> 1 </option>
-                                            <option value=""> 2 </option>
-                                            <option value=""> 3 </option>
-                                            <option value=""> 4 </option>
-                                            <option value=""> 5 </option>
+                                            <option> 1 </option>
+                                            <option> 2 </option>
+                                            <option> 3 </option>
+                                            <option> 4 </option>
+                                            <option> 5 </option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-xl-12">
                                     <div class="blog_single_input">
-                                        <textarea cols="3" rows="5" placeholder="Comment"></textarea>
+                                        <textarea name="content" cols="3" rows="5" placeholder="Comment"></textarea>
                                         <button type="submit" class="read_btn">submit review</button>
                                     </div>
                                 </div>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -178,9 +193,9 @@
                             <div class="listing_det_side_open_hour">
                                 <h5>Opening Hours</h5>
                                 @forelse($listing->schedules as $schedule)
-                                    <p>{{ Str::title($schedule->day->value )}}<span>{{ $schedule->start_time }} - {{ $schedule->end_time }}</span></p>
+                                <p>{{ Str::title($schedule->day->value )}}<span>{{ $schedule->start_time }} - {{ $schedule->end_time }}</span></p>
                                 @empty
-                                    <p>Not avaible</p>
+                                <p>Not avaible</p>
                                 @endforelse
                             </div>
                         </div>
@@ -223,3 +238,47 @@
         LISTING DETAILS END
     ===========================-->
 @endsection
+
+@push('js')
+<script>
+    $('#form_review').on('submit', async function(e) {
+        e.preventDefault();
+        try {
+            const response = await $.ajax({
+                method: 'post',
+                url: $(this).attr('action'),
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+                },
+                data: $(this).serializeArray()
+            });
+
+            $('.reviews').append(response);
+
+            $(this).trigger("reset");
+            $("#rating_select").val('').trigger('change')
+
+            var lastChild = $(".reviews").children().last();
+
+            $(".reviews").animate({
+                scrollTop: lastChild.offset().top
+            }, 800);
+        } 
+        catch (error) 
+        {
+            if (error.status === 422) 
+            {
+                var errors = error.responseJSON.errors;
+                $.each(errors, function (key, value) {
+                    iziToast.error({
+                        title: '',
+                        message: value,
+                        position: 'topRight'
+                    });
+                });
+            } 
+            console.log("error", error);
+        }
+    })
+</script>
+@endpush

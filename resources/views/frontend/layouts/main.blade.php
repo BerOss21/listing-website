@@ -129,14 +129,14 @@
     <script src="{{asset('admin/assets/modules/izitoast/js/iziToast.min.js')}}"></script>
 
     <script>
-        @if($errors -> any())
-        @foreach($errors -> all() as $error)
-        iziToast.error({
-            title: '',
-            message: "{{$error}}",
-            position: 'topRight'
-        });
-        @endforeach
+        @if($errors->any())
+            @foreach($errors->all() as $error)
+            iziToast.error({
+                title: '',
+                message: "{{$error}}",
+                position: 'topRight'
+            });
+            @endforeach
         @endif
     </script>
 

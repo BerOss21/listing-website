@@ -112,6 +112,17 @@ class Listing extends Model
         return $this->schedules()->active();
    }
 
+   public function reviews() :HasMany
+   {
+       return $this->hasMany(Review::class);
+   }
+
+   public function active_reviews() :HasMany
+   {
+        return $this->reviews()->active()->orWhere('user_id',auth()->id());
+   }
+
+
    public function scopeActive(Builder $query)
    {
         $query->whereStatus(1);

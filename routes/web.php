@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\Pages\ListingsPageController;
 use App\Http\Controllers\Frontend\Pages\ListingDetailController;
 use App\Http\Controllers\Frontend\Pages\SubscriptionSucceedController;
 use App\Http\Controllers\Frontend\Pages\SubscriptionCanceledController;
+use App\Http\Controllers\Frontend\Review\SaveReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,20 +28,13 @@ use App\Http\Controllers\Frontend\Pages\SubscriptionCanceledController;
 
 Route::get('/', [HomeController::class,'index'])->name('home');
 
-
-// Route::get('payment/return',function(Request $request,Paypal $paypal){
-//     $res=$paypal->verify($request->get('token'));
-//     dd($res->json());
-// })->name('payment.return');
-
-
 Route::get('payment/cancel',function(){
     dd(request(),'payment.cancel');
 })->name('payment.cancel');
 
 
 Route::post('order/{package}/{method}',PaymentProcessController::class)->name('packages.order');
-
+Route::post('listings/{listing}/reviews',SaveReviewController::class)->name('listings.reviews');
 Route::get('payment/return/{package}/{method?}',SaveOrderController::class)->name('payment.return');
 Route::post('currencies/change',CurrencyConverterController::class)->name('currencies.change');
 

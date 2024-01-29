@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SaveOrderController extends Controller
 {
-    public function __invoke(Request $request, Package $package, ?PaymentMethod $method=null,SaveOrder $action)
+    public function __invoke(Request $request, Package $package,SaveOrder $action, ?PaymentMethod $method=null)
     {
         $instance = PaymentGatewaysFactory::create($method->name ?? 'free');
 
