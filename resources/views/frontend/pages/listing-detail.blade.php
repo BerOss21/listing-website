@@ -38,13 +38,14 @@
                             <h6>{{ \Str::title($listing->title) }}</h6>
                             <p class="host_name">Hosted by <a href="">{{$listing->user->name}}</a></p>
                             <p class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <b>4.5</b>
-                                <span>(12 review)</span>
+                                @for($i=1;$i<=5;$i++) 
+                                    @if($i<=$listing->active_reviews_avg_rating)
+                                    <i class="fas fa-star"></i>
+                                    @else
+                                    <i class="far fa-star"></i>
+                                    @endif
+                                @endfor
+                                <span>({{$listing->active_reviews_count}} {{Str::plural('review',$listing->active_reviews_count)}})</span>
                             </p>
                             <ul>
                                 @if($listing->is_verified)
@@ -131,7 +132,9 @@
                                                 @endif
                                              @endfor
                                         </span>
-                                        <span class="p-1 text-center bg-warning rounded text-white font-bold">waiting for approval</span>
+                                        @if(!$review->approved)
+                                            <span class="p-1 text-center bg-warning rounded text-white font-bold">waiting for approval</span>
+                                        @endif
                                     </h5>
                                     <span>{{$review->created_at->format('d-M-Y')}}</span>
                                    
@@ -142,7 +145,7 @@
                             <div class="alert alert-warning text-center">No reviews avaible</div>
                             @endforelse
                         </div>
-
+                        @auth
                         <form class="input_comment" id="form_review" action="{{route('listings.reviews',$listing->slug)}}">
                             @csrf
                             <h5>add a review</h5>
@@ -168,7 +171,11 @@
                                 </div>
                             </div>
                         </form>
-
+                        @else
+                            <div class="alert alert-info">
+                                You should <a href="{{route('login')}}">login</a> to add your comment
+                            </div>
+                        @endauth
                     </div>
                 </div>
             </div>

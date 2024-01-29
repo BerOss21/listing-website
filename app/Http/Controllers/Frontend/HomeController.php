@@ -22,13 +22,17 @@ class HomeController extends Controller
             ->latest()
             ->get();
 
-        $locations =Location::with(['approved_listings'=>['category','location']])
+        $locations =Location::with(['approved_listings'=>function($q){
+            $q->withAvg('active_reviews','rating')
+                ->withCount('active_reviews')
+                ->with(['category','location']);
+            }])
             ->active()
             ->showAtHome()
             ->latest()
             ->get();
 
-        $featured_listings=Listing::with(['category','location'])->featured()->latest()->get();
+        $featured_listings=Listing::with(['category','location'])->withAvg('active_reviews','rating')->withCount('active_reviews')->featured()->latest()->get();
 
         $packages = Package::active()->showAtHome()->latest()->get();
 

@@ -22,7 +22,23 @@ class ReviewsDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'reviews.action')
+            ->addColumn('action', function ($review) {
+                return view('admin.datatables.reviews.actions', ['id' => $review->id]);
+            })
+            ->editColumn('approved',function($review){
+                return view('admin.datatables.reviews.status-select', compact('review'));
+            })
+            ->addColumn('listing',function($review){
+                return $review->listing->title;
+            })
+            ->addColumn('user',function($review){
+                return $review->user->firstname.' '.$review->user->lastname;
+            })
+            ->editColumn('created_at',function($review){
+                return $review->created_at->format('d/m/Y');
+            })
+        
+            ->rawColumns(['action','approved'])
             ->setRowId('id');
     }
 
@@ -31,7 +47,7 @@ class ReviewsDataTable extends DataTable
      */
     public function query(Review $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->with(['listing','user'])->newQuery();
     }
 
     /**
@@ -43,8 +59,8 @@ class ReviewsDataTable extends DataTable
                     ->setTableId('reviews-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
+                    ->dom('Bfrtip')
+                    ->orderBy(0)
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
@@ -62,15 +78,18 @@ class ReviewsDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
+            Column::make('id')->visible(false),
+            Column::make('user'),
+            Column::make('listing'),
+            Column::make('content'),
+            Column::make('rating'),
+            Column::make('approved'),
             Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::computed('action')
+            ->exportable(false)
+            ->printable(false)
+            ->width(60)
+            ->addClass('text-center'),
         ];
     }
 

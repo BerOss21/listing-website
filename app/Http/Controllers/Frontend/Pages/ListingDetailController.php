@@ -11,7 +11,7 @@ class ListingDetailController extends Controller
 {
     public function __invoke(Request $request,Listing $listing)
     {
-        $listing=$listing->load(['active_schedules','images','videos','user','category','amenities','location','active_reviews.user']);
+        $listing=$listing->loadAvg('active_reviews','rating')->loadCount('active_reviews')->load(['active_schedules','images','videos','user','category','amenities','location','active_reviews.user']);
 
         $featured_listings=$listing->where('is_featured',true);
 

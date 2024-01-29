@@ -28,22 +28,23 @@ use App\Http\Controllers\Frontend\Review\SaveReviewController;
 
 Route::get('/', [HomeController::class,'index'])->name('home');
 
-Route::get('payment/cancel',function(){
-    dd(request(),'payment.cancel');
-})->name('payment.cancel');
 
 
-Route::post('order/{package}/{method}',PaymentProcessController::class)->name('packages.order');
-Route::post('listings/{listing}/reviews',SaveReviewController::class)->name('listings.reviews');
-Route::get('payment/return/{package}/{method?}',SaveOrderController::class)->name('payment.return');
-Route::post('currencies/change',CurrencyConverterController::class)->name('currencies.change');
 
+Route::group(['middleware'=>'auth:web'],function(){
+    Route::post('order/{package}/{method}',PaymentProcessController::class)->name('packages.order');
+    Route::post('listings/{listing}/reviews',SaveReviewController::class)->name('listings.reviews');
+    Route::get('payment/return/{package}/{method?}',SaveOrderController::class)->name('payment.return');
+    Route::post('currencies/change',CurrencyConverterController::class)->name('currencies.change');  
+    Route::get('payment/cancel',function(){  dd(request(),'payment.cancel'); })->name('payment.cancel');  
+});
 
 Route::group(['as'=>'pages.'],function(){
     Route::get('listings/modal/{listing}',ListingModalController::class)->name('listings.modal');
     Route::get('listings/{category}',ListingsPageController::class)->name('listings');
     Route::get('listing-detail/{listing}',ListingDetailController::class)->name('listing-detail');
     Route::get('payment/{package}',PaymentController::class)->name('payment');
+    
     Route::get('subscriptions-succeed',SubscriptionSucceedController::class)->name('subscriptions.succeed');
     Route::get('subscriptions-canceled',SubscriptionCanceledController::class)->name('subscriptions.canceled');
 });

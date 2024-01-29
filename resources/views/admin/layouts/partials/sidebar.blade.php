@@ -18,6 +18,7 @@
                     <li @class(['active'=>request()->routeIs('admin.sections.amenities.*')])><a class="nav-link" href="{{route('admin.sections.amenities.index')}}">Amenities</a></li>
                     <li @class(['active'=>request()->routeIs('admin.sections.packages.*')])><a class="nav-link" href="{{route('admin.sections.packages.index')}}">Packages</a></li>
                     <li @class(['active'=>request()->routeIs('admin.sections.listings.*')])><a class="nav-link" href="{{route('admin.sections.listings.index')}}">Listings</a></li>  
+                    <li @class(['active'=>request()->routeIs('admin.sections.reviews.*')])><a class="nav-link" href="{{route('admin.sections.reviews.index')}}">Reviews</a></li>  
                 </ul>
             </li>
             <li @class(['active'=>request()->routeIs('admin.settings.*')])><a class="nav-link" href="{{route('admin.settings.create')}}"><i class="far fa-square"></i> <span>Settings</span></a></li>

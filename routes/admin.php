@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\Listing\ImageController;
 use App\Http\Controllers\Admin\Listing\VideoController;
 use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\Listing\ScheduleController;
+use App\Http\Controllers\Admin\ReviewController;
 
 Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 
@@ -36,6 +37,7 @@ Route::group(['as'=>'sections.'],function(){
     Route::resource('locations',LocationController::class)->except('show');
     Route::resource('amenities',AmenityController::class)->except('show');
     Route::resource('packages',PackageController::class)->except('show');
+    Route::resource('reviews',ReviewController::class)->only('index','update','destroy');
   
 
     Route::resource('listings.images',ImageController::class)->only(['create','store','destroy'])->scoped();
