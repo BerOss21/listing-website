@@ -16,7 +16,7 @@ class ListingDetailController extends Controller
         $featured_listings=$listing->where('is_featured',true);
 
         $similar_listings=Listing::withCount('active_reviews')->where('category_id',$listing->category_id)->where('id','!=',$listing->id)->latest()->take(4)->get();
-// dd($similar_listings);
+
         $day=Str::lower(now(config('app.timezone'))->format('l'));
 
         $time=now(config('app.timezone'))->format('H:i');

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Casts\UploadedFile;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -39,4 +40,9 @@ class PaymentMethod extends Model
         'config' => 'array',
         'icon'=>UploadedFile::class.':admin,'.'sections/payment_methods/icons',
     ];
+
+    public function scopeActive(Builder $builder)
+    {
+        $builder->whereStatus(1);
+    }
 }

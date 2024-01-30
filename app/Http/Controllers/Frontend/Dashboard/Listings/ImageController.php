@@ -16,7 +16,6 @@ class ImageController extends Controller
 
     public function create(Listing $listing)
     {
-        
         return view('frontend.dashboard.listings.images',[
             'listing'=>$listing->load(['images'=>fn($q)=>$q->orderByDesc('id')]),
             'max_photos'=>auth()->user()->latestOrder->package->number_of_photos
