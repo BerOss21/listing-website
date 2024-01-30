@@ -17,7 +17,10 @@ class AmenityFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->unique()->word,
+            'icon' => 'fa ' . fake()->randomElement(['fa-home', 'fa-car', 'fa-coffee', 'fa-heart', 'fa-bolt']),
+            'show_at_home' => fake()->boolean,
+            'status' => fake()->boolean,
         ];
     }
 }

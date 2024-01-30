@@ -1,8 +1,11 @@
 <?php
 
+use App\Models\Claim;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HeroController;
+use App\Http\Controllers\Admin\ClaimController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\AmenityController;
 use App\Http\Controllers\Admin\ListingController;
 use App\Http\Controllers\Admin\PackageController;
@@ -15,7 +18,6 @@ use App\Http\Controllers\Admin\Listing\ImageController;
 use App\Http\Controllers\Admin\Listing\VideoController;
 use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\Listing\ScheduleController;
-use App\Http\Controllers\Admin\ReviewController;
 
 Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 
@@ -38,7 +40,7 @@ Route::group(['as'=>'sections.'],function(){
     Route::resource('amenities',AmenityController::class)->except('show');
     Route::resource('packages',PackageController::class)->except('show');
     Route::resource('reviews',ReviewController::class)->only('index','update','destroy');
-  
+    Route::resource('claims',ClaimController::class)->only('index','destroy');
 
     Route::resource('listings.images',ImageController::class)->only(['create','store','destroy'])->scoped();
     Route::resource('listings.videos',VideoController::class)->only(['create','store','destroy'])->scoped();

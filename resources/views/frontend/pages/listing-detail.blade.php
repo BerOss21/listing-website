@@ -112,7 +112,7 @@
                         <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14602.678639283793!2d90.39695083611213!3d23.794774936848686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c70c15ea1de1%3A0x97856381e88fb311!2z4Kas4Kao4Ka-4Kao4KeAIOCmruCmoeCnh-CmsiDgpp_gpr7gpongpqgsIOCmouCmvuCmleCmvg!5e0!3m2!1sbn!2sbd!4v1634550875957!5m2!1sbn!2sbd" width="1000" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
                     </div>
                     <div class="wsus__listing_review">
-                        <h4>reviews 04</h4>
+                        <h4>reviews ({{$listing->active_reviews->count()}})</h4>
 
                         <div class="reviews">
                             @forelse($listing->active_reviews as $review)
@@ -208,28 +208,32 @@
                         </div>
                         <div class="col-12">
                             <div class="listing_det_side_contact">
-                                <h5>quick contact</h5>
-                                <form>
-                                    <form type="text" placeholder="Name*">
-                                        <input type="email" placeholder="Email*">
-                                        <input type="text" placeholder="Phone*">
-                                        <input type="text" placeholder="Subject*">
-                                        <textarea cols="3" rows="5" placeholder="Message*"></textarea>
+                                <h5>Claim</h5>
+                                @auth
+                                    <form action="{{ route('listings.claims',$listing->slug) }}" method="post">
+                                        @csrf
+                                        <textarea cols="5" rows="5" name="claim" placeholder="Claim*"></textarea>
                                         <button type="submit" class="read_btn">send</button>
                                     </form>
+                                @else
+                                    <div class="alert alert-info">
+                                        You should <a href="{{route('login')}}">login</a> to send your claim
+                                    </div>
+                                @endauth
+
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="listing_det_side_list">
                                 <h5>Similar Listing</h5>
                                 @foreach($similar_listings as $item)
-                                <a href="{{route('pages.listing-detail',$item->id)}}" class="sidebar_blog_single">
+                                <a href="{{route('pages.listing-detail',$item->slug)}}" class="sidebar_blog_single">
                                     <div class="sidebar_blog_img">
                                         <img src="{{ $item->thumbnail_image }}" alt="blog" class="imgofluid w-100">
                                     </div>
                                     <div class="sidebar_blog_text">
                                         <h5>{{ $item->title }}</h5>
-                                        <p> <span>{{ $item->created_at }} </span> 2 Comment </p>
+                                        <p> <span>{{ $item->created_at->format('d/m/Y') }} </span> {{$item->active_reviews_count}} {{ Str::plural('Comment',$item->active_reviews_count) }} </p>
                                     </div>
                                 </a>
                                 @endforeach

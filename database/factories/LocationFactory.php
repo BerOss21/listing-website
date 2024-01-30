@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,12 @@ class LocationFactory extends Factory
      */
     public function definition(): array
     {
+        $name = fake()->unique()->city;
+
         return [
-            //
+            'name' => $name,
+            'show_at_home' => fake()->boolean,
+            'status' => fake()->boolean,
         ];
     }
 }

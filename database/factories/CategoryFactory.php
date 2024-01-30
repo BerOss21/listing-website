@@ -17,7 +17,11 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->unique()->word,
+            // 'background' => 'sections/categories/default.jpg',
+            // 'icon' => 'sections/categories/default_icon.jpg',
+            'show_at_home' => fake()->boolean,
+            'status' => fake()->boolean,
         ];
     }
 }

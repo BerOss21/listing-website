@@ -82,6 +82,11 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
+    public function claims(): HasMany
+    {
+        return $this->hasMany(Claim::class);
+    }
+
     public function latestOrder(): HasOne
     {
         return $this->hasOne(Order::class)->latestOfMany();

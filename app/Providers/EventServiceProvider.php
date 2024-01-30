@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Claim;
 use App\Models\Image;
 use App\Models\Video;
 use App\Models\Review;
@@ -11,6 +12,7 @@ use App\Models\Listing;
 use App\Models\Category;
 use App\Observers\UserObserver;
 use App\Observers\AdminObserver;
+use App\Observers\ClaimObserver;
 use App\Observers\ImageObserver;
 use App\Observers\VideoObserver;
 use App\Observers\ReviewObserver;
@@ -49,7 +51,8 @@ class EventServiceProvider extends ServiceProvider
         Listing::class=>ListingObserver::class,
         Image::class=>ImageObserver::class,
         Video::class=>VideoObserver::class,
-        Review::class=>ReviewObserver::class
+        Review::class=>ReviewObserver::class,
+        Claim::class=>ClaimObserver::class
     ];
 
     /**

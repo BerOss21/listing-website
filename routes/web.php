@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\ClaimController;
 use Illuminate\Http\Request;
 use App\Services\Payment\Paypal;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,7 @@ Route::group(['middleware'=>'auth:web'],function(){
     Route::get('payment/return/{package}/{method?}',SaveOrderController::class)->name('payment.return');
     Route::post('currencies/change',CurrencyConverterController::class)->name('currencies.change');  
     Route::get('payment/cancel',function(){  dd(request(),'payment.cancel'); })->name('payment.cancel');  
+    Route::post('listings/{listing}/claims',ClaimController::class)->name('listings.claims');
 });
 
 Route::group(['as'=>'pages.'],function(){

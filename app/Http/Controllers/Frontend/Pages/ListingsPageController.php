@@ -10,7 +10,7 @@ class ListingsPageController extends Controller
 {
     public function __invoke(Request $request, Category $category)
     {
-        $listings=$category->listings()->withAvg('active_reviews','rating')->withCount('active_reviews')->approved()->active()->latest()->paginate(6);
+        $listings=$category->listings()->withAvg('active_reviews','rating')->withCount('active_reviews')->with(['category','location'])->approved()->active()->latest()->paginate(6);
 
         return view('frontend.pages.listings',compact('listings'));
     }

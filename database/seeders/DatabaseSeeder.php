@@ -5,27 +5,32 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Hero;
-use App\Models\Admin;
-use App\Models\PaymentMethod;
 use App\Models\User;
-use App\Services\Payment\Paypal;
+use App\Models\Admin;
+use App\Models\Amenity;
+use App\Models\Category;
+use App\Models\Listing;
+use App\Models\Location;
+use App\Models\PaymentMethod;
 use Illuminate\Database\Seeder;
+use App\Services\Payment\Paypal;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        /**
-         * persist heroes tables without casting
-         */
+        // User::factory(20)->create();
+        // Category::factory(20)->create();
+        // Location::factory(20)->create();
+        // $amenities=Amenity::factory(20)->create();
+        // Listing::factory(80)->create();
 
         // $this->call(PaypalMethodSeeder::class);
-        $this->call(StripeMethodSeeder::class);
-        
-      
+        // $this->call(StripeMethodSeeder::class);
+
+        // Listing::each(function ($listing) use ($amenities) {
+        //     $listing->amenities()->attach($amenities->random(rand(1, 3)));
+        // });
 
         // $hero = new Hero;
 
