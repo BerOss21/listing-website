@@ -13,7 +13,7 @@
             <div class="row">
                 @foreach($categories as $category)
                     <div class="col-xl-4 col-sm-6">
-                        <a href="{{route('pages.listings',$category->slug) }}" class="wsus__category_single">
+                        <a href="{{route('pages.listings',['category'=>$category->slug]) }}" class="wsus__category_single">
                             <div class="wsus__category_img">
                                 <img src="{{$category->background}}" alt="img" class="img-fluid w-100">
                             </div>

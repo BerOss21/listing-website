@@ -43,7 +43,7 @@ Route::group(['middleware'=>'auth:web'],function(){
 
 Route::group(['as'=>'pages.'],function(){
     Route::get('listings/modal/{listing}',ListingModalController::class)->name('listings.modal');
-    Route::get('listings/{category}',ListingsPageController::class)->name('listings');
+    Route::get('listings/',ListingsPageController::class)->name('listings');
     Route::get('listing-detail/{listing}',ListingDetailController::class)->name('listing-detail');
     Route::get('payment/{package}',PaymentController::class)->name('payment');
     

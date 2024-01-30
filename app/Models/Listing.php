@@ -119,7 +119,7 @@ class Listing extends Model
 
      public function active_reviews(): HasMany
      {
-          return $this->reviews()->whereApproved(1)->orWhere('user_id', auth()->id());
+          return $this->reviews()->whereApproved(1);
      }
 
      public function claims(): HasMany
@@ -141,4 +141,36 @@ class Listing extends Model
      {
           $query->approved()->active()->where('is_featured', 1);
      }
+
+     public function scopeFilter(Builder $query,$filters=[])
+     {
+          $default=[
+               'category'=>null,
+               'location'=>null,
+               'amenities'=>null,
+               'search'=>null
+          ];
+
+          $filters=array_merge($default,$filters);
+
+          $query->when($filters['category'],function($q,$value){
+               $q->whereRelation('category','slug',$value);
+          });
+
+          $query->when($filters['location'],function($q,$value){
+               $q->whereRelation('location','slug',$value);
+          });
+
+          $query->when($filters['amenities'],function($q,$value){
+               $q->whereHas('amenities', fn(Builder $builder) => $builder->whereIn('slug', $value));
+          });
+
+          $query->when($filters['search'],function($q,$value){
+               $q->where(function(Builder $builder) use($value){
+                    $builder->where('title','ilike',"%$value%")
+                              ->orWhere('description','ilike',"%$value%");
+               });
+          });
+     }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -41,5 +42,15 @@ class Amenity extends Model
     public function listings() :BelongsToMany
     {
         return $this->belongsToMany(Listing::class);
+    }
+
+    public function scopeActive(Builder $query)
+    {
+        $query->whereStatus(1);
+    }
+
+    public function scopeShowAtHome(Builder $query)
+    {
+        $query->whereShowAtHome(1);
     }
 }
