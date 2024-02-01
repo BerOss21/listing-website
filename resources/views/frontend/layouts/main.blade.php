@@ -21,9 +21,11 @@
 
     @stack('head')
     <!-- <link rel="stylesheet" href="{{asset('frontend/assets/css/rtl.css')}}"> -->
+    @routes
+    @vite('resources/js/app.js')
 </head>
 
-<body>
+<body id="app">
 
     <!--==========================
         TOPBAR PART START
@@ -45,9 +47,10 @@
                             Hello {{auth()->user()->firstname}}
                         </div>
                         <a href="{{route('dashboard')}}"><i class="far fa-user"></i></a>
-                        <a href="" id="user-logout-link"><i class="far fa-sign-out-alt"></i>Logout</a>
+                        <!-- <a href="" id="user-logout-link"><i class="far fa-sign-out-alt"></i>Logoutt</a> -->
                         <form id="user-logout-form" action="{{route('logout')}}" method="post">
                             @csrf
+                            <button class="btn" type="submit"><i class="far fa-sign-out-alt"></i>Logoutt</button>
                         </form>
 
                         @else
@@ -129,6 +132,14 @@
     <script src="{{asset('admin/assets/modules/izitoast/js/iziToast.min.js')}}"></script>
 
     <script>
+        $("#user-logout-link").on('click', function(e) {
+            e.preventDefault();
+            alert('in logitt')
+            $('#user-logout-form').submit();
+        })
+    </script>
+    
+    <script>
         @if($errors->any())
             @foreach($errors->all() as $error)
             iziToast.error({
@@ -140,12 +151,7 @@
         @endif
     </script>
 
-    <script>
-        $("#user-logout-link").on('click', function(e) {
-            e.preventDefault();
-            $('#user-logout-form').submit();
-        })
-    </script>
+ 
 
     <script>
         $(document).on('click','.modal_detail_listing_btn', async function(e) {
@@ -163,7 +169,6 @@
             }
         })
     </script>
-
 
     @stack('js')
 </body>

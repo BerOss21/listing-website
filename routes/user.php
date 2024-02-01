@@ -2,12 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Dashboard\MainController;
+use App\Http\Controllers\Frontend\Dashboard\OrderController;
 use App\Http\Controllers\Frontend\Dashboard\ListingController;
+use App\Http\Controllers\Frontend\Dashboard\MessageController;
 use App\Http\Controllers\Frontend\Dashboard\ProfileController;
+use App\Http\Controllers\Frontend\Dashboard\Chat\IndexController;
+use App\Http\Controllers\Frontend\Dashboard\Chat\SenderController;
+use App\Http\Controllers\Frontend\Dashboard\Chat\StoreController;
 use App\Http\Controllers\Frontend\Dashboard\Listings\ImageController;
 use App\Http\Controllers\Frontend\Dashboard\Listings\VideoController;
 use App\Http\Controllers\Frontend\Dashboard\Listings\ScheduleController;
-use App\Http\Controllers\Frontend\Dashboard\OrderController;
 
 Route::group(['prefix'=>'dashboard'],function(){
     Route::get('/',[MainController::class,'index'])->name('dashboard');
@@ -20,8 +24,13 @@ Route::group(['prefix'=>'dashboard'],function(){
         Route::resource('listings.schedules', ScheduleController::class)->except('show');
         Route::resource('listings', ListingController::class);
         Route::resource('orders',OrderController::class)->only(['index','show','destroy']);
+        Route::resource('messages',MessageController::class)->only(['index']);
     });
 });
+
+Route::get('chat/senders',SenderController::class)->name('chat.senders');
+Route::get('chat/{sender}/messages',IndexController::class)->name('chat.index');
+Route::post('chat/{receiver}/messages',StoreController::class)->name('chat.store');
 
 
 

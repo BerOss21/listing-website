@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.8",
         "predis/predis": "*",
         "symfony/intl": "^7.0",
+        "tightenco/ziggy": "^1.8",
         "yajra/laravel-datatables": "^10.1",
         "yoeunes/toastr": "^2.3"
     },

@@ -36,7 +36,7 @@
                         </div>
                         <div class="listing_det_header_text">
                             <h6>{{ \Str::title($listing->title) }}</h6>
-                            <p class="host_name">Hosted by <a href="">{{$listing->user->name}}</a></p>
+                            <p class="host_name">Hosted by <a href="">{{$listing->user->email}}</a></p>
                             <p class="rating">
                                 @for($i=1;$i<=5;$i++) 
                                     @if($i<=$listing->active_reviews_avg_rating)
@@ -223,6 +223,25 @@
 
                             </div>
                         </div>
+
+                        <div class="col-12">
+                            <div class="listing_det_side_contact">
+                                <h5>Message</h5>
+                                @auth
+                                    <form action="{{ route('chat.store',$listing->user_id) }}" method="post">
+                                        @csrf
+                                        <textarea cols="5" rows="5" name="content" placeholder="Message*"></textarea>
+                                        <button type="submit" class="read_btn">send</button>
+                                    </form>
+                                @else
+                                    <div class="alert alert-info">
+                                        You should <a href="{{route('login')}}">login</a> to send your message
+                                    </div>
+                                @endauth
+
+                            </div>
+                        </div>
+
                         <div class="col-12">
                             <div class="listing_det_side_list">
                                 <h5>Similar Listing</h5>

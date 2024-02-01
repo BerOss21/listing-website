@@ -91,4 +91,19 @@ class User extends Authenticatable
     {
         return $this->hasOne(Order::class)->latestOfMany();
     }
+
+    public function sent_messages() :HasMany
+    {
+        return $this->hasMany(Message::class,'sender_id','id');
+    }
+
+    public function last_sent_message() :HasOne 
+    {
+        return $this->hasOne(Message::class,'sender_id','id')->latestOfMany();
+    }
+
+    public function received_messages() :HasMany
+    {
+        return $this->hasMany(Message::class,'receiver_id','id');
+    }
 }
