@@ -12,7 +12,12 @@
 </template>
 
 <script setup>
+    import { provide } from 'vue';
     import MessageList from './partials/MessageList.vue';
     import TabContent from './partials/TabContent.vue';
+
+    const props=defineProps(['auth_id'])
+    
+    provide('auth_id',props.auth_id)
 </script>
 

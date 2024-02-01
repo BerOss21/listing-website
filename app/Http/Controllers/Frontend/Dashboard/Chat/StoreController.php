@@ -12,7 +12,7 @@ class StoreController extends Controller
     {
         $message=$receiver->received_messages()->create([...$request->validated(),'sender_id'=>auth()->id()]);
 
-        if($request->ajax()) return $message;
+        if($request->ajax()) return $message->load('sender','receiver');
 
         toastr()->success('Your message was sent successfully');
 

@@ -23,7 +23,7 @@ class Message extends Model
 
     protected $casts=[
         'seen'=>'boolean',
-        'created_at'=>'datetime'
+        'created_at'=>'datetime:d M, Y, h:i A'
     ];
 
     public function receiver() :BelongsTo

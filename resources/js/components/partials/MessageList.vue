@@ -4,7 +4,7 @@
             aria-orientation="vertical">
 
             <div class="nav-link" id="v-pills-messages-tab1 v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages1"
-                role="tab" aria-controls="v-pills-messages1" aria-selected="false" v-for="(sender,index) in senders" :key="index" @click="getMessages(sender.id)">
+                role="tab" aria-controls="v-pills-messages1" aria-selected="false" v-for="(sender,index) in senders" :key="index" @click="getMessages(sender)">
                 
                 <div class="tf__single_massage d-flex" >
                     <div class="tf__single_massage_img">
@@ -38,10 +38,4 @@
 
         senders.value=response.data.senders
     })
-
-    // const getMessages=async (id)=>{
-    //     const response=await axios.get(route('chat.index',id));
-        
-    //     console.log(response.data)
-    // }
 </script>

@@ -6,14 +6,21 @@ import { ref } from 'vue';
 export const useMessageStore = defineStore('messages', () => {
     const messages= ref(null);
 
-    const getMessages=async (id)=>{
-        const response=await axios.get(route('chat.index',id));
+    const sender=ref(null);
 
+    const getMessages=async (item)=>{
+        sender.value=item
+        const response=await axios.get(route('chat.index',item.id));
         messages.value=response.data.messages;
-        // emit('passMessages',response.data.messages);
-        
-        console.log(response.data)
+    }
+
+    const setMessage=(message)=>{
+        let existing=messages.value;
+
+        let refreshed=[...existing,message];
+
+        messages.value=refreshed;
     }
   
-    return { messages, getMessages }
+    return { messages, sender,  getMessages ,setMessage}
   })
