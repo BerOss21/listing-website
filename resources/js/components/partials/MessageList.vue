@@ -9,9 +9,12 @@
                         <img :src="sender.avatar" alt="person" class="img-fluid w-100">
                     </div>
                     <div class="tf__single_massage_text">
-                        <h4>{{sender.firstname}} {{sender.lastname}}</h4>
-                        <p>{{ sender.last_sent_message.content}}</p>
-                        <span class="tf__massage_time">{{sender.last_sent_message.date}}</span>
+                        <h4>
+                            {{sender.firstname}} {{sender.lastname}} 
+                            <span class="text-success">active</span>
+                        </h4>
+                        <p>{{ sender.last_sent_message?.content}}</p>
+                        <span class="tf__massage_time">{{sender.last_sent_message?.date}}</span>
                     </div>
                 </div>
             </div>     

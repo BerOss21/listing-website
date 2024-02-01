@@ -56,6 +56,8 @@ const scrollToMe=ref(null);
 const sendMessage=async ()=>{
     const response=await axios.post(route('chat.store',sender.value.id),{content:content.value});
     
+    content.value=null;
+
     setMessage(response.data);
 
     scrollToMe.value.scrollTop = scrollToMe.value.scrollHeight;
@@ -63,6 +65,23 @@ const sendMessage=async ()=>{
 
 onMounted(()=>{
     Echo.private(`message.${auth_id}`)
-    .listen('.message.sent', (data) => {setMessage(data.message);scrollToMe.value.scrollTop = scrollToMe.value.scrollHeight;});
+    .listen('.message.sent', (data) => {
+        setMessage(data.message);
+        scrollToMe.value.scrollTop = scrollToMe.value.scrollHeight;      
+    });
+
+    Echo.join(`listing_website`)
+    .here((users) => {
+        console.log(users)
+    })
+    .joining((user) => {
+        console.log(user.name);
+    })
+    .leaving((user) => {
+        console.log(user.name);
+    })
+    .error((error) => {
+        console.error(error);
+    });
 })
 </script>

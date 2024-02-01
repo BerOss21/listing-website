@@ -99,7 +99,7 @@ class User extends Authenticatable
 
     public function last_sent_message() :HasOne 
     {
-        return $this->hasOne(Message::class,'sender_id','id')->latestOfMany();
+        return $this->hasOne(Message::class,'sender_id','id')->where('receiver_id',auth()->id())->latestOfMany();
     }
 
     public function received_messages() :HasMany

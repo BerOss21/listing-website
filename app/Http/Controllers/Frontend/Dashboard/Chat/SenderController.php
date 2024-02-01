@@ -15,6 +15,9 @@ class SenderController extends Controller
 
         $senders=User::select('id','avatar','firstname','lastname')
                         ->whereRelation('sent_messages','receiver_id',auth()->id())
+                        ->orWhere(function($query){
+                            $query->whereRelation('received_messages','sender_id',auth()->id());
+                        })
                         ->with(['last_sent_message'])
                         ->get();
 

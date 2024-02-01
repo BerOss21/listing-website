@@ -38,4 +38,8 @@ class MessageSent implements ShouldBroadcast
     {
         return 'message.sent';
     }
+
+     // return [
+        //     new PresenceChannel('message.'.$this->message->room),
+        // ];
 }
