@@ -13,6 +13,8 @@ import MessagesComponent from './components/MessagesComponent.vue';
 import { ZiggyVue } from 'ziggy';
 import { createPinia } from 'pinia';
 
+
+
 const pinia = createPinia()
 
 const app = createApp({}).use(ZiggyVue).use(pinia);

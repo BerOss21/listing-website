@@ -1,6 +1,5 @@
 <template>
     <div class="tab-content" id="v-pills-tabContent">
-
         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"
             tabindex="0">
             <div class="tf___single_chat">
@@ -15,7 +14,7 @@
                     </div>
                 </div>
 
-                <div class="tf__single_chat_body">
+                <div class="tf__single_chat_body" ref="scrollToMe">
                     <template v-if="messages && messages.length">
                         <div class="tf__chating" :class="{ 'tf_chat_right': message.sender.id == auth_id }"
                             v-for="(message, index) in messages" :key="index">
@@ -27,34 +26,21 @@
                                 <span>{{ message.created_at }}</span>
                             </div>
                         </div>
-                    </template>
-
-                    <!-- <div class="tf__chating tf_chat_right">
-                        <div class="tf__chating_text">
-                            <p>Please check your mail and come on meeting</p>
-                            <span>15 Jun, 2023, 05:26 AM</span>
-                        </div>
-                        <div class="tf__chating_img">
-                            <img src="" alt="person" class="img-fluid w-100">
-                        </div>
-                    </div> -->
-
+                    </template>    
                 </div>
-                <form class="tf__single_chat_bottom" @submit.prevent="sendMessage">
+                <form v-if="sender" class="tf__single_chat_bottom" @submit.prevent="sendMessage">
                     <input type="text" v-model="content" placeholder="Type a message...">
                     <button type="submit" class="tf__massage_btn"><i class="fas fa-paper-plane"></i></button>
                 </form>
             </div>
         </div>
-
-
     </div>
 </template>
 
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useMessageStore } from '../../stores/messages';
-import { ref, inject } from 'vue';
+import { ref, inject, onMounted} from 'vue';
 
 const store = useMessageStore();
 
@@ -65,14 +51,18 @@ const { setMessage }=store;
 const auth_id=inject('auth_id');
 
 const content=ref(null);
+const scrollToMe=ref(null);
 
 const sendMessage=async ()=>{
-    console.log(sender.value.id);
     const response=await axios.post(route('chat.store',sender.value.id),{content:content.value});
-
-    console.log(response.data);
-
-    setMessage(response.data);
     
+    setMessage(response.data);
+
+    scrollToMe.value.scrollTop = scrollToMe.value.scrollHeight;
 }
+
+onMounted(()=>{
+    Echo.private(`message.${auth_id}`)
+    .listen('.message.sent', (data) => {setMessage(data.message);scrollToMe.value.scrollTop = scrollToMe.value.scrollHeight;});
+})
 </script>
