@@ -12,9 +12,7 @@ import { createApp } from "vue/dist/vue.esm-bundler";
 import MessagesComponent from './components/MessagesComponent.vue';
 import { ZiggyVue } from 'ziggy';
 import { createPinia } from 'pinia';
-
 import {useMessageStore} from './stores/messages';
-
 
 const pinia = createPinia()
 

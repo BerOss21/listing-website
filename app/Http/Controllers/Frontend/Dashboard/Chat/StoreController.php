@@ -15,7 +15,7 @@ class StoreController extends Controller
 
         MessageSent::dispatch($message->load('sender','receiver'));
 
-        if($request->ajax()) return $message->load('sender','receiver');
+        if($request->ajax()) return $message->load(['sender.last_sent_message','receiver']);
 
         toastr()->success('Your message was sent successfully');
 

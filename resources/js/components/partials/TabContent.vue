@@ -3,7 +3,13 @@
         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"
             tabindex="0">
             <div class="tf___single_chat">
-                <div class="tf__single_chat_top" v-if="sender">
+                <template v-if="loading_messages">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </template>
+                    
+                <div class="tf__single_chat_top" v-if="sender && !loading_messages">
                     <div class="img">
                         <img :src="sender.avatar" alt="person" class="img-fluid w-100">
                     </div>
@@ -16,18 +22,27 @@
                 </div>
 
                 <div class="tf__single_chat_body" ref="scrollToMe">
-                    <template v-if="messages && messages.length">
-                        <div class="tf__chating" :class="{ 'tf_chat_right': message.sender.id == auth_id }"
-                            v-for="(message, index) in messages" :key="index">
-                            <div class="tf__chating_img">
-                                <img :src="message.sender.avatar" alt="person" class="img-fluid w-100">
-                            </div>
-                            <div class="tf__chating_text">
-                                <p>{{ message.content }}</p>
-                                <span>{{ message.created_at }}</span>
-                            </div>
+                    
+                    <template v-if="loading_messages">
+                        <span class="sr-only">Loading...</span>
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
                         </div>
-                    </template>    
+                    </template>
+                    <template v-else>
+                        <template v-if="messages && messages.length">
+                            <div class="tf__chating" :class="{ 'tf_chat_right': message.sender.id == auth_id }"
+                                v-for="(message, index) in messages" :key="index">
+                                <div class="tf__chating_img">
+                                    <img :src="message.sender.avatar" alt="person" class="img-fluid w-100">
+                                </div>
+                                <div class="tf__chating_text">
+                                    <p>{{ message.content }}</p>
+                                    <span>{{ message.created_at }}</span>
+                                </div>
+                            </div>
+                        </template>    
+                    </template>
                 </div>
                 <form v-if="sender" class="tf__single_chat_bottom" @submit.prevent="sendMessage">
                     <input type="text" v-model="content" placeholder="Type a message...">
@@ -45,7 +60,7 @@ import { ref, inject, onMounted} from 'vue';
 
 const store = useMessageStore();
 
-const { messages, sender } = storeToRefs(store);
+const { messages, sender, loading_messages } = storeToRefs(store);
 
 const { setMessage, isConnected }=store;
 

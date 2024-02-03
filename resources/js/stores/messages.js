@@ -2,26 +2,52 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
 export const useMessageStore = defineStore('messages', () => {
+    const loading_messages=ref(false);
+    const loading_senders=ref(false);
+
     const messages= ref(null);
+
+    const senders=ref([]);
 
     const sender=ref(null);
 
     const connected=ref([]);
 
     const getMessages=async (item)=>{
+        loading_messages.value=true;
+
         sender.value=item;
 
         const response=await axios.get(route('chat.index',item.id));
 
         messages.value=response.data.messages;
+
+        loading_messages.value=false;
+    }
+
+    const getSenders=async ()=>{
+        loading_senders.value=true;
+
+        const response=await axios.get(route('chat.senders'));
+
+        senders.value=response.data.senders
+
+        loading_senders.value=false;
     }
 
     const setMessage=(message)=>{
-        let existing=messages.value;
+        if(!senders.value.map(item=>item.id).includes(message.sender.id))
+        {
+            senders.value=[...senders.value,message.sender]
+        }
+        else
+        {
+            let existing=messages.value;
 
-        let refreshed=[...existing,message];
+            let refreshed=[...existing,message];
 
-        messages.value=refreshed;
+            messages.value=refreshed;
+        }
     }
 
     const removeConnected=(user)=>{
@@ -44,9 +70,13 @@ export const useMessageStore = defineStore('messages', () => {
   
     return { 
         messages, 
+        senders,
         sender, 
         connected,
+        loading_messages,
+        loading_senders,
         getMessages,
+        getSenders,
         setMessage, 
         addConnected, 
         removeConnected,
