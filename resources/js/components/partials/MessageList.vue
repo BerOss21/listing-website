@@ -11,7 +11,8 @@
                     <div class="tf__single_massage_text">
                         <h4>
                             {{sender.firstname}} {{sender.lastname}} 
-                            <span class="text-success">active</span>
+                            <span v-if="isConnected(sender.id)" class="text-success">active</span>
+                            <span v-else class="text-danger">Inactive</span>
                         </h4>
                         <p>{{ sender.last_sent_message?.content}}</p>
                         <span class="tf__massage_time">{{sender.last_sent_message?.date}}</span>
@@ -29,7 +30,7 @@
 
     const store = useMessageStore();
 
-    const { getMessages } = store;
+    const { getMessages, isConnected } = store;
 
     const senders=ref([]);
 

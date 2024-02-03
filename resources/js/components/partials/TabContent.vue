@@ -9,7 +9,8 @@
                     </div>
                     <div class="text">
                         <h4>{{ sender.firstname }} {{ sender.lastname }}</h4>
-                        <p>active</p>
+                        <p v-if="isConnected(sender.id)">active</p>
+                        <p v-else>Inactive</p>
                         <a :href="route('dashboard')">Clear Chat</a>
                     </div>
                 </div>
@@ -46,11 +47,12 @@ const store = useMessageStore();
 
 const { messages, sender } = storeToRefs(store);
 
-const { setMessage }=store;
+const { setMessage, isConnected }=store;
 
 const auth_id=inject('auth_id');
 
 const content=ref(null);
+
 const scrollToMe=ref(null);
 
 const sendMessage=async ()=>{
@@ -68,20 +70,6 @@ onMounted(()=>{
     .listen('.message.sent', (data) => {
         setMessage(data.message);
         scrollToMe.value.scrollTop = scrollToMe.value.scrollHeight;      
-    });
-
-    Echo.join(`listing_website`)
-    .here((users) => {
-        console.log(users)
-    })
-    .joining((user) => {
-        console.log(user.name);
-    })
-    .leaving((user) => {
-        console.log(user.name);
-    })
-    .error((error) => {
-        console.error(error);
     });
 })
 </script>
